@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         LoginFrame loginScreen = new LoginFrame();
-        createTable();
+        //createTable();
     }
 
     public static Connection getConnection() throws Exception {

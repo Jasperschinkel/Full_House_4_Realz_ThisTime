@@ -62,6 +62,10 @@ public class VerwijderenOfToevoegen extends JFrame implements ActionListener {
                 ToevoegenSpeler toevoegenSpeler = new ToevoegenSpeler();
                 dispose();
             }
+            if(soort == 2){
+                ToevoegenToernooi toevoegenToernooi = new ToevoegenToernooi();
+                dispose();
+            }
         }
     }
 }
