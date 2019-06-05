@@ -19,9 +19,11 @@ public class ToernooiLijst extends JFrame{
 
     private TableRowSorter<TableModel> rowSorter = new TableRowSorter(jtbl.getModel());
     private JTextField jtfFilter = new JTextField();
-    private JButton jbtFilter = new JButton("search");
-    JLabel searchLabel = new JLabel("search: ");
+    private JButton verwijderButten = new JButton("Verwijderen");
+    private JButton wijzigButton = new JButton("Wijzigen");
+    private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
+    private JPanel buttonPanel = new JPanel(new BorderLayout());
 
 
 
@@ -31,16 +33,16 @@ public class ToernooiLijst extends JFrame{
         jtbl.setRowSorter(rowSorter);
 
 
+        jtbl.setRowSorter(rowSorter);
+        buttonPanel.add(verwijderButten, BorderLayout.CENTER);
+        buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
-
-
-
-
-        cnt.setLayout(new BorderLayout());
         searchPanel.add(jtfFilter,BorderLayout.CENTER);
-        searchPanel.add(jbtFilter,BorderLayout.LINE_END);
         searchPanel.add(searchLabel, BorderLayout.LINE_START);
+        searchPanel.add(buttonPanel, BorderLayout.LINE_END);
+        cnt.setLayout(new BorderLayout());
         cnt.add(searchPanel,BorderLayout.SOUTH);
+
         setTitle("Toernooi Lijst");
         setPreferredSize(new Dimension(1000, 500));
         setLocationRelativeTo(null);
