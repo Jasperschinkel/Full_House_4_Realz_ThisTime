@@ -1,5 +1,9 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,11 +15,28 @@ public class SpelerLijst extends JFrame {
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
 
+    private TableRowSorter<TableModel> rowSorter = new TableRowSorter(jtbl.getModel());
+    private JTextField jtfFilter = new JTextField();
+    private JButton jbtFilter = new JButton("search");
+    JLabel searchLabel = new JLabel("search: ");
+    private JPanel searchPanel = new JPanel(new BorderLayout());
+
 
 
     public SpelerLijst(){
+        jtbl.setRowSorter(rowSorter);
 
-        cnt.setLayout(new GridLayout());
+        searchPanel.add(jtfFilter,BorderLayout.CENTER);
+        searchPanel.add(jbtFilter,BorderLayout.LINE_END);
+        searchPanel.add(searchLabel, BorderLayout.LINE_START);
+        cnt.add(searchPanel,BorderLayout.SOUTH);
+
+        cnt.setLayout(new BorderLayout());
+        searchPanel.add(jtfFilter,BorderLayout.CENTER);
+        searchPanel.add(jbtFilter,BorderLayout.LINE_END);
+        searchPanel.add(searchLabel, BorderLayout.LINE_START);
+        cnt.add(searchPanel,BorderLayout.SOUTH);
+
         setTitle("Speler Lijst");
         setPreferredSize(new Dimension(1000, 1000));
         setLocationRelativeTo(null);
@@ -42,6 +63,40 @@ public class SpelerLijst extends JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+        jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = jtfFilter.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = jtfFilter.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        });
+
+
+
 
 
 
