@@ -1,8 +1,15 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class HoofdMenu extends JFrame implements ActionListener {
+
 
     JButton spelerButton = new JButton("Spelers");
     JButton toernooiButton = new JButton("Toernooien");
@@ -10,6 +17,7 @@ public class HoofdMenu extends JFrame implements ActionListener {
     JButton logoutButton = new JButton("Log out");
 
     public HoofdMenu(){
+
 
         setLayout(null);
         setVisible(true);
@@ -29,6 +37,8 @@ public class HoofdMenu extends JFrame implements ActionListener {
         masterclassButton.setBounds(430,75,150,30);
         logoutButton.setBounds(495,139,100,30);
     }
+
+
 
     public void addComponents(){
         add(spelerButton);
