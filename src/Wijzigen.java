@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Toevoegen extends JFrame implements ActionListener {
+public class Wijzigen extends JFrame implements ActionListener {
    private int soort;
    private String soortString = "";
 
@@ -12,7 +12,7 @@ public class Toevoegen extends JFrame implements ActionListener {
     JButton terug = new JButton("Terug");
 
 
-   public Toevoegen(int soort){
+   public Wijzigen(int soort){
        this.soort = soort;
        if(soort == 1){
            soortString = "spelers";

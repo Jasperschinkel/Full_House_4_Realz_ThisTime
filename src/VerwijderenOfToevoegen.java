@@ -12,7 +12,7 @@ public class VerwijderenOfToevoegen extends JFrame implements ActionListener {
         this.soort = soort;
 
 
-        setTitle("Toevoegen of verwijderen");
+        setTitle("Wijzigen of verwijderen");
         setLayout(null);
         setVisible(true);
         setSize(450, 250);
@@ -41,18 +41,25 @@ public class VerwijderenOfToevoegen extends JFrame implements ActionListener {
         terug.addActionListener(this);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == terug){
             if(soort == 1){
-                Toevoegen toevoegen = new Toevoegen(1);
+                Wijzigen toevoegen = new Wijzigen(1);
                 dispose();
             }
             if(soort == 2){
-                Toevoegen toernooiToevoegen = new Toevoegen(2);
+                Wijzigen toernooiToevoegen = new Wijzigen(2);
                 dispose();
             }
             if(soort == 3){
-                Toevoegen masterclassToevoegen = new Toevoegen(3);
+                Wijzigen masterclassToevoegen = new Wijzigen(3);
+                dispose();
+            }
+        }
+        if(e.getSource() == toevoegen){
+            if(soort == 1){
+                ToevoegenSpeler toevoegenSpeler = new ToevoegenSpeler();
                 dispose();
             }
         }

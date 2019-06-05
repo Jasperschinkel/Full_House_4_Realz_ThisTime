@@ -74,11 +74,11 @@ public abstract class SubMenu extends JFrame implements ActionListener {
             }
             dispose();
         } else if (e.getSource() == toevoegen && toevoegen.getText().equals("Speler wijzigen")) {
-            Toevoegen toevoegenframe = new Toevoegen(1);
+            Wijzigen toevoegenframe = new Wijzigen(1);
         } else if (e.getSource() == toevoegen && toevoegen.getText().equals("Toernooi wijzigen")) {
-            Toevoegen toevoegentoernooi = new Toevoegen(2);
+            Wijzigen toevoegentoernooi = new Wijzigen(2);
         } else if (e.getSource() == toevoegen && toevoegen.getText().equals("Masterclass wijzigen")) {
-            Toevoegen toevoegenMasterclass = new Toevoegen(3);
+            Wijzigen toevoegenMasterclass = new Wijzigen(3);
         } else if (e.getSource() == terug) {
             dispose();
             HoofdMenu menu = new HoofdMenu();
