@@ -20,6 +20,9 @@ public class ToernooiLijst extends JFrame{
     private TableRowSorter<TableModel> rowSorter = new TableRowSorter(jtbl.getModel());
     private JTextField jtfFilter = new JTextField();
     private JButton jbtFilter = new JButton("search");
+    JLabel searchLabel = new JLabel("search: ");
+    private JPanel searchPanel = new JPanel(new BorderLayout());
+
 
 
 
@@ -34,8 +37,10 @@ public class ToernooiLijst extends JFrame{
 
 
         cnt.setLayout(new BorderLayout());
-        cnt.add(new JLabel("Search:"),BorderLayout.SOUTH);
-        cnt.add(jtfFilter, BorderLayout.SOUTH);
+        searchPanel.add(jtfFilter,BorderLayout.CENTER);
+        searchPanel.add(jbtFilter,BorderLayout.LINE_END);
+        searchPanel.add(searchLabel, BorderLayout.LINE_START);
+        cnt.add(searchPanel,BorderLayout.SOUTH);
         setTitle("Toernooi Lijst");
         setPreferredSize(new Dimension(1000, 500));
         setLocationRelativeTo(null);
