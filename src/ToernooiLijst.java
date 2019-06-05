@@ -1,6 +1,10 @@
 import javax.swing.*;
-        import javax.swing.table.DefaultTableModel;
-        import java.awt.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import java.awt.*;
         import java.awt.event.ActionListener;
         import java.sql.Connection;
         import java.sql.DriverManager;
@@ -13,11 +17,25 @@ public class ToernooiLijst extends JFrame{
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
 
+    private TableRowSorter<TableModel> rowSorter = new TableRowSorter(jtbl.getModel());
+    private JTextField jtfFilter = new JTextField();
+    private JButton jbtFilter = new JButton("search");
+
+
+
 
     public ToernooiLijst(){
+        jtbl.setRowSorter(rowSorter);
 
 
-        cnt.setLayout(new GridLayout());
+
+
+
+
+
+        cnt.setLayout(new BorderLayout());
+        cnt.add(new JLabel("Search:"),BorderLayout.SOUTH);
+        cnt.add(jtfFilter, BorderLayout.SOUTH);
         setTitle("Toernooi Lijst");
         setPreferredSize(new Dimension(1000, 500));
         setLocationRelativeTo(null);
@@ -46,10 +64,45 @@ public class ToernooiLijst extends JFrame{
         }
 
 
+        jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = jtfFilter.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = jtfFilter.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        });
+
+
 
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();
     }
 
-}
+
+    }
+
+

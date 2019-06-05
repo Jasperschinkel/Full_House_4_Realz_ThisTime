@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        JFrame frame = new Wijzigen(2);
+      LoginFrame loginscherm = new LoginFrame();
 
 
     }
