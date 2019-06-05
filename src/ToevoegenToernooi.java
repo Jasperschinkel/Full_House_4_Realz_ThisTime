@@ -1,8 +1,11 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -21,14 +24,16 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
    private JLabel maxLabel = new JLabel("Max inschrijvingen");
    private JLabel inlegGeldLabel = new JLabel("Inleggeld: ");
    private JLabel uitersteLabel = new JLabel("Uiterlijk inschrijven tot: ");
+   private JLabel conditieLabel = new JLabel("Condities: ");
 
     // All the textfields represent!:
     private JTextField beschrijvingField = new JTextField();
+    private JTextField conditieField = new JTextField();
     private JTextField beginTijdField = new JTextField();
     private JTextField eindTijdField = new JTextField();
     private JTextField inlegGeldField = new JTextField();
 
-    private DateFormat format = new SimpleDateFormat("dd--MMMM--yyyy");
+    private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     private JFormattedTextField datumField = new JFormattedTextField(format);
     private JFormattedTextField uitersteField = new JFormattedTextField(format);
 
@@ -50,9 +55,9 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setComponentBounds();
+        addGroup();
         addComponents();
         addActionListeners();
-        addToButtonGroup();
         setSliderLabels();
     }
 
@@ -65,6 +70,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         inlegGeldLabel.setBounds(40,260,100,40);
         uitersteLabel.setBounds(40,310,200,40);
         beschrijvingLabel.setBounds(40,370,100,40);
+        conditieLabel.setBounds(40,485,100,40);
 
         datumField.setBounds(300,10,100,40);
         beginTijdField.setBounds(300,60,100,40);
@@ -74,7 +80,8 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         maxAantalSlider.setBounds(300,210,300,40);
         inlegGeldField.setBounds(300,260,100,40);
         uitersteField.setBounds(300,310,100,40);
-        beschrijvingField.setBounds(200,370,400,230);
+        beschrijvingField.setBounds(200,370,400,110);
+        conditieField.setBounds(200,500,400,110);
 
         terug.setBounds(600,620,75,40);
         bevestigen.setBounds(490,620,100,40);
@@ -99,7 +106,9 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         add(inlegGeldLabel);
         add(uitersteLabel);
         add(beschrijvingLabel);
+        add(conditieLabel);
 
+        add(conditieField);
         add(datumField);
         add(beginTijdField);
         add(eindTijdField);
@@ -114,6 +123,38 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         add(bevestigen);
     }
 
+    public void addGroup(){
+        ButtonGroup grp= new ButtonGroup();
+        grp.add(normaal);
+        grp.add(pinkRibbon);
+    }
+
+    public void emptyTextFields(){
+        datumField.setText("");
+        beginTijdField.setText("");
+        eindTijdField.setText("");
+        inlegGeldField.setText("");
+        uitersteField.setText("");
+        beschrijvingField.setText("");
+    }
+
+    public void addToernooi(){
+        String radio;
+        if(normaal.isSelected()){
+            radio= "Normaal";
+        }
+        else {
+          radio= "Pink Ribbon";
+        }
+        try{
+            Connection con = Main.getConnection();
+            PreparedStatement add = con.prepareStatement("INSERT INTO Toernooi (datum, begintijd, eindtijd, beschrijving, condities, soort_toernooi, maximaal_aantal_spelers, inleggeld, uiterste_inschrijf_datum) VALUES ('"+datumField.getText()+"', '"+beginTijdField.getText()+"', '"+eindTijdField.getText()+"', '"+beschrijvingField.getText()+"', '"+conditieField.getText()+"', '"+radio+"', '"+maxAantalSlider.getValue()+"', '"+inlegGeldField.getText()+"', '"+uitersteField.getText()+"');");
+            add.executeUpdate();
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void addActionListeners(){
         normaal.addActionListener(this);
         pinkRibbon.addActionListener(this);
@@ -124,12 +165,17 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
 
     }
 
-    public void addToButtonGroup(){}
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == terug){
+            dispose();
             VerwijderenOfToevoegen verwijderenOfToevoegen = new VerwijderenOfToevoegen(2);
+        }
+        if(e.getSource() == bevestigen) {
+            addToernooi();
+            JOptionPane.showMessageDialog(this, "Toernooi toegevoegd");
+            emptyTextFields();
         }
 
     }

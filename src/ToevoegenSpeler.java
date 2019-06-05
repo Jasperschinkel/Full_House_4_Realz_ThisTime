@@ -130,7 +130,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
        try{
            Connection con = Main.getConnection();
-           PreparedStatement add = con.prepareStatement("INSERT INTO Spelers (naam,adres, postcode, woonplaats, telefoonnr, email, geboortedatum, geslacht, leeftijd, ranking) VALUES ('"+naamField.getText()+ "', '"+adresField.getText()+ "', '"+postcodeField.getText()+ "', '"+woonplaatsField.getText()+"', '"+telefoonNummerField.getText()+ "', '"+emailField.getText()+"', '"+ geboorteDatumField.getText()+"', '"+geslachtField.getText()+"', '"+12+"', '"+0+"')");
+           PreparedStatement add = con.prepareStatement("INSERT INTO Spelers (naam,adres, postcode, woonplaats, telefoonnr, email, geboortedatum, geslacht, leeftijd, ranking) VALUES ('"+naamField.getText()+ "', '"+adresField.getText()+ "', '"+postcodeField.getText()+ "', '"+woonplaatsField.getText()+"', '"+telefoonNummerField.getText()+ "', '"+emailField.getText()+"', '"+ geboorteDatumField.getText()+"', '"+geslachtField.getText()+"', '"+12+"', '"+0+"');");
            add.executeUpdate();
        }catch(Exception e) {
            System.out.println(e);
