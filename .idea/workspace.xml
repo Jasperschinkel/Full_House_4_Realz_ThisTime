@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1aa84bda-b80a-47d1-be7d-a2b0bd10af75" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ToevoegenSpeler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/HoofdMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/Lijst.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/LoginFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/MasterclassMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SpelerMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SpelerWijzigMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SubMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/Toevoegen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/VerwijderenOfToevoegen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SubMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SubMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Toevoegen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wijzigen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VerwijderenOfToevoegen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/VerwijderenOfToevoegen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ToevoegenSpeler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToevoegenSpeler.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,15 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LoginFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LoginFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1125">
-              <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ToernooiMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ToernooiMenu.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,11 +40,20 @@
       <file leaf-file-name="ToevoegenSpeler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ToevoegenSpeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+            <state relative-caret-position="297">
+              <caret line="80" column="47" lean-forward="true" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mysql_mysql_connector_java_5_1_23.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -91,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/src/VerwijderenOfToevoegen.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -155,6 +139,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -172,6 +157,7 @@
         <option value="$PROJECT_DIR$/src/Toevoegen.java" />
         <option value="$PROJECT_DIR$/src/VerwijderenOfToevoegen.java" />
         <option value="$PROJECT_DIR$/src/Wijzigen.java" />
+        <option value="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" />
         <option value="$PROJECT_DIR$/src/ToevoegenSpeler.java" />
       </list>
     </option>
@@ -312,6 +298,14 @@
       <option name="presentableId" value="Default" />
       <updated>1558088920726</updated>
     </task>
+    <task id="LOCAL-00001" summary="De nieuwe shit XD">
+      <created>1559728400725</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559728400725</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -320,7 +314,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32946146" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32910052" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -348,14 +342,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="De nieuwe shit XD" />
+    <option name="LAST_COMMIT_MESSAGE" value="De nieuwe shit XD" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/LoginFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Wijzigen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1335">
@@ -765,7 +756,7 @@
     <entry file="file://$PROJECT_DIR$/src/VerwijderenOfToevoegen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -782,10 +773,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ToevoegenSpeler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="120" column="21" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+        <state relative-caret-position="297">
+          <caret line="80" column="47" lean-forward="true" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

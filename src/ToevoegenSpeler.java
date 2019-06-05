@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -11,7 +12,8 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
    private JLabel voornaamLabel = new JLabel("Voornaam: ");
    private JLabel achternaamLabel = new JLabel("Achternaam: ");
    private JLabel postcodeLabel = new JLabel("Postcode: ");
-   private JLabel adresLabel = new JLabel("Adres en postcode: ");
+   private JLabel adresLabel = new JLabel("Adres: ");
+   private JLabel woonplaatsLabel = new JLabel("Woonplaats: ");
    private JLabel telefoonNummerLabel = new JLabel("Telefoon nr: ");
    private JLabel emailLabel = new JLabel("e-mail: ");
    private JLabel geboorteDatumLabel = new JLabel("Geboortedatum: ");
@@ -22,6 +24,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
     private JTextField achternaamField = new JTextField();
     private JTextField postcodeField = new JTextField();
     private JTextField adresField = new JTextField();
+    private JTextField woonplaatsField = new JTextField();
     private JTextField telefoonNummerField = new JTextField();
     private JTextField emailField = new JTextField();
 
@@ -58,22 +61,24 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        voornaamLabel.setBounds(30,10,100,40);
        achternaamLabel.setBounds(30,60,100,40);
        postcodeLabel.setBounds(30,110,100,40);
-       adresLabel.setBounds(30,160,100,40);
-       telefoonNummerLabel.setBounds(30,210,100,40);
-       emailLabel.setBounds(30,260,100,40);
-       geboorteDatumLabel.setBounds(30,360,100,40);
-       geslachtLabel.setBounds(30,310,100,40);
+       woonplaatsLabel.setBounds(30,160,100,40);
+       adresLabel.setBounds(30,210,100,40);
+       telefoonNummerLabel.setBounds(30,260,100,40);
+       emailLabel.setBounds(30,310,100,40);
+       geboorteDatumLabel.setBounds(30,410,100,40);
+       geslachtLabel.setBounds(30,360,100,40);
 
        voornaamField.setBounds(140,10,100,40);
        achternaamField.setBounds(140,60,100,40);
        postcodeField.setBounds(140,110,100,40);
-       adresField.setBounds(140,160,100,40);
-       telefoonNummerField.setBounds(140,210,100,40);
-       emailField.setBounds(140,260,100,40);
-       geboorteDatumField.setBounds(140,360,100,40);
-       mannenButton.setBounds(140,310,100,40);
-       vrouwenButton.setBounds(241,310,100,40);
-       trannieButton.setBounds(342,310,100,40);
+       woonplaatsField.setBounds(140,160,100,40);
+       adresField.setBounds(140,210,100,40);
+       telefoonNummerField.setBounds(140,260,100,40);
+       emailField.setBounds(140,310,100,40);
+       geboorteDatumField.setBounds(140,410,100,40);
+       mannenButton.setBounds(140,360,100,40);
+       vrouwenButton.setBounds(241,360,100,40);
+       trannieButton.setBounds(342,360,100,40);
 
        bevestigen.setBounds(270,400,100,40);
        terug.setBounds(371,400,75,40);
