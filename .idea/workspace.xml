@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1aa84bda-b80a-47d1-be7d-a2b0bd10af75" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ToevoegenToernooi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ToevoegenSpeler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToevoegenSpeler.java" afterDir="false" />
     </list>
@@ -40,8 +40,8 @@
       <file leaf-file-name="ToevoegenSpeler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ToevoegenSpeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="80" column="47" lean-forward="true" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+            <state relative-caret-position="300">
+              <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mysql_mysql_connector_java_5_1_23.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml">
+      <file leaf-file-name="ToevoegenToernooi.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ToevoegenToernooi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="120">
+              <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -158,14 +158,15 @@
         <option value="$PROJECT_DIR$/src/VerwijderenOfToevoegen.java" />
         <option value="$PROJECT_DIR$/src/Wijzigen.java" />
         <option value="$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml" />
+        <option value="$PROJECT_DIR$/src/ToevoegenToernooi.java" />
         <option value="$PROJECT_DIR$/src/ToevoegenSpeler.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="305" />
-    <option name="y" value="368" />
-    <option name="width" value="965" />
+    <option name="x" value="477" />
+    <option name="y" value="345" />
+    <option name="width" value="955" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559728400725</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="De nieuwe shit 1.1 XD">
+      <created>1559729521546</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559729521546</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -344,19 +352,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="De nieuwe shit XD" />
-    <option name="LAST_COMMIT_MESSAGE" value="De nieuwe shit XD" />
+    <MESSAGE value="De nieuwe shit 1.1 XD" />
+    <option name="LAST_COMMIT_MESSAGE" value="De nieuwe shit 1.1 XD" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Wijzigen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -780,10 +779,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ToevoegenToernooi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ToevoegenSpeler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="80" column="47" lean-forward="true" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+        <state relative-caret-position="300">
+          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

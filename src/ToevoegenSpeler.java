@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 
 public class ToevoegenSpeler extends JFrame implements ActionListener {
 
+    private ButtonGroup btngrp = new ButtonGroup();
+
     // All the labels represent! :
    private JLabel voornaamLabel = new JLabel("Voornaam: ");
    private JLabel achternaamLabel = new JLabel("Achternaam: ");
@@ -16,7 +18,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
    private JLabel woonplaatsLabel = new JLabel("Woonplaats: ");
    private JLabel telefoonNummerLabel = new JLabel("Telefoon nr: ");
    private JLabel emailLabel = new JLabel("e-mail: ");
-   private JLabel geboorteDatumLabel = new JLabel("Geboortedatum: ");
+   private JLabel geboorteDatumLabel = new JLabel("Geboortedtm: ");
    private JLabel geslachtLabel = new JLabel("Geslacht: ");
 
    // All the textfields represent! :
@@ -42,16 +44,16 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        setTitle("Toevoegen van speler");
        setLayout(null);
        setVisible(true);
-       setSize(450, 500);
+       setSize(450, 550);
        setDefaultCloseOperation(EXIT_ON_CLOSE);
        setResizable(false);
        setComponentBounds();
        addComponents();
        addActionListeners();
+       addToButtonGroup();
    }
 
    public void addToButtonGroup(){
-       ButtonGroup btngrp = new ButtonGroup();
        btngrp.add(mannenButton);
        btngrp.add(vrouwenButton);
        btngrp.add(trannieButton);
@@ -80,8 +82,8 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        vrouwenButton.setBounds(241,360,100,40);
        trannieButton.setBounds(342,360,100,40);
 
-       bevestigen.setBounds(270,400,100,40);
-       terug.setBounds(371,400,75,40);
+       bevestigen.setBounds(270,459,100,40);
+       terug.setBounds(371,459,75,40);
 
 
    }
@@ -90,6 +92,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        add(voornaamLabel);
        add(achternaamLabel);
        add(postcodeLabel);
+       add(woonplaatsLabel);
        add(adresLabel);
        add(telefoonNummerLabel);
        add(emailLabel);
@@ -99,6 +102,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        add(voornaamField);
        add(achternaamField);
        add(postcodeField);
+       add(woonplaatsField);
        add(adresField);
        add(telefoonNummerField);
        add(emailField);
