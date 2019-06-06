@@ -1,12 +1,17 @@
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        LoginFrame loginScreen = new LoginFrame();
-        //createTable();
+
+      LoginFrame loginscherm = new LoginFrame();
+
+
     }
 
     public static Connection getConnection() throws Exception {
@@ -26,13 +31,9 @@ public class Main {
         return null;
     }
 
-    /*public static void createTable() throws Exception{
-        try{
-            Connection con = getConnection();
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS tablename(id int NOT NULL)");
-            create.executeUpdate();
-        }catch(Exception e){
-            System.out.println(e);}
 
-    } */
+
+
+
+
 }

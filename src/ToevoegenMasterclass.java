@@ -3,6 +3,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -28,7 +30,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     private JTextField eindTijdField = new JTextField();
     private JTextField kostenField = new JTextField();
 
-    private DateFormat format = new SimpleDateFormat("dd--MMMM--yyyy");
+    private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     private JFormattedTextField datumField = new JFormattedTextField(format);
 
 
@@ -50,10 +52,16 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         setComponentBounds();
         addComponents();
         addActionListeners();
-        addToButtonGroup();
         setSliderLabels();
     }
 
+
+    public void emptyTextFields(){
+        datumField.setText("");
+        beginTijdField.setText("");
+        eindTijdField.setText("");
+        kostenField.setText("");
+    }
 
 
     public void setComponentBounds(){
@@ -116,12 +124,26 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
 
     }
 
-    public void addToButtonGroup(){}
+    public void addMasterclass() {
+        try {
+            Connection con = Main.getConnection();
+            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking) VALUES ('" + datumField.getText() + "', '" + beginTijdField.getText() + "', '" + eindTijdField.getText() + "', '" + kostenField.getText() + "', '" + maxAantalSlider.getValue() + "');");
+            add.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == terug){
+            dispose();
             VerwijderenOfToevoegen verwijderenOfToevoegen = new VerwijderenOfToevoegen(3);
+        }
+        if(e.getSource() == bevestigen){
+            addMasterclass();
+            JOptionPane.showMessageDialog(this, "Masterclass toegevoegd");
+            emptyTextFields();
         }
 
     }
