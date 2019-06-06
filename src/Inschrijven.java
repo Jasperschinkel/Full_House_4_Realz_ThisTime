@@ -25,6 +25,7 @@ public class Inschrijven extends JFrame implements ActionListener {
     //Buttons
     private JButton terugButton = new JButton("Terug");
     private JButton klaarButton = new JButton("Klaar");
+    private JButton rankingButton = new JButton("Krijg Ranking");
 
     public Inschrijven(){
         setTitle("Inschrijven");
@@ -62,6 +63,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
         terugButton.setBounds(275,260,75,40);
         klaarButton.setBounds(175,260,100,40);
+        rankingButton.setBounds(50,260,125,40);
 
 
 
@@ -82,11 +84,13 @@ public class Inschrijven extends JFrame implements ActionListener {
 
         add(klaarButton);
         add(terugButton);
+        add(rankingButton);
     }
 
     public void addActionListeners(){
         terugButton.addActionListener(this);
         klaarButton.addActionListener(this);
+        rankingButton.addActionListener(this);
     }
 
     public void addInschrijving(){
@@ -170,7 +174,21 @@ public class Inschrijven extends JFrame implements ActionListener {
         else{return true;}
         }
 
-
+    public int getRanking(){
+        String naam = naamField.getText();
+        int ranking=0;
+        try {
+            Connection con = Main.getConnection();
+            PreparedStatement state = con.prepareStatement("SELECT ranking FROM Spelers WHERE naam = '"+naam+"'");
+            ResultSet rs= state.executeQuery();
+            if(rs.next()) {
+                return rs.getInt("ranking");
+            }
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+        return ranking;
+    }
 
 
     @Override
@@ -191,6 +209,9 @@ public class Inschrijven extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
                 emptyTextField();
             }
+        }
+        if(e.getSource() == rankingButton){
+            rankingField.setText(Integer.toString(getRanking()));
         }
 
     }
