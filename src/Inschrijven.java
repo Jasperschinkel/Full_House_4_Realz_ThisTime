@@ -46,6 +46,10 @@ public class Inschrijven extends JFrame implements ActionListener {
         codeField.setText("");
         heeftBetaaldField.setText("");
     }
+    public String getCodeText(){
+        String code = codeField.getText();
+        return code;
+    }
 
     public void setComponentBounds(){
         naamLabel.setBounds(40,10,100,40);
@@ -168,6 +172,23 @@ public class Inschrijven extends JFrame implements ActionListener {
         else{return true;}
         }
 
+        public int aantalToernooiInschrijvingen(){
+            try {
+                Connection con = Main.getConnection();
+                Statement st = con.createStatement();
+                String sql = ("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE nummercode LIKE " + codeField.getText());
+                ResultSet rs = st.executeQuery(sql);
+                if (rs.next()) {
+                    int totaal = rs.getInt("aantal");
+                    return totaal;
+                }
+            }catch(Exception e){
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database");
+            }
+        return 0;
+        }
+
 
 
 
@@ -184,6 +205,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if(validateGeslacht()){
                 JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
             }
+
             else {
                 addInschrijving();
                 JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
