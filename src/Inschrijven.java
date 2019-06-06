@@ -127,6 +127,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 String geslacht = rs.getString("geslacht");
+                System.out.println(geslacht);
                 return geslacht;
                 }
 
@@ -141,11 +142,12 @@ public class Inschrijven extends JFrame implements ActionListener {
         try {
             Connection con = Main.getConnection();
             Statement st = con.createStatement();
-            String sql = ("SELECT soort_toernooi FROM Toernooi WHERE TC LIKE '" + codeField.getText() + "'; ");
+            String sql = ("SELECT soort_toernooi FROM Toernooi WHERE TC LIKE '" + Integer.valueOf(codeField.getText()) + "'; ");
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                String toernooiCode = rs.getString("TC");
-                return toernooiCode;
+                String toernooiSoort = rs.getString("soort_toernooi");
+                System.out.println(toernooiSoort);
+                return toernooiSoort;
             }
 
         }catch(Exception e){
@@ -153,7 +155,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             System.out.println("ERROR: er is een probleem met de database");
         }
 
-        return "askjeBlap";}
+        return "poepieScheetje";}
 
         public boolean validateGeslacht(){
         String geslacht = getGeslacht();
@@ -181,7 +183,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             if (inschrijfControle()){
                 JOptionPane.showMessageDialog(this, "ERROR: deze speler is hiervoor al ingeschreven");
             }
-            else if(validateGeslacht()){
+            else if(!validateGeslacht()){
                 JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
             }
             else {

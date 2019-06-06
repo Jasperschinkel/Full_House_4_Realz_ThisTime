@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a91da5ae-66b4-43b1-97cf-7255b792fdf1" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToernooiCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToernooiCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToernooiLijst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToernooiLijst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToernooiMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToernooiMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Inschrijven.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inschrijven.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,8 +119,8 @@
       <file leaf-file-name="Inschrijven.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Inschrijven.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-930">
-              <caret line="97" column="34" lean-forward="true" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
+            <state relative-caret-position="178">
+              <caret line="164" column="24" selection-start-line="164" selection-start-column="24" selection-end-line="164" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -165,10 +164,10 @@
         <option value="$PROJECT_DIR$/src/LoginFrame.java" />
         <option value="$PROJECT_DIR$/src/InschrijvingenLijst.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Inschrijven.java" />
         <option value="$PROJECT_DIR$/src/ToernooiCode.java" />
         <option value="$PROJECT_DIR$/src/ToernooiLijst.java" />
         <option value="$PROJECT_DIR$/src/ToernooiMenu.java" />
+        <option value="$PROJECT_DIR$/src/Inschrijven.java" />
       </list>
     </option>
   </component>
@@ -504,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559857858528</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Default Changelist">
+      <created>1559860732424</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1559860732424</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -518,12 +524,12 @@
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5026846" side_tool="true" weight="0.3611898" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49731544" visible="true" weight="0.36084655" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49731544" visible="true" weight="0.36084655" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49932885" weight="0.32804233" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14997293" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14997293" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -945,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Inschrijven.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-930">
-          <caret line="97" column="34" lean-forward="true" selection-start-line="97" selection-start-column="34" selection-end-line="97" selection-end-column="34" />
+        <state relative-caret-position="178">
+          <caret line="164" column="24" selection-start-line="164" selection-start-column="24" selection-end-line="164" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
