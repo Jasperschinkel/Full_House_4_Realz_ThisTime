@@ -5,7 +5,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-        import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
         import java.sql.Connection;
         import java.sql.DriverManager;
         import java.sql.PreparedStatement;
@@ -100,7 +101,6 @@ public class ToernooiLijst extends JFrame{
             public void changedUpdate(DocumentEvent e) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
-
         });
 
 
@@ -109,6 +109,7 @@ public class ToernooiLijst extends JFrame{
         cnt.add(pg);
         this.pack();
     }
+
 
 
     }

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -21,6 +22,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
     private JTextField jtfFilter = new JTextField();
     private JButton verwijderButton = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
+    private JButton terugButton = new JButton("Terug");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -29,7 +31,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
     public SpelerLijst(){
         jtbl.setRowSorter(rowSorter);
 
-        jtbl.setRowSorter(rowSorter);
+        buttonPanel.add(terugButton, BorderLayout.LINE_START);
         buttonPanel.add(verwijderButton, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
@@ -134,6 +136,10 @@ public class SpelerLijst extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Speler verwijderd");
             dispose();
             SpelerLijst refresh = new SpelerLijst();
+        }
+        if(e.getSource() == terugButton){
+            dispose();
+            SpelerMenu spelerMenu = new SpelerMenu();
         }
     }
 
