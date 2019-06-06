@@ -49,6 +49,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         if (e.getSource() == lijstButton) {
             dispose();
             ToernooiLijst lijst = new ToernooiLijst();
+                    lijst.pushIsGeweest();
         }
         if(e.getSource() == toevoegButton) {
             dispose();
