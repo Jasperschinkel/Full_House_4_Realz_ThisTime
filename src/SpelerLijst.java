@@ -123,6 +123,11 @@ public class SpelerLijst extends JFrame implements ActionListener {
         }
     }
 
+    public void WijzigSpeler(){
+        int row = jtbl.getSelectedRow();
+        int col = jtbl.getSelectedColumn();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == verwijderButton) {
