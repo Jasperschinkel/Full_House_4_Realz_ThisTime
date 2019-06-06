@@ -102,10 +102,11 @@ public class Inschrijven extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == terugButton){
             dispose();
+            RegistratieMenu menu = new RegistratieMenu();
         }
         if(e.getSource() == klaarButton){
             addInschrijving();
-            JOptionPane.showMessageDialog(this, "Masterclass toegevoegd");
+            JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
             emptyTextField();
         }
 
