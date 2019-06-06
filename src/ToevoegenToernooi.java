@@ -170,7 +170,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == terug){
             dispose();
-            VerwijderenOfToevoegen verwijderenOfToevoegen = new VerwijderenOfToevoegen(2);
+            ToernooiMenu menu =  new ToernooiMenu();
         }
         if(e.getSource() == bevestigen) {
             addToernooi();

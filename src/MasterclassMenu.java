@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 public class MasterclassMenu extends JFrame implements ActionListener {
 
     JButton lijstButton = new JButton("Masterclasslijst");
-    JButton wijzigButton = new JButton("Masterclass wijzigen");
+    JButton toevoegButton = new JButton("Masterclass Toevoegen");
     JButton terugButton = new JButton("Terug");
     JButton logoutButton = new JButton("Log out");
 
@@ -26,21 +26,21 @@ public class MasterclassMenu extends JFrame implements ActionListener {
 
     public void setComponentBounds() {
         lijstButton.setBounds(20, 75, 150, 30);
-        wijzigButton.setBounds(225, 75, 150, 30);
+        toevoegButton.setBounds(225, 75, 150, 30);
         logoutButton.setBounds(495, 139, 100, 30);
         terugButton.setBounds(440,75,150,30);
     }
 
     public void addComponents(){
         add(lijstButton);
-        add(wijzigButton);
+        add(toevoegButton);
         add(logoutButton);
         add(terugButton);
     }
 
     public void addActionListeners(){
         lijstButton.addActionListener(this);
-        wijzigButton.addActionListener(this);
+        toevoegButton.addActionListener(this);
         logoutButton.addActionListener(this);
         terugButton.addActionListener(this);
     }
@@ -52,9 +52,9 @@ public class MasterclassMenu extends JFrame implements ActionListener {
             dispose();
             MasterclassLijst lijst = new MasterclassLijst();
         }
-        if (e.getSource() == wijzigButton) {
+        if (e.getSource() == toevoegButton) {
             dispose();
-            Wijzigen wijzig = new Wijzigen(3);
+            ToevoegenMasterclass toevoeg = new ToevoegenMasterclass();
         }
         if(e.getSource() == logoutButton){
             dispose();
