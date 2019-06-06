@@ -94,9 +94,9 @@ import java.sql.ResultSet;
             model.addColumn("begintijd");
             model.addColumn("eindtijd");
             model.addColumn("kosten");
-            model.addColumn("maximale ranking");
-            model.addColumn("Bekende speler");
-            model.addColumn("Max. aantal spelers");
+            model.addColumn("max_ranking");
+            model.addColumn("bekende_speler");
+            model.addColumn("max_aantal_spelers");
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -111,7 +111,16 @@ import java.sql.ResultSet;
             }
         }
 
-        public void verwijderToernooi(){
+        public void weizigMasterclass(){
+            int row = jtbl.getSelectedRow();
+            for(int i=1;i<8;i++){
+                String column = jtbl.getColumnName(i);
+                String temp = jtbl.getModel().getValueAt(row,jtbl.getSelectedColumn()).toString();
+
+            }
+        }
+
+        public void verwijderMasterclass(){
             int MCcolumn = 0;
             int row = jtbl.getSelectedRow();
             int mc = Integer.parseInt(jtbl.getModel().getValueAt(row, MCcolumn).toString());
@@ -125,7 +134,7 @@ import java.sql.ResultSet;
         }
         public void actionPerformed(ActionEvent e){
             if(e.getSource() == verwijderButten) {
-                verwijderToernooi();
+                verwijderMasterclass();
                 JOptionPane.showMessageDialog(this, "Masterclass verwijderd");
                 dispose();
                 MasterclassLijst refresh = new MasterclassLijst();
