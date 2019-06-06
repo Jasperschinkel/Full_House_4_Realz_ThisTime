@@ -94,9 +94,9 @@ import java.sql.ResultSet;
             model.addColumn("begintijd");
             model.addColumn("eindtijd");
             model.addColumn("kosten");
-            model.addColumn("maximale ranking");
-            model.addColumn("Bekende speler");
-            model.addColumn("Max. aantal spelers");
+            model.addColumn("max_ranking");
+            model.addColumn("bekende_speler");
+            model.addColumn("max_aantal_spelers");
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -111,7 +111,27 @@ import java.sql.ResultSet;
             }
         }
 
-        public void verwijderToernooi(){
+        public void wijzigMasterclass(JTable table, int row){
+            try{
+                Connection con= Main.getConnection();
+                PreparedStatement update = con.prepareStatement("UPDATE Masterclass SET datum = ?, begintijd = ?, eindtijd = ?, kosten = ?, max_ranking = ?, bekende_speler = ?, max_aantal_spelers = ? WHERE MasterclassCode = ?");
+                update.setString(1,jtbl.getValueAt(row,1).toString());
+                update.setString(2,jtbl.getValueAt(row,2).toString());
+                update.setString(3,jtbl.getValueAt(row,3).toString());
+                update.setString(4,jtbl.getValueAt(row,4).toString());
+                update.setInt(5,Integer.parseInt(jtbl.getValueAt(row,5).toString()));
+                update.setString(6,jtbl.getValueAt(row,6).toString());
+                update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));
+                update.setString(8,jtbl.getValueAt(row,0).toString());
+                update.executeUpdate();
+                update.close();
+
+            }catch(Exception e) {
+                System.out.println(e);
+            }
+        }
+
+        public void verwijderMasterclass(){
             int MCcolumn = 0;
             int row = jtbl.getSelectedRow();
             int mc = Integer.parseInt(jtbl.getModel().getValueAt(row, MCcolumn).toString());
@@ -125,7 +145,7 @@ import java.sql.ResultSet;
         }
         public void actionPerformed(ActionEvent e){
             if(e.getSource() == verwijderButten) {
-                verwijderToernooi();
+                verwijderMasterclass();
                 JOptionPane.showMessageDialog(this, "Masterclass verwijderd");
                 dispose();
                 MasterclassLijst refresh = new MasterclassLijst();
@@ -134,11 +154,18 @@ import java.sql.ResultSet;
                 dispose();
                 MasterclassMenu menu = new MasterclassMenu();
             }
+            if(e.getSource() == wijzigButton) {
+                wijzigMasterclass(jtbl,jtbl.getSelectedRow());
+                JOptionPane.showMessageDialog(this, "Masterclass gewijzigd");
+                dispose();
+                MasterclassLijst refresh = new MasterclassLijst();
+            }
         }
 
         public void addActionlisteners(){
             verwijderButten.addActionListener(this);
             terugButton.addActionListener(this);
+            wijzigButton.addActionListener(this);
         }
 
     }
