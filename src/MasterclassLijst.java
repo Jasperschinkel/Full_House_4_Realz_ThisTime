@@ -23,12 +23,15 @@ import java.sql.ResultSet;
         private JTextField jtfFilter = new JTextField();
         private JButton verwijderButten = new JButton("Verwijderen");
         private JButton wijzigButton = new JButton("Wijzigen");
-       private JLabel searchLabel = new JLabel("search: ");
+        private JButton terugButton = new JButton ("Terug");
+        private JLabel searchLabel = new JLabel("search: ");
         private JPanel searchPanel = new JPanel(new BorderLayout());
         private JPanel buttonPanel = new JPanel(new BorderLayout());
 
         public MasterclassLijst(){
             jtbl.setRowSorter(rowSorter);
+
+            buttonPanel.add(terugButton, BorderLayout.LINE_START);
             buttonPanel.add(verwijderButten, BorderLayout.CENTER);
             buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
@@ -40,7 +43,7 @@ import java.sql.ResultSet;
 
             setTitle("Masterclass Lijst");
             setPreferredSize(new Dimension(1000, 500));
-            setLocationRelativeTo(null);
+            //setLocationRelativeTo(null);
             setVisible(true);
             setResizable(false);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
