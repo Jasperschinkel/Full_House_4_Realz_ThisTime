@@ -23,9 +23,11 @@ public class ToernooiLijst extends JFrame implements ActionListener{
     private JButton verwijderButten = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
     private JButton terugButton = new JButton ("Terug");
+    private JButton tafelIndeling = new JButton("Tafelindeling");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
+    private JPanel buttonPanelLineStart = new JPanel(new BorderLayout());
 
 
 
@@ -33,8 +35,9 @@ public class ToernooiLijst extends JFrame implements ActionListener{
 
     public ToernooiLijst(){
         jtbl.setRowSorter(rowSorter);
-
-        buttonPanel.add(terugButton, BorderLayout.LINE_START);
+        buttonPanelLineStart.add(terugButton,BorderLayout.LINE_START);
+        buttonPanelLineStart.add(tafelIndeling,BorderLayout.CENTER);
+        buttonPanel.add(buttonPanelLineStart,BorderLayout.LINE_START);
         buttonPanel.add(verwijderButten, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
@@ -124,7 +127,23 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         }catch(Exception e){
             System.out.println(e);
         }
+
+
     }
+    public void makeTafelIndeling(){
+        int TCcolumn = 0;
+        int row = jtbl.getSelectedRow();
+        int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
+        try{
+            Connection con = Main.getConnection();
+            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT FROM Toernooi WHERE TC = "+tc+";");
+            SelectInschrijvingen.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+    }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == verwijderButten) {
             verwijderToernooi();

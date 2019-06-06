@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class LoginFrame extends JFrame implements ActionListener {
 
@@ -62,13 +64,45 @@ public class LoginFrame extends JFrame implements ActionListener {
         showPassword.addActionListener(this);
 
     }
+    public static ArrayList<Gebruiker> getAllGebruikers() throws ClassNotFoundException, SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
+        Statement stm;
+        stm = conn.createStatement();
+        String sql = "Select * From Gebruiker";
+        ResultSet rst;
+        rst = stm.executeQuery(sql);
+        ArrayList<Gebruiker> gebruikerList = new ArrayList<Gebruiker>();
+       while (rst.next()) {
+            Gebruiker gebruiker = new Gebruiker(rst.getString("gebruikersnaam"), rst.getString("wachtwoord"));
+            gebruikerList.add(gebruiker);
+
+        }
+        return gebruikerList;
+
+    }
 
     public boolean validateUser(){
-        // add some future logic
+        try
+        {
+            String gebruikersnaam = userField.getText();
+            String wachtwoord = passField.getText();
+            ArrayList<Gebruiker> lijstVanGebruikers = getAllGebruikers();
+            for(int i = 0; i < lijstVanGebruikers.size(); i++){
+                if(lijstVanGebruikers.get(i).getGebruikersnaam().equals(gebruikersnaam) && lijstVanGebruikers.get(i).getWachtwoord().equals(wachtwoord)){
+                    return true;
+                }
+            }
+        }
+        catch( ClassNotFoundException | SQLException e)
+        {
+            System.out.println("caught with LogIn");
+        }
+
+
 
         loggedInUser = "Registratie Medewerker";
 
-        return true;
+        return false;
     }
 
     @Override
