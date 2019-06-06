@@ -17,7 +17,7 @@ public class SpelerLijst extends JFrame {
 
     private TableRowSorter<TableModel> rowSorter = new TableRowSorter(jtbl.getModel());
     private JTextField jtfFilter = new JTextField();
-    private JButton verwijderButten = new JButton("Verwijderen");
+    private JButton verwijderButton = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
@@ -28,7 +28,7 @@ public class SpelerLijst extends JFrame {
         jtbl.setRowSorter(rowSorter);
 
         jtbl.setRowSorter(rowSorter);
-        buttonPanel.add(verwijderButten, BorderLayout.CENTER);
+        buttonPanel.add(verwijderButton, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
         searchPanel.add(jtfFilter,BorderLayout.CENTER);
@@ -47,10 +47,11 @@ public class SpelerLijst extends JFrame {
         model.addColumn("adres");
         model.addColumn("Postcode");
         model.addColumn("Woonplaats");
-        model.addColumn("Geboortedatum");
+        model.addColumn("Telefoonnummer");
         model.addColumn("E-Mail");
-        model.addColumn("Leeftijd");
+        model.addColumn("Geboortedatum");
         model.addColumn("Geslacht");
+        model.addColumn("Leeftijd");
         model.addColumn("Ranking");
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -58,7 +59,7 @@ public class SpelerLijst extends JFrame {
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM Spelers");
             ResultSet Rs = pstm.executeQuery();
             while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9)});
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
