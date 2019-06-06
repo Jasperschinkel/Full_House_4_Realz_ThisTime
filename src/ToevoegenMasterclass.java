@@ -22,6 +22,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     private JLabel eindTijdLabel = new JLabel("Eindigt: ");
     private JLabel maxLabel = new JLabel("Max ranking");
     private JLabel kostenLabel = new JLabel("Kosten: ");
+    private JLabel bekendeSpelerLabel = new JLabel("Bekende Speler: ");
 
 
     // All the textfields represent!:
@@ -29,6 +30,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     private JTextField beginTijdField = new JTextField();
     private JTextField eindTijdField = new JTextField();
     private JTextField kostenField = new JTextField();
+    private JTextField bekendeSpelerField = new JTextField();
 
     private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     private JFormattedTextField datumField = new JFormattedTextField(format);
@@ -46,7 +48,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         setTitle("Toevoegen van Masterclass");
         setLayout(null);
         setVisible(true);
-        setSize(600, 500);
+        setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setComponentBounds();
@@ -61,6 +63,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         beginTijdField.setText("");
         eindTijdField.setText("");
         kostenField.setText("");
+        bekendeSpelerField.setText("");
     }
 
 
@@ -70,6 +73,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         eindTijdLabel.setBounds(40,220,100,40);
         maxLabel.setBounds(40,330,200,40);
         kostenLabel.setBounds(40,410,100,40);
+        bekendeSpelerLabel.setBounds(40, 520, 100, 40);
 
 
 
@@ -78,11 +82,12 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         eindTijdField.setBounds(250,220,100,40);
         maxAantalSlider.setBounds(250,330,300,40);
         kostenField.setBounds(250,410,100,40);
+        bekendeSpelerField.setBounds(250, 520, 100, 40);
 
 
 
-        terug.setBounds(520,430,75,40);
-        bevestigen.setBounds(419,430,100,40);
+        terug.setBounds(520,525,75,40);
+        bevestigen.setBounds(419,525,100,40);
 
 
 
@@ -101,6 +106,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         add(eindTijdLabel);
         add(maxLabel);
         add(kostenLabel);
+        add(bekendeSpelerLabel);
 
 
 
@@ -109,6 +115,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         add(eindTijdField);
         add(maxAantalSlider);
         add(kostenField);
+        add(bekendeSpelerField);
 
 
 
@@ -127,7 +134,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     public void addMasterclass() {
         try {
             Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking) VALUES ('" + datumField.getText() + "', '" + beginTijdField.getText() + "', '" + eindTijdField.getText() + "', '" + kostenField.getText() + "', '" + maxAantalSlider.getValue() + "');");
+            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler) VALUES ('" + datumField.getText() + "', '" + beginTijdField.getText() + "', '" + eindTijdField.getText() + "', '" + kostenField.getText() + "', '" + maxAantalSlider.getValue() + "', '" + bekendeSpelerField.getText() +  "');");
             add.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
