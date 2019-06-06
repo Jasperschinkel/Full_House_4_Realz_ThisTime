@@ -45,7 +45,7 @@ import java.sql.ResultSet;
 
             setTitle("Masterclass Lijst");
             setPreferredSize(new Dimension(1000, 500));
-            //setLocationRelativeTo(null);
+
             setVisible(true);
             setResizable(false);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,7 +116,7 @@ import java.sql.ResultSet;
             int mc = Integer.parseInt(jtbl.getModel().getValueAt(row, MCcolumn).toString());
             try{
                 Connection con = Main.getConnection();
-                PreparedStatement verwijder = con.prepareStatement("DELETE FROM Masterclass WHERE TC = "+mc+";");
+                PreparedStatement verwijder = con.prepareStatement("DELETE FROM Masterclass WHERE MasterclassCOde = "+mc+";");
                 verwijder.executeUpdate();
             }catch(Exception e){
                 System.out.println(e);
