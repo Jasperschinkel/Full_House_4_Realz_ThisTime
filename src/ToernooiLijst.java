@@ -7,10 +7,8 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-        import java.sql.Connection;
-        import java.sql.DriverManager;
-        import java.sql.PreparedStatement;
-        import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class ToernooiLijst extends JFrame implements ActionListener{
 
@@ -173,6 +171,23 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         }catch(Exception e){
             System.out.println(e);
         }
+
+    }
+
+    public static ArrayList<ToernooiCode> getAllToernooiCodes() throws ClassNotFoundException, SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
+        Statement stm;
+        stm = conn.createStatement();
+        String sql = "Select * From Toernooi";
+        ResultSet rst;
+        rst = stm.executeQuery(sql);
+        ArrayList<ToernooiCode> toernooiCodes = new ArrayList<ToernooiCode>();
+        while (rst.next()) {
+            ToernooiCode toernooiCode = new ToernooiCode(rst.getString("TC"));
+            toernooiCodes.add(toernooiCode);
+
+        }
+        return toernooiCodes;
 
     }
 
