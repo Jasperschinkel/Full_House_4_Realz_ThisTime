@@ -110,12 +110,10 @@ public class LoginFrame extends JFrame implements ActionListener {
         if (e.getSource() == loginButton) {
             System.out.println("Login button was clicked");
             if(validateUser()){
-                if(loggedInUser.equals("Registratie Medewerker")){
+
                     dispose();
                     HoofdMenu menu = new HoofdMenu();
 
-
-                }
             }
 
             else{
