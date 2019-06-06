@@ -155,7 +155,6 @@ public class ToernooiLijst extends JFrame implements ActionListener {
             System.out.println(e);
         }
 
-
     }
 
     public void makeTafelIndeling() {
