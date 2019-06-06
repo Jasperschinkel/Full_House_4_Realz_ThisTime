@@ -21,6 +21,7 @@ public class ToernooiLijst extends JFrame{
     private JTextField jtfFilter = new JTextField();
     private JButton verwijderButten = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
+    private JButton terugButton = new JButton ("Terug");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -32,8 +33,7 @@ public class ToernooiLijst extends JFrame{
     public ToernooiLijst(){
         jtbl.setRowSorter(rowSorter);
 
-
-        jtbl.setRowSorter(rowSorter);
+        buttonPanel.add(terugButton, BorderLayout.LINE_START);
         buttonPanel.add(verwijderButten, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 

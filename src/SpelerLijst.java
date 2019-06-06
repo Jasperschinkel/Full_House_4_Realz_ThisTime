@@ -29,7 +29,6 @@ public class SpelerLijst extends JFrame {
     public SpelerLijst(){
         jtbl.setRowSorter(rowSorter);
 
-        jtbl.setRowSorter(rowSorter);
         buttonPanel.add(terugButton, BorderLayout.LINE_START);
         buttonPanel.add(verwijderButton, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
