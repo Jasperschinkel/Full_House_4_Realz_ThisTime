@@ -8,10 +8,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-
       LoginFrame frame = new LoginFrame();
-
-
     }
 
     public static Connection getConnection() throws Exception {
@@ -26,8 +23,6 @@ public class Main {
             return conn;
         } catch(Exception e){
             System.out.println(e);}
-
-
         return null;
     }
 
