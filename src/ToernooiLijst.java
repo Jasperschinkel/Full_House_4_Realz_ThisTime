@@ -134,10 +134,15 @@ public class ToernooiLijst extends JFrame implements ActionListener{
             dispose();
            ToernooiLijst refresh = new ToernooiLijst();
         }
+        if(e.getSource() == terugButton) {
+            dispose();
+            ToernooiMenu menu = new ToernooiMenu();
+        }
     }
 
     public void addActionlisteners(){
         verwijderButten.addActionListener(this);
+        terugButton.addActionListener(this);
     }
 
 
