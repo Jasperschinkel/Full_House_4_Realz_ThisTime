@@ -113,6 +113,28 @@ public class ToernooiLijst extends JFrame implements ActionListener{
             System.out.println(e.getMessage());
         }
     }
+
+    public void wijzigToernooi(JTable table, int row){
+        try{
+            Connection con= Main.getConnection();
+            PreparedStatement update = con.prepareStatement("UPDATE Toernooi SET datum = ?, begintijd = ?, eindtijd = ?, beschrijving = ?, condities = ?, soort_toernooi = ?, maximaal_aantal_spelers = ?, inleggeld = ?, uiterste_inschrijf_datum = ? WHERE TC = ?");
+            update.setString(1,jtbl.getValueAt(row,1).toString());
+            update.setString(2,jtbl.getValueAt(row,2).toString());
+            update.setString(3,jtbl.getValueAt(row,3).toString());
+            update.setString(4,jtbl.getValueAt(row,4).toString());
+            update.setString(5,jtbl.getValueAt(row,5).toString());
+            update.setString(6,jtbl.getValueAt(row,6).toString());
+            update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));
+            update.setString(8,jtbl.getValueAt(row,8).toString());
+            update.setString(9,jtbl.getValueAt(row,9).toString());
+            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
+            update.executeUpdate();
+            update.close();
+
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+    }
     public void verwijderToernooi(){
         int TCcolumn = 0;
         int row = jtbl.getSelectedRow();
@@ -136,11 +158,18 @@ public class ToernooiLijst extends JFrame implements ActionListener{
             dispose();
             ToernooiMenu menu = new ToernooiMenu();
         }
+        if(e.getSource() == wijzigButton){
+            wijzigToernooi(jtbl, jtbl.getSelectedRow());
+            JOptionPane.showMessageDialog(this, "Toernooi gewijzigd");
+            dispose();
+            ToernooiLijst refresh = new ToernooiLijst();
+        }
     }
 
     public void addActionlisteners(){
         verwijderButten.addActionListener(this);
         terugButton.addActionListener(this);
+        wijzigButton.addActionListener(this);
     }
 
 
