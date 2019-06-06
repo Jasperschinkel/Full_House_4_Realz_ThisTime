@@ -94,7 +94,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Inschrijvingen");
+            PreparedStatement pstm = con.prepareStatement("SELECT DISTINCT * FROM Inschrijvingen");
             ResultSet Rs = pstm.executeQuery();
             while (Rs.next()) {
                 model.addRow(new Object[]{Rs.getString(1), Rs.getString(2), Rs.getString(3), Rs.getString(4), Rs.getString(5), Rs.getString(6)});

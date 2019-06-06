@@ -3,6 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.*;
 
 public class Inschrijven extends JFrame implements ActionListener {
     //Labels
@@ -97,6 +100,73 @@ public class Inschrijven extends JFrame implements ActionListener {
 
     }
 
+    public boolean inschrijfControle(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + naamField.getText() + "' AND nummercode LIKE " + codeField.getText());
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                int id = rs.getInt("aantal");
+                if (id < 1) {
+                    return false;
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+        return true;
+    }
+
+    public String getGeslacht(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT geslacht FROM Spelers WHERE naam LIKE '" + naamField.getText() + "'; ");
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                String geslacht = rs.getString("geslacht");
+                return geslacht;
+                }
+
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+
+   return "poepieScheetje";}
+
+    public String getToernooiSoort(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT soort_toernooi FROM Toernooi WHERE TC LIKE '" + codeField.getText() + "'; ");
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                String toernooiCode = rs.getString("TC");
+                return toernooiCode;
+            }
+
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+
+        return "askjeBlap";}
+
+        public boolean validateGeslacht(){
+        String geslacht = getGeslacht();
+        String toernooiSoort = getToernooiSoort();
+
+        if(!geslacht.equals("F") && toernooiSoort.equals("PinkRibbon")){
+            return false;
+        }
+        else{return true;}
+        }
+
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -105,9 +175,17 @@ public class Inschrijven extends JFrame implements ActionListener {
             RegistratieMenu menu = new RegistratieMenu();
         }
         if(e.getSource() == klaarButton){
-            addInschrijving();
-            JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
-            emptyTextField();
+            if (inschrijfControle()){
+                JOptionPane.showMessageDialog(this, "ERROR: deze speler is hiervoor al ingeschreven");
+            }
+            else if(validateGeslacht()){
+                JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
+            }
+            else {
+                addInschrijving();
+                JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
+                emptyTextField();
+            }
         }
 
     }

@@ -7,10 +7,8 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-        import java.sql.Connection;
-        import java.sql.DriverManager;
-        import java.sql.PreparedStatement;
-        import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class ToernooiLijst extends JFrame implements ActionListener{
 
@@ -23,9 +21,11 @@ public class ToernooiLijst extends JFrame implements ActionListener{
     private JButton verwijderButten = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
     private JButton terugButton = new JButton ("Terug");
+    private JButton tafelIndeling = new JButton("Tafelindeling");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
+    private JPanel buttonPanelLineStart = new JPanel(new BorderLayout());
 
 
 
@@ -33,8 +33,9 @@ public class ToernooiLijst extends JFrame implements ActionListener{
 
     public ToernooiLijst(){
         jtbl.setRowSorter(rowSorter);
-
-        buttonPanel.add(terugButton, BorderLayout.LINE_START);
+        buttonPanelLineStart.add(terugButton,BorderLayout.LINE_START);
+        buttonPanelLineStart.add(tafelIndeling,BorderLayout.CENTER);
+        buttonPanel.add(buttonPanelLineStart,BorderLayout.LINE_START);
         buttonPanel.add(verwijderButten, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
@@ -45,7 +46,7 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         cnt.add(searchPanel,BorderLayout.SOUTH);
 
         setTitle("Toernooi Lijst");
-        setPreferredSize(new Dimension(1000, 500));
+        setPreferredSize(new Dimension(1700, 500));
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,18 +102,28 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         model.addColumn("Max. aantal spelers");
         model.addColumn("Inleggeld");
         model.addColumn("Uiterste inschrijfdatum");
+        model.addColumn("aantal_spelers");
+        model.addColumn("aantal_tafels");
+        model.addColumn("totale_inleggeld");
+        model.addColumn("is_gespeeld");
+        model.addColumn("winnaar");
+        model.addColumn("twwede_plaats");
+
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM Toernooi");
             ResultSet Rs = pstm.executeQuery();
             while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10),Rs.getString(11),Rs.getString(12),Rs.getString(13),Rs.getString(14),Rs.getString(15),Rs.getString(16)});
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
+
 
     public void wijzigToernooi(JTable table, int row){
         try{
@@ -146,7 +157,40 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         }catch(Exception e){
             System.out.println(e);
         }
+
+
     }
+    public void makeTafelIndeling(){
+        int TCcolumn = 0;
+        int row = jtbl.getSelectedRow();
+        int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
+        try{
+            Connection con = Main.getConnection();
+            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT FROM Toernooi WHERE TC = "+tc+";");
+            SelectInschrijvingen.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
+    }
+
+    public static ArrayList<ToernooiCode> getAllToernooiCodes() throws ClassNotFoundException, SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
+        Statement stm;
+        stm = conn.createStatement();
+        String sql = "Select * From Toernooi";
+        ResultSet rst;
+        rst = stm.executeQuery(sql);
+        ArrayList<ToernooiCode> toernooiCodes = new ArrayList<ToernooiCode>();
+        while (rst.next()) {
+            ToernooiCode toernooiCode = new ToernooiCode(rst.getString("TC"));
+            toernooiCodes.add(toernooiCode);
+
+        }
+        return toernooiCodes;
+
+    }
+
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == verwijderButten) {
             verwijderToernooi();
