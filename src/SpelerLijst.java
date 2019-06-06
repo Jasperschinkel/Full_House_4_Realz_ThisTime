@@ -47,9 +47,9 @@ public class SpelerLijst extends JFrame {
         model.addColumn("adres");
         model.addColumn("Postcode");
         model.addColumn("Woonplaats");
-        model.addColumn("Geboortedatum");
+        model.addColumn("Telefoonnummer");
         model.addColumn("E-Mail");
-        model.addColumn("Leeftijd");
+        model.addColumn("Geboortedatum");
         model.addColumn("Geslacht");
         model.addColumn("Ranking");
         try {

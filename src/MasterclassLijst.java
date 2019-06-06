@@ -38,7 +38,7 @@ import java.sql.ResultSet;
             cnt.setLayout(new BorderLayout());
             cnt.add(searchPanel,BorderLayout.SOUTH);
 
-            setTitle("Toernooi Lijst");
+            setTitle("Masterclass Lijst");
             setPreferredSize(new Dimension(1000, 500));
             setLocationRelativeTo(null);
             setVisible(true);
