@@ -42,7 +42,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
         cnt.add(searchPanel,BorderLayout.SOUTH);
         showLijst();
         setTitle("Speler Lijst");
-        setPreferredSize(new Dimension(1000, 1000));
+        setPreferredSize(new Dimension(1500, 1000));
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +85,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
 
 
     public void showLijst(){
-        model.addColumn("SpelerID");
+        model.addColumn("idcode");
         model.addColumn("naam");
         model.addColumn("adres");
         model.addColumn("Postcode");
@@ -127,18 +127,19 @@ public class SpelerLijst extends JFrame implements ActionListener {
     public void wijzigSpeler(JTable table, int row){
         try{
             Connection con= Main.getConnection();
-            PreparedStatement update = con.prepareStatement("UPDATE Spelers SET");
+            PreparedStatement update = con.prepareStatement("UPDATE Spelers SET naam = ?, adres = ?, postcode = ?, woonplaats = ?, telefoonnr = ?, email = ?, geboortedatum = ?, geslacht = ?, leeftijd = ?, ranking = ? WHERE idcode = ?");
             update.setString(1,jtbl.getValueAt(row,1).toString());
             update.setString(2,jtbl.getValueAt(row,2).toString());
             update.setString(3,jtbl.getValueAt(row,3).toString());
             update.setString(4,jtbl.getValueAt(row,4).toString());
             update.setString(5,jtbl.getValueAt(row,5).toString());
             update.setString(6,jtbl.getValueAt(row,6).toString());
-            update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));
+            update.setString(7,jtbl.getValueAt(row,7).toString());
             update.setString(8,jtbl.getValueAt(row,8).toString());
-            update.setString(9,jtbl.getValueAt(row,9).toString());
-            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
-            //update.executeUpdate();
+            update.setInt(9,Integer.parseInt(jtbl.getValueAt(row,9).toString()));
+            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,10).toString()));
+            update.setInt(11,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
+            update.executeUpdate();
             update.close();
 
         }catch(Exception e) {
@@ -158,11 +159,18 @@ public class SpelerLijst extends JFrame implements ActionListener {
             dispose();
             SpelerMenu spelerMenu = new SpelerMenu();
         }
+        if(e.getSource() == wijzigButton) {
+            wijzigSpeler(jtbl, jtbl.getSelectedRow());
+            JOptionPane.showMessageDialog(this, "Speler gewijzigd");
+            dispose();
+            SpelerLijst refresh = new SpelerLijst();
+        }
     }
 
     public void addActionListeners(){
         verwijderButton.addActionListener(this);
         terugButton.addActionListener(this);
+        wijzigButton.addActionListener(this);
     }
 }
 
