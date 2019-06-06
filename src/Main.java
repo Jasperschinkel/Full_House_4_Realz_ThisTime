@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-      LoginFrame frame = new LoginFrame();
+      SpelerLijst frame = new SpelerLijst();
     }
 
     public static Connection getConnection() throws Exception {

@@ -110,14 +110,13 @@ public class SpelerLijst extends JFrame implements ActionListener {
     }
 
     public void verwijderSpeler(){
-        int naamcolumn = 0;
-        int telcolumn = 4;
+
         int row = jtbl.getSelectedRow();
-        String naam = jtbl.getModel().getValueAt(row, naamcolumn).toString();
-        String tel = jtbl.getModel().getValueAt(row, telcolumn).toString();
+
+        int code = Integer.parseInt(jtbl.getModel().getValueAt(row,0).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Spelers WHERE naam = '"+naam+"'  AND telefoonnr = '"+tel+"'");
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Spelers WHERE idcode = "+code);
             verwijder.executeUpdate();
         }catch(Exception e){
             System.out.println(e);
@@ -139,6 +138,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
             update.setInt(9,Integer.parseInt(jtbl.getValueAt(row,9).toString()));
             update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,10).toString()));
             update.setInt(11,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
+            System.out.println(update.toString());
             update.executeUpdate();
             update.close();
 
