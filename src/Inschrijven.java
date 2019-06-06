@@ -119,6 +119,25 @@ public class Inschrijven extends JFrame implements ActionListener {
         return true;
     }
 
+    public String getGeslacht(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT geslacht (*) FROM Spelers WHERE naam LIKE '" + naamField.getText() + "'; ");
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                String geslacht = rs.getString("geslacht");
+                return geslacht;
+                }
+
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+
+   return "poepieScheetje";}
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

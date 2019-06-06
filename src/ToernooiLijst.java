@@ -48,7 +48,7 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         cnt.add(searchPanel,BorderLayout.SOUTH);
 
         setTitle("Toernooi Lijst");
-        setPreferredSize(new Dimension(1000, 500));
+        setPreferredSize(new Dimension(1700, 500));
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,18 +104,28 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         model.addColumn("Max. aantal spelers");
         model.addColumn("Inleggeld");
         model.addColumn("Uiterste inschrijfdatum");
+        model.addColumn("aantal_spelers");
+        model.addColumn("aantal_tafels");
+        model.addColumn("totale_inleggeld");
+        model.addColumn("is_gespeeld");
+        model.addColumn("winnaar");
+        model.addColumn("twwede_plaats");
+
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM Toernooi");
             ResultSet Rs = pstm.executeQuery();
             while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10),Rs.getString(11),Rs.getString(12),Rs.getString(13),Rs.getString(14),Rs.getString(15),Rs.getString(16)});
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
+
 
     public void wijzigToernooi(JTable table, int row){
         try{
