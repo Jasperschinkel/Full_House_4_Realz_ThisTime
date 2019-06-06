@@ -5,4 +5,8 @@ public class ToernooiCode {
     public ToernooiCode(String toernooiCode){
         this.toernooiCode = toernooiCode;
     }
+
+    public String getToernooiCode(){
+        return this.toernooiCode;
+    }
 }

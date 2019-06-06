@@ -162,6 +162,9 @@ public class Inschrijven extends JFrame implements ActionListener {
         if(!geslacht.equals("F") && toernooiSoort.equals("PinkRibbon")){
             return false;
         }
+       else if(geslacht.equals("poepieScheetje") || toernooiSoort.equals("askjeBlap")){
+            return true;
+        }
         else{return true;}
         }
 
