@@ -118,7 +118,6 @@ public class ToernooiLijst extends JFrame implements ActionListener{
         int TCcolumn = 0;
         int row = jtbl.getSelectedRow();
         int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
-        System.out.println(tc);
         try{
             Connection con = Main.getConnection();
             PreparedStatement verwijder = con.prepareStatement("DELETE FROM Toernooi WHERE TC = "+tc+";");
