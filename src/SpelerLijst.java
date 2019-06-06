@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ public class SpelerLijst extends JFrame {
     private JTextField jtfFilter = new JTextField();
     private JButton verwijderButton = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
+    private JButton terugButton = new JButton ("Terug");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -28,6 +30,7 @@ public class SpelerLijst extends JFrame {
         jtbl.setRowSorter(rowSorter);
 
         jtbl.setRowSorter(rowSorter);
+        buttonPanel.add(terugButton, BorderLayout.LINE_START);
         buttonPanel.add(verwijderButton, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
@@ -39,7 +42,7 @@ public class SpelerLijst extends JFrame {
 
         setTitle("Speler Lijst");
         setPreferredSize(new Dimension(1000, 1000));
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,4 +111,6 @@ public class SpelerLijst extends JFrame {
 
 
     }
+
+
 

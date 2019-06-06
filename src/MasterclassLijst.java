@@ -40,7 +40,7 @@ import java.sql.ResultSet;
 
             setTitle("Masterclass Lijst");
             setPreferredSize(new Dimension(1000, 500));
-            setLocationRelativeTo(null);
+            //setLocationRelativeTo(null);
             setVisible(true);
             setResizable(false);
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
