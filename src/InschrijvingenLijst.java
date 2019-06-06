@@ -120,13 +120,13 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     public void wijzigRegistratie(JTable table, int row){
         try{
             Connection con= Main.getConnection();
-            PreparedStatement update = con.prepareStatement("UPDATE Inschrijvingen SET naam = ?, ranking = ?, type_inschrijving = ?, nummercode = ?, heeft_betaald = ?");
+            PreparedStatement update = con.prepareStatement("UPDATE Inschrijvingen SET naam = ?, ranking = ?, type_inschrijving = ?, nummercode = ?, heeft_betaald = ? WHERE Inschrijving = ?");
             update.setString(1,jtbl.getValueAt(row,1).toString());
             update.setInt(2,Integer.parseInt(jtbl.getValueAt(row,2).toString()));
             update.setString(3,jtbl.getValueAt(row,3).toString());
             update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,4).toString()));
-            update.setString(5,(jtbl.getValueAt(row,5).toString()));
-
+            update.setString(5,jtbl.getValueAt(row,5).toString());
+            update.setInt(6,Integer.parseInt((jtbl.getValueAt(row,0).toString())));
             update.executeUpdate();
             update.close();
 
@@ -150,10 +150,14 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         if(e.getSource() == verwijderButton){
             verwijderRegistratie();
             JOptionPane.showMessageDialog(this, "Inschrijving verwijderd");
+            dispose();
+            InschrijvingenLijst nieuw = new InschrijvingenLijst();
         }
         if(e.getSource() == wijzigButton){
             wijzigRegistratie(jtbl,jtbl.getSelectedRow());
             JOptionPane.showMessageDialog(this, "Inschrijving gewijzigd");
+            dispose();
+            InschrijvingenLijst nieuw = new InschrijvingenLijst();
         }
     }
 }
