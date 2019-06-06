@@ -154,7 +154,6 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
            addSpeler();
            JOptionPane.showMessageDialog(this, "Speler toegevoegd");
            emptyTextFields();
-
        }
     }
 }

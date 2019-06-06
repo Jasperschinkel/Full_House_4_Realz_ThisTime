@@ -139,6 +139,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
 
     public void addActionListeners(){
         verwijderButton.addActionListener(this);
+        terugButton.addActionListener(this);
     }
 }
 
