@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -13,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class SpelerLijst extends JFrame implements ActionListener {
+public class InschrijvingenLijst extends JFrame implements ActionListener {
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
@@ -27,28 +26,26 @@ public class SpelerLijst extends JFrame implements ActionListener {
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
 
-
-    public SpelerLijst(){
+    public InschrijvingenLijst() {
         jtbl.setRowSorter(rowSorter);
 
         buttonPanel.add(terugButton, BorderLayout.LINE_START);
         buttonPanel.add(verwijderButton, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
-        searchPanel.add(jtfFilter,BorderLayout.CENTER);
+        searchPanel.add(jtfFilter, BorderLayout.CENTER);
         searchPanel.add(searchLabel, BorderLayout.LINE_START);
         searchPanel.add(buttonPanel, BorderLayout.LINE_END);
         cnt.setLayout(new BorderLayout());
-        cnt.add(searchPanel,BorderLayout.SOUTH);
-        showLijst();
-        setTitle("Speler Lijst");
-        setPreferredSize(new Dimension(1000, 1000));
+        cnt.add(searchPanel, BorderLayout.SOUTH);
+
+        setTitle("Inschrijvingenlijst");
+        setPreferredSize(new Dimension(1000, 500));
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        addActionListeners();
 
-        jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
+        jtfFilter.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -78,67 +75,59 @@ public class SpelerLijst extends JFrame implements ActionListener {
             }
 
         });
+        showLijst();
+        addActionlisteners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();
     }
 
 
-    public void showLijst(){
-        model.addColumn("SpelerID");
-        model.addColumn("naam");
-        model.addColumn("adres");
-        model.addColumn("Postcode");
-        model.addColumn("Woonplaats");
-        model.addColumn("Telefoonnummer");
-        model.addColumn("E-Mail");
-        model.addColumn("Geboortedatum");
-        model.addColumn("Geslacht");
-        model.addColumn("Leeftijd");
+    public void showLijst() {
+        model.addColumn("Inschrijving");
+        model.addColumn("Naam");
         model.addColumn("Ranking");
+        model.addColumn("Type inschrijving");
+        model.addColumn("Nummercode");
+        model.addColumn("Heeft betaald");
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Spelers");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Inschrijvingen");
             ResultSet Rs = pstm.executeQuery();
-            while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10), Rs.getString(11)});
+            while (Rs.next()) {
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2), Rs.getString(3), Rs.getString(4), Rs.getString(5), Rs.getString(6)});
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void verwijderSpeler(){
-        int naamcolumn = 0;
-        int telcolumn = 4;
+    public void verwijderRegistratie() {
+        int registratieNummer = 0;
         int row = jtbl.getSelectedRow();
-        String naam = jtbl.getModel().getValueAt(row, naamcolumn).toString();
-        String tel = jtbl.getModel().getValueAt(row, telcolumn).toString();
+        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, registratieNummer).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Spelers WHERE naam = '"+naam+"'  AND telefoonnr = '"+tel+"'");
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = '" + inschrijvingNummer + "'");
             verwijder.executeUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public void wijzigSpeler(JTable table, int row){
+    public void wijzigRegistratie(JTable table, int row){
         try{
             Connection con= Main.getConnection();
-            PreparedStatement update = con.prepareStatement("UPDATE Spelers SET");
+            PreparedStatement update = con.prepareStatement("UPDATE Inschrijvingen SET naam = ?, ranking = ?, type_inschrijving = ?, nummercode = ?, heeft_betaald = ?");
             update.setString(1,jtbl.getValueAt(row,1).toString());
-            update.setString(2,jtbl.getValueAt(row,2).toString());
+            update.setInt(2,Integer.parseInt(jtbl.getValueAt(row,2).toString()));
             update.setString(3,jtbl.getValueAt(row,3).toString());
-            update.setString(4,jtbl.getValueAt(row,4).toString());
-            update.setString(5,jtbl.getValueAt(row,5).toString());
-            update.setString(6,jtbl.getValueAt(row,6).toString());
-            update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));
-            update.setString(8,jtbl.getValueAt(row,8).toString());
-            update.setString(9,jtbl.getValueAt(row,9).toString());
-            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
-            //update.executeUpdate();
+            update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,4).toString()));
+            update.setString(5,(jtbl.getValueAt(row,5).toString()));
+
+            update.executeUpdate();
             update.close();
 
         }catch(Exception e) {
@@ -146,28 +135,25 @@ public class SpelerLijst extends JFrame implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == verwijderButton) {
-            verwijderSpeler();
-            JOptionPane.showMessageDialog(this, "Speler verwijderd");
-            dispose();
-            SpelerLijst refresh = new SpelerLijst();
-        }
-        if(e.getSource() == terugButton){
-            dispose();
-            SpelerMenu spelerMenu = new SpelerMenu();
-        }
-    }
-
-    public void addActionListeners(){
+    public void addActionlisteners() {
         verwijderButton.addActionListener(this);
         terugButton.addActionListener(this);
+        wijzigButton.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == terugButton) {
+            dispose();
+            RegistratieMenu menu = new RegistratieMenu();
+        }
+        if(e.getSource() == verwijderButton){
+            verwijderRegistratie();
+            JOptionPane.showMessageDialog(this, "Inschrijving verwijderd");
+        }
+        if(e.getSource() == wijzigButton){
+            wijzigRegistratie(jtbl,jtbl.getSelectedRow());
+            JOptionPane.showMessageDialog(this, "Inschrijving gewijzigd");
+        }
     }
 }
-
-
-
-
-
-
