@@ -72,7 +72,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         ResultSet rst;
         rst = stm.executeQuery(sql);
         ArrayList<Gebruiker> gebruikerList = new ArrayList<Gebruiker>();
-       while (rst.next()) {
+        while (rst.next()) {
             Gebruiker gebruiker = new Gebruiker(rst.getString("gebruikersnaam"), rst.getString("wachtwoord"));
             gebruikerList.add(gebruiker);
 
@@ -110,10 +110,8 @@ public class LoginFrame extends JFrame implements ActionListener {
         if (e.getSource() == loginButton) {
             System.out.println("Login button was clicked");
             if(validateUser()){
-
                     dispose();
                     HoofdMenu menu = new HoofdMenu();
-
             }
 
             else{
@@ -123,7 +121,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                         JOptionPane.WARNING_MESSAGE);
             }
 
-            }
+        }
 
         if(e.getSource() == resetButton){
             userField.setText("");
