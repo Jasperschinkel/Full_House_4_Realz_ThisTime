@@ -111,12 +111,23 @@ import java.sql.ResultSet;
             }
         }
 
-        public void weizigMasterclass(){
-            int row = jtbl.getSelectedRow();
-            for(int i=1;i<8;i++){
-                String column = jtbl.getColumnName(i);
-                String temp = jtbl.getModel().getValueAt(row,jtbl.getSelectedColumn()).toString();
+        public void wijzigMasterclass(JTable table, int row){
+            try{
+                Connection con= Main.getConnection();
+                PreparedStatement update = con.prepareStatement("UPDATE Masterclass SET datum = ?, begintijd = ?, eindtijd = ?, kosten = ?, max_ranking = ?, bekende_speler = ?, max_aantal_spelers = ? WHERE MasterclassCode = ?");
+                update.setString(1,jtbl.getValueAt(row,1).toString());
+                update.setString(2,jtbl.getValueAt(row,2).toString());
+                update.setString(3,jtbl.getValueAt(row,3).toString());
+                update.setString(4,jtbl.getValueAt(row,4).toString());
+                update.setInt(5,Integer.parseInt(jtbl.getValueAt(row,5).toString()));
+                update.setString(6,jtbl.getValueAt(row,6).toString());
+                update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));
+                update.setString(8,jtbl.getValueAt(row,0).toString());
+                update.executeUpdate();
+                update.close();
 
+            }catch(Exception e) {
+                System.out.println(e);
             }
         }
 
@@ -143,11 +154,18 @@ import java.sql.ResultSet;
                 dispose();
                 MasterclassMenu menu = new MasterclassMenu();
             }
+            if(e.getSource() == wijzigButton) {
+                wijzigMasterclass(jtbl,jtbl.getSelectedRow());
+                JOptionPane.showMessageDialog(this, "Masterclass gewijzigd");
+                dispose();
+                MasterclassLijst refresh = new MasterclassLijst();
+            }
         }
 
         public void addActionlisteners(){
             verwijderButten.addActionListener(this);
             terugButton.addActionListener(this);
+            wijzigButton.addActionListener(this);
         }
 
     }
