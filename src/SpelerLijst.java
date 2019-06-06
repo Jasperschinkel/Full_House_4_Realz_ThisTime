@@ -38,34 +38,13 @@ public class SpelerLijst extends JFrame implements ActionListener {
         searchPanel.add(buttonPanel, BorderLayout.LINE_END);
         cnt.setLayout(new BorderLayout());
         cnt.add(searchPanel,BorderLayout.SOUTH);
-
+        showLijst();
         setTitle("Speler Lijst");
         setPreferredSize(new Dimension(1000, 1000));
-        setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        model.addColumn("naam");
-        model.addColumn("adres");
-        model.addColumn("Postcode");
-        model.addColumn("Woonplaats");
-        model.addColumn("Telefoonnummer");
-        model.addColumn("E-Mail");
-        model.addColumn("Geboortedatum");
-        model.addColumn("Geslacht");
-        model.addColumn("Leeftijd");
-        model.addColumn("Ranking");
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Spelers");
-            ResultSet Rs = pstm.executeQuery();
-            while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        addActionListeners();
 
         jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
 
@@ -153,6 +132,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
         if(e.getSource() == verwijderButton) {
             verwijderSpeler();
             JOptionPane.showMessageDialog(this, "Speler verwijderd");
+            dispose();
             SpelerLijst refresh = new SpelerLijst();
         }
     }
