@@ -54,6 +54,7 @@ import java.sql.ResultSet;
             model.addColumn("kosten");
             model.addColumn("maximale ranking");
             model.addColumn("Bekende speler");
+            model.addColumn("Max. aantal spelers");
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -61,7 +62,7 @@ import java.sql.ResultSet;
                 PreparedStatement pstm = con.prepareStatement("SELECT * FROM Masterclass");
                 ResultSet Rs = pstm.executeQuery();
                 while(Rs.next()){
-                    model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6), Rs.getString(7)});
+                    model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6), Rs.getString(7), Rs.getString(8)});
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
