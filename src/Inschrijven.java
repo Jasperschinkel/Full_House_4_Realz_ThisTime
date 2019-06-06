@@ -123,7 +123,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         try {
             Connection con = Main.getConnection();
             Statement st = con.createStatement();
-            String sql = ("SELECT geslacht (*) FROM Spelers WHERE naam LIKE '" + naamField.getText() + "'; ");
+            String sql = ("SELECT geslacht FROM Spelers WHERE naam LIKE '" + naamField.getText() + "'; ");
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 String geslacht = rs.getString("geslacht");
@@ -137,6 +137,35 @@ public class Inschrijven extends JFrame implements ActionListener {
 
    return "poepieScheetje";}
 
+    public String getToernooiSoort(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT soort_toernooi FROM Toernooi WHERE TC LIKE '" + codeField.getText() + "'; ");
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                String toernooiCode = rs.getString("TC");
+                return toernooiCode;
+            }
+
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+
+        return "askjeBlap";}
+
+        public boolean validateGeslacht(){
+        String geslacht = getGeslacht();
+        String toernooiSoort = getToernooiSoort();
+
+        if(!geslacht.equals("F") && toernooiSoort.equals("PinkRibbon")){
+            return false;
+        }
+        else{return true;}
+        }
+
+
 
 
     @Override
@@ -148,6 +177,9 @@ public class Inschrijven extends JFrame implements ActionListener {
         if(e.getSource() == klaarButton){
             if (inschrijfControle()){
                 JOptionPane.showMessageDialog(this, "ERROR: deze speler is hiervoor al ingeschreven");
+            }
+            else if(validateGeslacht()){
+                JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
             }
             else {
                 addInschrijving();
