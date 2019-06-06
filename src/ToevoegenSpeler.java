@@ -147,14 +147,13 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
        if(e.getSource() == terug){
-           VerwijderenOfToevoegen verwijderenOfToevoegen = new VerwijderenOfToevoegen(1);
+           SpelerMenu menu = new SpelerMenu();
            dispose();
        }
        if(e.getSource() == bevestigen) {
            addSpeler();
            JOptionPane.showMessageDialog(this, "Speler toegevoegd");
            emptyTextFields();
-
        }
     }
 }

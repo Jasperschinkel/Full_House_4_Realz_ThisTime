@@ -157,7 +157,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == terug){
             dispose();
-            VerwijderenOfToevoegen verwijderenOfToevoegen = new VerwijderenOfToevoegen(3);
+            MasterclassMenu menu = new MasterclassMenu();
         }
         if(e.getSource() == bevestigen){
             addMasterclass();

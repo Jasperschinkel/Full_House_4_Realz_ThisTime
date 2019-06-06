@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -21,6 +22,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
     private JTextField jtfFilter = new JTextField();
     private JButton verwijderButton = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
+    private JButton terugButton = new JButton("Terug");
     private JLabel searchLabel = new JLabel("search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -29,7 +31,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
     public SpelerLijst(){
         jtbl.setRowSorter(rowSorter);
 
-        jtbl.setRowSorter(rowSorter);
+        buttonPanel.add(terugButton, BorderLayout.LINE_START);
         buttonPanel.add(verwijderButton, BorderLayout.CENTER);
         buttonPanel.add(wijzigButton, BorderLayout.LINE_END);
 
@@ -76,12 +78,6 @@ public class SpelerLijst extends JFrame implements ActionListener {
             }
 
         });
-
-
-
-
-
-
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();
@@ -127,6 +123,11 @@ public class SpelerLijst extends JFrame implements ActionListener {
         }
     }
 
+    public void WijzigSpeler(){
+        int row = jtbl.getSelectedRow();
+        int col = jtbl.getSelectedColumn();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == verwijderButton) {
@@ -135,10 +136,15 @@ public class SpelerLijst extends JFrame implements ActionListener {
             dispose();
             SpelerLijst refresh = new SpelerLijst();
         }
+        if(e.getSource() == terugButton){
+            dispose();
+            SpelerMenu spelerMenu = new SpelerMenu();
+        }
     }
 
     public void addActionListeners(){
         verwijderButton.addActionListener(this);
+        terugButton.addActionListener(this);
     }
 }
 

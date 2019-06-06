@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a91da5ae-66b4-43b1-97cf-7255b792fdf1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/MasterclassMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/MasterclassMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SpelerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SpelerMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/VerwijderenOfToevoegen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/VerwijderenOfToevoegen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MasterclassLijst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterclassLijst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToevoegenMasterclass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToevoegenMasterclass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SpelerLijst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SpelerLijst.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,27 +18,73 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="255">
+              <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/SpelerLijst.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="127" column="43" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpelerLijst.java">
+        <entry file="file://$PROJECT_DIR$/src/Wijzigen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+            <state relative-caret-position="136">
+              <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SpelerMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="61" column="48" lean-forward="true" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="118" column="113" selection-start-line="118" selection-start-column="113" selection-end-line="118" selection-end-column="113" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ToernooiMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="590">
+              <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -46,20 +92,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MasterclassMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+            <state relative-caret-position="165">
+              <caret line="56" column="70" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ToevoegenToernooi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="64" column="179" selection-start-line="64" selection-start-column="179" selection-end-line="64" selection-end-column="179" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="172" column="52" selection-start-line="172" selection-start-column="52" selection-end-line="172" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -67,8 +110,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ToevoegenMasterclass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="148" column="366" lean-forward="true" selection-start-line="148" selection-start-column="366" selection-end-line="148" selection-end-column="366" />
+            <state relative-caret-position="171">
+              <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,29 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ToevoegenSpeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2278">
-              <caret line="141" column="36" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ToernooiLijst.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1124">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ToevoegenToernooi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="37" />
+            <state relative-caret-position="170">
+              <caret line="149" column="46" selection-start-line="149" selection-start-column="46" selection-end-line="149" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -131,48 +153,49 @@
         <option value="$PROJECT_DIR$/src/HoofdMenu.java" />
         <option value="$PROJECT_DIR$/src/SpelerWijzigMenu.java" />
         <option value="$PROJECT_DIR$/src/SubMenu.java" />
-        <option value="$PROJECT_DIR$/src/ToevoegenSpeler.java" />
+        <option value="$PROJECT_DIR$/src/VerwijderenOfToevoegen.java" />
         <option value="$PROJECT_DIR$/src/SpelerMenu.java" />
+        <option value="$PROJECT_DIR$/src/ToernooiLijst.java" />
+        <option value="$PROJECT_DIR$/src/MasterclassLijst.java" />
         <option value="$PROJECT_DIR$/src/ToernooiMenu.java" />
         <option value="$PROJECT_DIR$/src/MasterclassMenu.java" />
-        <option value="$PROJECT_DIR$/src/VerwijderenOfToevoegen.java" />
+        <option value="$PROJECT_DIR$/src/ToevoegenSpeler.java" />
         <option value="$PROJECT_DIR$/src/ToevoegenToernooi.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/ToernooiLijst.java" />
-        <option value="$PROJECT_DIR$/src/SpelerLijst.java" />
         <option value="$PROJECT_DIR$/src/ToevoegenMasterclass.java" />
-        <option value="$PROJECT_DIR$/src/MasterclassLijst.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/SpelerLijst.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="951" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Full_House_4_Realz_ThisTimeXD" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Full_House_4_Realz_ThisTimeXD" type="462c0819:PsiDirectoryNode" />
+              <item name="Full_House_4_Realz_ThisTim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Full_House_4_Realz_ThisTim" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="Full_House_4_Realz_ThisTimeXD" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Full_House_4_Realz_ThisTimeXD" type="462c0819:PsiDirectoryNode" />
+              <item name="Full_House_4_Realz_ThisTim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Full_House_4_Realz_ThisTim" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -181,7 +204,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559755164595" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559828776387" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Full_House_GUI/src/HoofdMenu.java" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -224,7 +247,6 @@
       </method>
     </configuration>
     <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <properties />
@@ -244,7 +266,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a91da5ae-66b4-43b1-97cf-7255b792fdf1" name="Default Changelist" comment="" />
+      <changelist id="1aa84bda-b80a-47d1-be7d-a2b0bd10af75" name="Default" comment="" />
       <created>1558088920726</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -299,21 +321,70 @@
       <option name="project" value="LOCAL" />
       <updated>1559826376649</updated>
     </task>
-    <task id="LOCAL-00008" summary="Epic masterclass toevoegen royale">
-      <created>1559827066328</created>
+    <task id="LOCAL-00008" summary="De nieuwe shit 3.1 XD">
+      <created>1559826491819</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1559827066328</updated>
+      <updated>1559826491819</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="De nieuwe shit 3.1 XD">
+      <created>1559827216270</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1559827216270</updated>
+    </task>
+    <task id="LOCAL-00010" summary="De nieuwe shit 3.1 XD">
+      <created>1559827439065</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1559827439065</updated>
+    </task>
+    <task id="LOCAL-00011" summary="De nieuwe shit 3.1 XD">
+      <created>1559827643746</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1559827643746</updated>
+    </task>
+    <task id="LOCAL-00012" summary="De nieuwe shit 3.1 XD">
+      <created>1559827710624</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1559827710624</updated>
+    </task>
+    <task id="LOCAL-00013" summary="De nieuwe shit 3.1 XD">
+      <created>1559827936849</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1559827936849</updated>
+    </task>
+    <task id="LOCAL-00014" summary="De nieuwe shit 3.1 XD">
+      <created>1559828205192</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1559828205193</updated>
+    </task>
+    <task id="LOCAL-00015" summary="De nieuwe shit 3.1 XD">
+      <created>1559828586664</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1559828586664</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -389,8 +460,7 @@
     <MESSAGE value="De nieuwe shit XD" />
     <MESSAGE value="De nieuwe shit 3.0 XD" />
     <MESSAGE value="De nieuwe shit 3.1 XD" />
-    <MESSAGE value="Epic masterclass toevoegen royale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Epic masterclass toevoegen royale" />
+    <option name="LAST_COMMIT_MESSAGE" value="De nieuwe shit 3.1 XD" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml">
@@ -402,47 +472,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Lijst.java" />
     <entry file="file://$PROJECT_DIR$/src/SpelerWijzigMenu.java" />
-    <entry file="file://$PROJECT_DIR$/src/ToernooiMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Wijzigen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/VerwijderenOfToevoegen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpelerMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LoginFrame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -463,24 +492,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VerwijderenOfToevoegen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ToernooiLijst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="118" column="113" selection-start-line="118" selection-start-column="113" selection-end-line="118" selection-end-column="113" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ToernooiMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="54" column="64" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterclassMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="56" column="70" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ToevoegenSpeler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2278">
-          <caret line="141" column="36" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
+        <state relative-caret-position="170">
+          <caret line="149" column="46" selection-start-line="149" selection-start-column="46" selection-end-line="149" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ToevoegenToernooi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="37" />
+        <state relative-caret-position="170">
+          <caret line="172" column="52" selection-start-line="172" selection-start-column="52" selection-end-line="172" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpelerLijst.java">
+    <entry file="file://$PROJECT_DIR$/src/ToevoegenMasterclass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+        <state relative-caret-position="171">
+          <caret line="147" column="57" selection-start-line="147" selection-start-column="57" selection-end-line="147" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpelerMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="61" column="48" lean-forward="true" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -489,42 +579,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="255">
+          <caret line="24" column="35" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ToernooiLijst.java">
+    <entry file="file://$PROJECT_DIR$/src/Wijzigen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1124">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="136">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ToevoegenMasterclass.java">
+    <entry file="file://$PROJECT_DIR$/src/SpelerLijst.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="148" column="366" lean-forward="true" selection-start-line="148" selection-start-column="366" selection-end-line="148" selection-end-column="366" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterclassMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="64" column="179" selection-start-line="64" selection-start-column="179" selection-end-line="64" selection-end-column="179" />
+        <state relative-caret-position="304">
+          <caret line="127" column="43" selection-start-line="127" selection-start-column="43" selection-end-line="127" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

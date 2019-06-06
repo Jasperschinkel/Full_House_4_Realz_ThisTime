@@ -6,7 +6,7 @@ public class SpelerMenu extends JFrame implements ActionListener {
 
     JButton lijstButton = new JButton("Spelerlijst");
     JButton terugButton = new JButton("Terug");
-    JButton wijzigButton = new JButton("Speler wijzigen");
+    JButton toevoegButton = new JButton("Speler Toevoegen");
     JButton logoutButton = new JButton("Log out");
 
     public SpelerMenu() {
@@ -26,21 +26,21 @@ public class SpelerMenu extends JFrame implements ActionListener {
 
     public void setComponentBounds() {
         lijstButton.setBounds(20, 75, 150, 30);
-        wijzigButton.setBounds(225, 75, 150, 30);
+        toevoegButton.setBounds(225, 75, 150, 30);
         logoutButton.setBounds(495, 139, 100, 30);
         terugButton.setBounds(440,75,150,30);
     }
 
     public void addComponents(){
         add(lijstButton);
-        add(wijzigButton);
+        add(toevoegButton);
         add(logoutButton);
         add(terugButton);
     }
 
     public void addActionListeners(){
         lijstButton.addActionListener(this);
-        wijzigButton.addActionListener(this);
+        toevoegButton.addActionListener(this);
         logoutButton.addActionListener(this);
         terugButton.addActionListener(this);
     }
@@ -52,9 +52,9 @@ public class SpelerMenu extends JFrame implements ActionListener {
             dispose();
             SpelerLijst lijst = new SpelerLijst();
         }
-        if (e.getSource() == wijzigButton) {
+        if (e.getSource() == toevoegButton) {
             dispose();
-            Wijzigen wijzig = new Wijzigen(1);
+            ToevoegenSpeler toevoeg = new ToevoegenSpeler();
 
         }
         if(e.getSource() == logoutButton){
