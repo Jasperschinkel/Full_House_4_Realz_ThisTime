@@ -18,7 +18,6 @@ public class HoofdMenu extends JFrame implements ActionListener {
 
     public HoofdMenu(){
 
-
         setLayout(null);
         setVisible(true);
         setSize(600, 200);
@@ -37,8 +36,6 @@ public class HoofdMenu extends JFrame implements ActionListener {
         masterclassButton.setBounds(430,75,150,30);
         logoutButton.setBounds(495,139,100,30);
     }
-
-
 
     public void addComponents(){
         add(spelerButton);
@@ -72,7 +69,6 @@ public class HoofdMenu extends JFrame implements ActionListener {
         if(e.getSource() == logoutButton){
             dispose();
             LoginFrame login = new LoginFrame();
-
         }
     }
 }
