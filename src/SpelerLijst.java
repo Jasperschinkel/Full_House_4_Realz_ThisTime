@@ -78,12 +78,6 @@ public class SpelerLijst extends JFrame implements ActionListener {
             }
 
         });
-
-
-
-
-
-
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();

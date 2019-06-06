@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
         import java.sql.PreparedStatement;
         import java.sql.ResultSet;
 
-public class ToernooiLijst extends JFrame{
+public class ToernooiLijst extends JFrame implements ActionListener{
 
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
@@ -50,27 +50,7 @@ public class ToernooiLijst extends JFrame{
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        model.addColumn("TC");
-        model.addColumn("Datum");
-        model.addColumn("Begintijd");
-        model.addColumn("Eindtijd");
-        model.addColumn("Beschrijving");
-        model.addColumn("Vereisten toernooi");
-        model.addColumn("Soort toernooi");
-        model.addColumn("Max. aantal spelers");
-        model.addColumn("Inleggeld");
-        model.addColumn("Uiterste inschrijfdatum");
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
-            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Toernooi");
-            ResultSet Rs = pstm.executeQuery();
-            while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+
 
 
         jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
@@ -104,12 +84,61 @@ public class ToernooiLijst extends JFrame{
         });
 
 
-
+        showLijst();
+        addActionlisteners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();
     }
 
+    public void showLijst(){
+        model.addColumn("TC");
+        model.addColumn("Datum");
+        model.addColumn("Begintijd");
+        model.addColumn("Eindtijd");
+        model.addColumn("Beschrijving");
+        model.addColumn("Vereisten toernooi");
+        model.addColumn("Soort toernooi");
+        model.addColumn("Max. aantal spelers");
+        model.addColumn("Inleggeld");
+        model.addColumn("Uiterste inschrijfdatum");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
+            PreparedStatement pstm = con.prepareStatement("SELECT * FROM Toernooi");
+            ResultSet Rs = pstm.executeQuery();
+            while(Rs.next()){
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void verwijderToernooi(){
+        int TCcolumn = 0;
+        int row = jtbl.getSelectedRow();
+        int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
+        System.out.println(tc);
+        try{
+            Connection con = Main.getConnection();
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Toernooi WHERE TC = "+tc+";");
+            verwijder.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == verwijderButten) {
+            verwijderToernooi();
+            JOptionPane.showMessageDialog(this, "Toernooi verwijderd");
+            dispose();
+           ToernooiLijst refresh = new ToernooiLijst();
+        }
+    }
+
+    public void addActionlisteners(){
+        verwijderButten.addActionListener(this);
+    }
 
 
     }

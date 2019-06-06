@@ -97,10 +97,6 @@ import java.sql.ResultSet;
                 }
 
             });
-
-
-
-
             JScrollPane pg = new JScrollPane(jtbl);
             cnt.add(pg);
             this.pack();
