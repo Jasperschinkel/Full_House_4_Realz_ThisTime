@@ -3,6 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.*;
 
 public class Inschrijven extends JFrame implements ActionListener {
     //Labels
@@ -97,6 +100,25 @@ public class Inschrijven extends JFrame implements ActionListener {
 
     }
 
+    public boolean inschrijfControle(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + naamField.getText() + "' AND nummercode LIKE " + codeField.getText());
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                int id = rs.getInt("aantal");
+                if (id < 1) {
+                    return false;
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+        return true;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -105,9 +127,14 @@ public class Inschrijven extends JFrame implements ActionListener {
             RegistratieMenu menu = new RegistratieMenu();
         }
         if(e.getSource() == klaarButton){
-            addInschrijving();
-            JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
-            emptyTextField();
+            if (inschrijfControle()){
+                JOptionPane.showMessageDialog(this, "ERROR: deze speler is hiervoor al ingeschreven");
+            }
+            else {
+                addInschrijving();
+                JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
+                emptyTextField();
+            }
         }
 
     }
