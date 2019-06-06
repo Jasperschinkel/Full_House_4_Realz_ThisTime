@@ -9,7 +9,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
       LoginFrame frame = new LoginFrame();
-      Inschrijven frame2 = new Inschrijven();
     }
 
     public static Connection getConnection() throws Exception {
