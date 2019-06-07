@@ -56,6 +56,8 @@ public class WinnaarFrame extends JFrame implements ActionListener {
 
 
 
+
+
     public int getAantalRondes(){
         String aantalRondesString = aantalRondesField.getText();
         int aantalRondes = Integer.valueOf(aantalRondesString);
@@ -79,6 +81,13 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         if(e.getSource() == terug){
             ToernooiMenu toernooiMenu = new ToernooiMenu();
             dispose();
+        }
+        if(e.getSource() == bevestigen){
+            String TCString = toernooiCodeField.getText();
+            String rondesString = aantalRondesField.getText();
+            int TC = Integer.valueOf(TCString);
+            int rondes = Integer.valueOf(rondesString);
+            RegistratieWinnaars registratieWinnaars = new RegistratieWinnaars(rondes,TC);
         }
     }
 
