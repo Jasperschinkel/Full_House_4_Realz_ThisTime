@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WinnaarFrame extends JFrame implements ActionListener {
@@ -52,6 +53,9 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         bevestigen.addActionListener(this);
         terug.addActionListener(this);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {}
 
     public int getAantalRondes;
 
