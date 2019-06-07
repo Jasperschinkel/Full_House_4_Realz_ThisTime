@@ -134,13 +134,11 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             System.out.println(e);
         }
     }
-
     public void addActionlisteners() {
         verwijderButton.addActionListener(this);
         terugButton.addActionListener(this);
         wijzigButton.addActionListener(this);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == terugButton) {
