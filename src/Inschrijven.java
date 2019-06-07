@@ -194,13 +194,14 @@ public class Inschrijven extends JFrame implements ActionListener {
         try {
             Connection con = Main.getConnection();
             Statement st = con.createStatement();
-            String sql = ("SELECT maximaal_aantal_spelers as max from Toernooi where TC like " + codeField.getText());
+            String sql = ("SELECT COUNT (*) as aantal from Inschrijvingen where type_inschrijving like '" + typeField.getText() + "' and nummercode like "+ codeField.getText());
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
-                int totaal = rs.getInt("aantal");
-                return totaal;
+                int aantal = rs.getInt("aantal");
+                return aantal;
+                }
             }
-        }catch(Exception e){
+        catch(Exception e){
             System.out.println(e);
             System.out.println("ERROR: er is een probleem met de database");
         }
