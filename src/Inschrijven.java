@@ -280,7 +280,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if(!validateGeslacht()){
                 JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
             }
-            else if(getMaxAantal() > getMaxAantalInschrijvingen()){
+            else if(getMaxAantalInschrijvingen() > getMaxAantal()){
                 JOptionPane.showMessageDialog(this, "Het maximum aantal spelers is al ingeschreven voor dit toernooi");
             }
             else {

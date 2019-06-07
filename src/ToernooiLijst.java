@@ -30,7 +30,7 @@ public class ToernooiLijst extends JFrame implements ActionListener {
     private JPanel buttonPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanelLineStart = new JPanel(new BorderLayout());
     private int aantalSpelers;
-    private String totaleGeldVoorMij;
+    private ArrayList<String> totaleGeldVoorMij = new ArrayList<String>();
 
 
     public ToernooiLijst() {
@@ -204,12 +204,12 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         this.aantalSpelers = aantalSpelers;
     }
 
-    public String getTotaleGeldVoorMij(){
+    public ArrayList<String> getTotaleGeldVoorMij(){
         return this.totaleGeldVoorMij;
     }
 
-    public void setTotaleGeldVoorMij(String totaleGeldVoorMij){
-        this.totaleGeldVoorMij = totaleGeldVoorMij;
+    public void addTotaleGeldVoorMij(String totaleGeldVoorMij){
+        this.totaleGeldVoorMij.add(totaleGeldVoorMij);
     }
 
     public static ArrayList<ToernooiCode> getAllToernooiCodes() throws ClassNotFoundException, SQLException {
@@ -303,6 +303,7 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                                 int aantalSpelers = rs2.getInt("aantal_spelers");
                                 setAantalSpelers(aantalSpelers);
 
+
                             }
                         }catch (Exception e) {
                             System.out.println(e);
@@ -321,12 +322,13 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                     String totaleInleggGeldString = Double.toString(totaleInleggeld);
                     totaleInleggGeldString = "€" + totaleInleggGeldString;
                     totaleInleggGeldString = totaleInleggGeldString.replace(".",",");
-                    setTotaleGeldVoorMij(totaleInleggGeldString);
+                    addTotaleGeldVoorMij(totaleInleggGeldString);
+                        
 
                         try {
-                            String totaleInleggeldString = getTotaleGeldVoorMij();
+                           String totaleInleggeldString = getTotaleGeldVoorMij().get(i);
                             Connection con3 = Main.getConnection();
-                            PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET totale_inleggeld = '" +totaleInleggeldString+"';");
+                            PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET totale_inleggeld = '" +totaleInleggeldString+"' WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
                             add.executeUpdate();
                         } catch (Exception e) {
                             System.out.println(e);
