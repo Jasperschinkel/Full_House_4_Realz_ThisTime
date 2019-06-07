@@ -44,6 +44,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         toevoegButton.addActionListener(this);
         logoutButton.addActionListener(this);
         terugButton.addActionListener(this);
+        winnaarButton.addActionListener(this);
     }
 
 
@@ -65,6 +66,10 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         if(e.getSource()== terugButton){
             dispose();
             HoofdMenu hoofd = new HoofdMenu();
+        }
+        if(e.getSource() == winnaarButton){
+            WinnaarFrame winnaarFrame = new WinnaarFrame();
+            dispose();
         }
     }
 

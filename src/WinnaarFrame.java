@@ -36,8 +36,8 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         toernooiCodeLabel.setBounds(50,110,100,50);
         aantalRondesField.setBounds(250,50,100,50);
         toernooiCodeField.setBounds(250,110,100,50);
-        bevestigen.setBounds(215,340,100,50);
-        terug.setBounds(220,340,75,50);
+        bevestigen.setBounds(180,310,100,50);
+        terug.setBounds(300,310,75,50);
     }
 
     public void addComponents(){
@@ -76,7 +76,10 @@ public class WinnaarFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == terug){
+            ToernooiMenu toernooiMenu = new ToernooiMenu();
+            dispose();
+        }
     }
 
 }
