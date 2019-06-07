@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a91da5ae-66b4-43b1-97cf-7255b792fdf1" name="Default Changelist" comment="Pls help">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RegistratieWinnaars.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RegistratieWinnaars.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WinnaarFrame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WinnaarFrame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/WinnaarFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1197">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="417">
+              <caret line="88" column="55" lean-forward="true" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegistratieWinnaars.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RegistratieWinnaars.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RegistratieWinnaars.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="73" column="14" lean-forward="true" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+            <state relative-caret-position="1125">
+              <caret line="75" column="16" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#310#319#0" expanded="true" />
@@ -187,11 +186,11 @@
         <option value="$PROJECT_DIR$/src/ToevoegenToernooi.java" />
         <option value="$PROJECT_DIR$/src/ToevoegenMasterclass.java" />
         <option value="$PROJECT_DIR$/src/ToernooiMenu.java" />
-        <option value="$PROJECT_DIR$/src/WinnaarFrame.java" />
         <option value="$PROJECT_DIR$/src/Inschrijven.java" />
         <option value="$PROJECT_DIR$/src/InschrijvingenLijst.java" />
         <option value="$PROJECT_DIR$/src/ToernooiLijst.java" />
         <option value="$PROJECT_DIR$/src/RegistratieWinnaars.java" />
+        <option value="$PROJECT_DIR$/src/WinnaarFrame.java" />
       </list>
     </option>
   </component>
@@ -705,7 +704,21 @@
       <option name="project" value="LOCAL" />
       <updated>1559914422633</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Pls help">
+      <created>1559934043431</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1559934043431</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Pls help">
+      <created>1559934397404</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1559934397404</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TodoView">
@@ -718,8 +731,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="73" y="25" width="1847" height="1055" extended-state="7" />
-    <editor active="true" />
+    <frame x="73" y="25" width="1847" height="1055" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -728,12 +740,12 @@
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5033557" side_tool="true" weight="0.3611898" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4966443" visible="true" weight="0.36084655" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4966443" visible="true" weight="0.36084655" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49932885" weight="0.039153438" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1521386" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1521386" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="UI Designer" order="5" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -827,7 +839,13 @@
     <MESSAGE value="De nieuwe shit 3.1 XD" />
     <MESSAGE value="countSpelers werkt nu" />
     <MESSAGE value="Default Changelist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
+    <MESSAGE value="Pls help" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pls help" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/libraries/mysql_mysql_connector_java_5_1_23.xml">
@@ -902,6 +920,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1068,6 +1089,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="22" column="47" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1089,16 +1113,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WinnaarFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1176,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RegistratieWinnaars.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="73" column="14" lean-forward="true" selection-start-line="73" selection-start-column="14" selection-end-line="73" selection-end-column="14" />
+        <state relative-caret-position="1125">
+          <caret line="75" column="16" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#310#319#0" expanded="true" />
@@ -1193,6 +1207,16 @@
             <element signature="e#1013#1014#0" expanded="true" />
             <element signature="e#1056#1057#0" expanded="true" />
             <element signature="e#1092#1093#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WinnaarFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="88" column="55" lean-forward="true" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
