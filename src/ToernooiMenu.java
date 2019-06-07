@@ -14,7 +14,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
 
         setLayout(null);
         setVisible(true);
-        setSize(600, 200);
+        setSize(780, 200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setTitle("Administratie app");
@@ -26,8 +26,9 @@ public class ToernooiMenu extends JFrame implements ActionListener {
     public void setComponentBounds() {
         lijstButton.setBounds(20, 75, 150, 30);
        toevoegButton.setBounds(225, 75, 150, 30);
-        logoutButton.setBounds(495, 139, 100, 30);
-        terugButton.setBounds(440,75,150,30);
+        logoutButton.setBounds(640, 139, 100, 30);
+        terugButton.setBounds(610,75,150,30);
+        winnaarButton.setBounds(420,75,150,30);
     }
 
     public void addComponents(){
@@ -35,6 +36,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         add(toevoegButton);
         add(logoutButton);
         add(terugButton);
+        add(winnaarButton);
     }
 
     public void addActionListeners(){
