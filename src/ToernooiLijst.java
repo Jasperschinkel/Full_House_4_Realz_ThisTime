@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ToernooiLijst extends JFrame implements ActionListener {
@@ -202,7 +204,9 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                         SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
                         java.util.Date date = sdf1.parse(datum);
                         java.sql.Date sqlDatum = new java.sql.Date(date.getTime());
-                        String currentDate = "14-06-2019";
+                        LocalDate today = LocalDate.now();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                        String currentDate = today.format(formatter);
                         SimpleDateFormat sdf2 = new SimpleDateFormat("dd-mm-yyyy");
                         java.util.Date dateNow = sdf2.parse(currentDate);
                         java.sql.Date sqlDateNow = new java.sql.Date(date.getTime());
