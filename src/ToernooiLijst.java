@@ -29,6 +29,8 @@ public class ToernooiLijst extends JFrame implements ActionListener {
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanelLineStart = new JPanel(new BorderLayout());
+    private int aantalSpelers;
+    private String totaleGeldVoorMij;
 
 
     public ToernooiLijst() {
@@ -50,6 +52,8 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        pushTotaleInlegGeld();
 
 
         jtfFilter.getDocument().addDocumentListener(new DocumentListener() {
@@ -175,6 +179,22 @@ public class ToernooiLijst extends JFrame implements ActionListener {
 
     }
 
+    public int getAantalSpelers(){
+        return this.aantalSpelers;
+    }
+
+    public void setAantalSpelers(int aantalSpelers){
+        this.aantalSpelers = aantalSpelers;
+    }
+
+    public String getTotaleGeldVoorMij(){
+        return this.totaleGeldVoorMij;
+    }
+
+    public void setTotaleGeldVoorMij(String totaleGeldVoorMij){
+        this.totaleGeldVoorMij = totaleGeldVoorMij;
+    }
+
     public static ArrayList<ToernooiCode> getAllToernooiCodes() throws ClassNotFoundException, SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
         Statement stm;
@@ -240,6 +260,70 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("caught with ToernooiLijst");
+        }
+    }
+
+
+    public void pushTotaleInlegGeld(){
+        try {
+            ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
+            for(int i = 0; i < alleToernooiCodes.size(); i++){
+                try {
+                    Connection con = Main.getConnection();
+                    Statement st = con.createStatement();
+                    String sql = ("SELECT inleggeld FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                    ResultSet rs = st.executeQuery(sql);
+                    if (rs.next()) {
+                    String inleggeld = rs.getString("inleggeld");
+
+                        try {
+                            Connection con2 = Main.getConnection();
+                            Statement st2 = con2.createStatement();
+                            String sql2 = ("SELECT aantal_spelers FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                            ResultSet rs2 = st2.executeQuery(sql2);
+                            if (rs2.next()) {
+                                int aantalSpelers = rs2.getInt("aantal_spelers");
+                                setAantalSpelers(aantalSpelers);
+
+                            }
+                        }catch (Exception e) {
+                            System.out.println(e);
+                            System.out.println("ERROR: er is een probleem met de database");
+
+                        }
+
+                    if(inleggeld.substring(0,1).equals("€")){
+                        inleggeld = inleggeld.substring(1,inleggeld.length());
+                    }
+                   inleggeld = inleggeld.replace(",", ".");
+                    double inleggeldDouble = Double.valueOf(inleggeld);
+
+                    double totaleInleggeld = inleggeldDouble * getAantalSpelers();
+
+                    String totaleInleggGeldString = Double.toString(totaleInleggeld);
+                    totaleInleggGeldString = "€" + totaleInleggGeldString;
+                    totaleInleggGeldString = totaleInleggGeldString.replace(".",",");
+                    setTotaleGeldVoorMij(totaleInleggGeldString);
+
+                        try {
+                            String totaleInleggeldString = getTotaleGeldVoorMij();
+                            Connection con3 = Main.getConnection();
+                            PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET totale_inleggeld = '" +totaleInleggeldString+"';");
+                            add.executeUpdate();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+
+                    }
+                }catch (Exception e) {
+                    System.out.println(e);
+                    System.out.println("ERROR: er is een probleem met de database");
+
+                }
+
+            }
+        }catch (ClassNotFoundException | SQLException e) {
             System.out.println("caught with ToernooiLijst");
         }
     }
