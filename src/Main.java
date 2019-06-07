@@ -9,7 +9,7 @@ import java.sql.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        HoofdMenu hoofd = new HoofdMenu();
+        LoginFrame frame = new LoginFrame();
     }
 
     public static Connection getConnection() throws Exception {
