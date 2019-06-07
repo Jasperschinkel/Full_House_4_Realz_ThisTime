@@ -23,7 +23,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
     private JButton verwijderButton = new JButton("Verwijderen");
     private JButton wijzigButton = new JButton("Wijzigen");
     private JButton terugButton = new JButton("Terug");
-    private JLabel searchLabel = new JLabel("search: ");
+    private JLabel searchLabel = new JLabel("Search: ");
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
 
