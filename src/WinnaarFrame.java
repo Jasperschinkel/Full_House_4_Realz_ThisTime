@@ -54,8 +54,7 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         terug.addActionListener(this);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {}
+
 
     public int getAantalRondes(){
         String aantalRondesString = aantalRondesField.getText();
@@ -75,5 +74,9 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         return this.toernooiCode;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
 
 }

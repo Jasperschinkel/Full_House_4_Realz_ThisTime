@@ -239,23 +239,22 @@ public class Inschrijven extends JFrame implements ActionListener {
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 String result = rs.getString("type_inschrijving");
-                if (result.equals("Toernooi")) {
+                if (result.equals("Toernooi")){
                     Statement stT = con.createStatement();
                     String sqlT = ("SELECT maximaal_aantal_spelers as max FROM Toernooi WHERE TC LIKE " + codeField.getText());
                     ResultSet rsT = stT.executeQuery(sqlT);
-                    if (rsT.next()) {
+                    if(rsT.next()){
                         int max = rsT.getInt("max");
                         return max;
                     }
-
-                    if (result.equals ("Masterclass")) {
-                        Statement stM = con.createStatement();
-                        String sqlM = ("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode LIKE" + codeField.getText());
-                        ResultSet rsM = stM.executeQuery(sqlM);
-                        if (rsM.next()) {
-                            int max = rsM.getInt("max");
-                            return max;
-                        }
+                }
+                if (result.equals("Masterclass")){
+                    Statement stM = con.createStatement();
+                    String sqlM = ("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode LIKE" + codeField.getText());
+                    ResultSet rsM = stM.executeQuery(sqlM);
+                    if(rsM.next()){
+                        int max = rsM.getInt("max");
+                        return max;
                     }
                 }
             }
@@ -280,7 +279,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if(!validateGeslacht()){
                 JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
             }
-            else if(getMaxAantalInschrijvingen() >= getMaxAantal()){
+            else if(getMaxAantal() > getMaxAantalInschrijvingen()){
                 JOptionPane.showMessageDialog(this, "Het maximum aantal spelers is al ingeschreven voor dit toernooi");
             }
             else {

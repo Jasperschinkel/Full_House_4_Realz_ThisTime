@@ -8,6 +8,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
     JButton toevoegButton = new JButton("Toernooi Toevoegen");
     JButton terugButton = new JButton("Terug");
     JButton logoutButton = new JButton("Log out");
+    JButton winnaarButton = new JButton("Winnaar registratie");
 
     public ToernooiMenu(){
 

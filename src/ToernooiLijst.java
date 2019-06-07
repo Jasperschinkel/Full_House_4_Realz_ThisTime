@@ -244,6 +244,28 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         }
     }
 
+    public void pushTotaleInlegGeld(){
+        try {
+            ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
+            for(int i = 0; i < alleToernooiCodes.size(); i++){
+                try {
+                    Connection con = Main.getConnection();
+                    Statement st = con.createStatement();
+                    String sql = ("SELECT inleggeld FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                    ResultSet rs = st.executeQuery(sql);
+                    String inleggeld = rs.getString("inleggeld");
+                }catch (Exception e) {
+                    System.out.println(e);
+                    System.out.println("ERROR: er is een probleem met de database");
+
+                }
+
+            }
+        }catch (ClassNotFoundException | SQLException e) {
+            System.out.println("caught with ToernooiLijst");
+        }
+    }
+
 
 
 
