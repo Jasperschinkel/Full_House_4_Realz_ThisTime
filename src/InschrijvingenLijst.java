@@ -141,8 +141,8 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
 
 
     public void countSpelers(){
-        int nummercodeKolom = 4;
-        int toernooiKolom = 0;
+        int nummercodeKolom = 0;
+        int toernooiKolom = 4;
         int typeKolom = 3;
         int row = jtbl.getSelectedRow();
         int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, nummercodeKolom).toString());
@@ -157,7 +157,8 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             if(rs.next()){
                 try {
                     Connection con2 = Main.getConnection();
-                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = aantal_spelers - 1 where TC = " + toernooiNummer);
+                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = (aantal_spelers - 1) where TC = " + toernooiNummer);
+                    System.out.println(toernooiNummer);
                     add.executeUpdate();
                 }catch (Exception e){
                     System.out.println(e);
