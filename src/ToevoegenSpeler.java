@@ -13,14 +13,14 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
     private ButtonGroup btngrp = new ButtonGroup();
 
     // All the labels represent! :
-   private JLabel naamLabel = new JLabel("naam: ");
+   private JLabel naamLabel = new JLabel("Naam: ");
    private JLabel postcodeLabel = new JLabel("Postcode: ");
    private JLabel leeftijdLabel = new JLabel("Leeftijd: ");
    private JLabel adresLabel = new JLabel("Adres: ");
    private JLabel woonplaatsLabel = new JLabel("Woonplaats: ");
    private JLabel telefoonNummerLabel = new JLabel("Telefoon nr: ");
    private JLabel emailLabel = new JLabel("e-mail: ");
-   private JLabel geboorteDatumLabel = new JLabel("Geboortedtm: ");
+   private JLabel geboorteDatumLabel = new JLabel("Geboortedatum: ");
    private JLabel geslachtLabel = new JLabel("Geslacht: ");
 
    // All the textfields represent! :
@@ -79,15 +79,15 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        geboorteDatumLabel.setBounds(30,410,100,40);
        geslachtLabel.setBounds(30,360,100,40);
 
-       naamField.setBounds(140,10,100,40);
-       leeftijdField.setBounds(140,60,100,40);
-       postcodeField.setBounds(140,110,100,40);
-       woonplaatsField.setBounds(140,160,100,40);
-       adresField.setBounds(140,210,100,40);
-       telefoonNummerField.setBounds(140,260,100,40);
-       emailField.setBounds(140,310,100,40);
-       geboorteDatumField.setBounds(140,410,100,40);
-       geslachtField.setBounds(140,360,100,40);
+       naamField.setBounds(170,10,100,40);
+       leeftijdField.setBounds(170,60,100,40);
+       postcodeField.setBounds(170,110,100,40);
+       woonplaatsField.setBounds(170,160,100,40);
+       adresField.setBounds(170,210,100,40);
+       telefoonNummerField.setBounds(170,260,100,40);
+       emailField.setBounds(170,310,100,40);
+       geboorteDatumField.setBounds(170,410,100,40);
+       geslachtField.setBounds(170,360,100,40);
 
        bevestigen.setBounds(270,459,100,40);
        terug.setBounds(371,459,75,40);
