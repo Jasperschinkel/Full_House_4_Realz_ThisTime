@@ -171,8 +171,25 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT FROM Toernooi WHERE TC = " + tc + ";");
-            SelectInschrijvingen.executeUpdate();
+            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT aantal_spelers FROM Toernooi WHERE TC = " + tc + ";");
+            ResultSet resultSet = SelectInschrijvingen.executeQuery();
+            PreparedStatement aantal_tafels = con.prepareStatement("SELECT aantal_tafels FROM Toernooi WHERE TC = "+tc+";");
+            while (resultSet.next()){
+                int aantal_spelers = resultSet.getInt("aantal_spelers");
+            for (int i = 0; i < 5; i++) {
+                if (aantal_spelers % 5 == i && aantal_spelers > 5) {
+                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = " + aantal_spelers/5 + " WHERE TC = "+tc+";");
+                    tafelindeling.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Het toernooi begint met " + aantal_spelers/5 + " tafels en de "
+                    + i + " overige worden willekeurig ingedeeld over de tafels.");
+                } else if(aantal_spelers<=5) {
+                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = 1 WHERE TC = "+tc+";");
+                    tafelindeling.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Het toernooi begint met 1 tafel");
+                }
+            }
+            }
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -348,12 +365,18 @@ public class ToernooiLijst extends JFrame implements ActionListener {
             dispose();
             ToernooiLijst refresh = new ToernooiLijst();
         }
+        if (e.getSource() == tafelIndeling){
+            makeTafelIndeling();
+            dispose();
+            ToernooiLijst refresh = new ToernooiLijst();
+        }
     }
 
     public void addActionlisteners(){
         verwijderButten.addActionListener(this);
         terugButton.addActionListener(this);
         wijzigButton.addActionListener(this);
+        tafelIndeling.addActionListener(this);
     }
 
 
