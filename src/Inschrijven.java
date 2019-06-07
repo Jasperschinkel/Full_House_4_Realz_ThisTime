@@ -116,6 +116,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         }
     }
 
+
     public void addInschrijving(){
         try{
             Connection con = Main.getConnection();

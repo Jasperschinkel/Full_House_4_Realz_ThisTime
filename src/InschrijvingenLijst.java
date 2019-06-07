@@ -138,20 +138,26 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         terugButton.addActionListener(this);
         wijzigButton.addActionListener(this);
     }
+
+
     public void countSpelers(){
-        int inschrijvingKolom = 0;
+        int nummercodeKolom = 4;
+        int toernooiKolom = 0;
+        int typeKolom = 3;
         int row = jtbl.getSelectedRow();
-        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, inschrijvingKolom).toString());
+        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, nummercodeKolom).toString());
+        int toernooiNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, toernooiKolom).toString());
+        String typeNummer = (jtbl.getModel().getValueAt(row, typeKolom).toString());
+        System.out.println(typeNummer);
         try {
             Connection con = Main.getConnection();
             Statement st = con.createStatement();
-            String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer);
+            String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer + " and nummercode = " + toernooiNummer + " and type_inschrijving = '" + typeNummer + "'");
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
-                int geteld = rs.getInt("geteld");
                 try {
                     Connection con2 = Main.getConnection();
-                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = aantal_spelers - 1");
+                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = aantal_spelers - 1 where TC = " + toernooiNummer);
                     add.executeUpdate();
                 }catch (Exception e){
                     System.out.println(e);
