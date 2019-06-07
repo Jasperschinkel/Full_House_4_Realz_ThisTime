@@ -146,7 +146,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     public void addMasterclass() {
         try {
             Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers) VALUES ('" + datumField.getText() + "', '" + beginTijdField.getText() + "', '" + eindTijdField.getText() + "', '" + kostenField.getText() + "', '" + maxAantalSlider.getValue() + "', '" + bekendeSpelerField.getText() + "', '" + maxAantalSlider2.getValue() + "');");
+            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers,) VALUES ('" + datumField.getText() + "', '" + beginTijdField.getText() + "', '" + eindTijdField.getText() + "', '" + kostenField.getText() + "', '" + maxAantalSlider.getValue() + "', '" + bekendeSpelerField.getText() + "', '" + maxAantalSlider2.getValue() + ");");
             add.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);

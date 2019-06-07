@@ -101,15 +101,28 @@ public class Inschrijven extends JFrame implements ActionListener {
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
                 int geteld = rs.getInt("geteld");
-                try {
-                    Connection con2 = Main.getConnection();
-                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = " + geteld +" where TC = " + codeField.getText());
-                    add.executeUpdate();
-                }catch (Exception e){
-                    System.out.println(e);
-                    System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                if (typeField.getText().equals ("Toernooi")) {
+                    try {
+                        Connection con2 = Main.getConnection();
+                        PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = " + geteld + " where TC = " + codeField.getText());
+                        add.executeUpdate();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                    }
+                }
+                else if(typeField.getText().equals("Masterclass")){
+                    try {
+                        Connection con2 = Main.getConnection();
+                        PreparedStatement add = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = " + geteld + " where MasterclassCode = " + codeField.getText());
+                        add.executeUpdate();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                    }
                 }
             }
+
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("ERROR: er is een probleem met de database (countSpelers)");

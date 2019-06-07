@@ -155,14 +155,27 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
                 String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer + " and nummercode = " + toernooiNummer + " and type_inschrijving = '" + typeNummer + "'");
                 ResultSet rs = st.executeQuery(sql);
                 if(rs.next()){
-                    try {
-                        Connection con2 = Main.getConnection();
-                        PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = (aantal_spelers - 1) where TC = " + toernooiNummer);
-                        System.out.println(toernooiNummer);
-                        add.executeUpdate();
-                    }catch (Exception e){
-                        System.out.println(e);
-                        System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                    if (typeNummer.equals ("Toernooi")) {
+                        try {
+                            Connection con2 = Main.getConnection();
+                            PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = (aantal_spelers - 1) where TC = " + toernooiNummer);
+                            System.out.println(toernooiNummer);
+                            add.executeUpdate();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                        }
+                    }
+                    else if (typeNummer.equals("Masterclass")){
+                        try {
+                            Connection con2 = Main.getConnection();
+                            PreparedStatement add = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = (aantal_spelers - 1) where MasterclassCode = " + toernooiNummer);
+                            System.out.println(toernooiNummer);
+                            add.executeUpdate();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                            System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                        }
                     }
                 }
             } catch (Exception e) {
