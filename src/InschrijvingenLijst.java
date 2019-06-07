@@ -7,10 +7,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class InschrijvingenLijst extends JFrame implements ActionListener {
     DefaultTableModel model = new DefaultTableModel();
@@ -112,6 +109,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             Connection con = Main.getConnection();
             PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = '" + inschrijvingNummer + "'");
             verwijder.executeUpdate();
+            countSpelers();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -139,6 +137,31 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         verwijderButton.addActionListener(this);
         terugButton.addActionListener(this);
         wijzigButton.addActionListener(this);
+    }
+    public void countSpelers(){
+        int inschrijvingKolom = 0;
+        int row = jtbl.getSelectedRow();
+        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, inschrijvingKolom).toString());
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer);
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                int geteld = rs.getInt("geteld");
+                try {
+                    Connection con2 = Main.getConnection();
+                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = aantal_spelers - 1");
+                    add.executeUpdate();
+                }catch (Exception e){
+                    System.out.println(e);
+                    System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database (countSpelers)");
+        }
     }
 
     @Override
