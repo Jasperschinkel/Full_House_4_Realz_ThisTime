@@ -88,6 +88,8 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         this.pack();
     }
 
+
+
     public void showLijst() {
         model.addColumn("TC");
         model.addColumn("Datum");

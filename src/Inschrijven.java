@@ -93,6 +93,29 @@ public class Inschrijven extends JFrame implements ActionListener {
         rankingButton.addActionListener(this);
     }
 
+    public void countSpelers(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where nummercode like " + codeField.getText() + " and type_inschrijving like '" + typeField.getText() + "';" );
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                int geteld = rs.getInt("geteld");
+                try {
+                    Connection con2 = Main.getConnection();
+                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = " + geteld +" where TC = " + codeField.getText());
+                    add.executeUpdate();
+                }catch (Exception e){
+                    System.out.println(e);
+                    System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database (countSpelers)");
+        }
+    }
+
     public void addInschrijving(){
         try{
             Connection con = Main.getConnection();
@@ -118,7 +141,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             }
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database");
+            System.out.println("ERROR: er is een probleem met de database(inschrijfControle)");
         }
         return true;
     }
@@ -137,7 +160,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database");
+            System.out.println("ERROR: er is een probleem met de database (geslacht)");
         }
 
    return "poepieScheetje";}
@@ -203,7 +226,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             }
         catch(Exception e){
             System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database");
+            System.out.println("ERROR: er is een probleem met de database (maxAantalInschrijvingen)");
         }
         return 0;
     }
@@ -237,7 +260,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             }
         }catch (Exception e){
             System.out.println(e);
-            System.out.println("ERROR: er is iets mis met de database");
+            System.out.println("ERROR: er is iets mis met de database (maxAantal)");
         }
         return 0;
     }
@@ -256,11 +279,12 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if(!validateGeslacht()){
                 JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
             }
-            else if(getMaxAantalInschrijvingen() > getMaxAantal()){
+            else if(getMaxAantal() > getMaxAantalInschrijvingen()){
                 JOptionPane.showMessageDialog(this, "Het maximum aantal spelers is al ingeschreven voor dit toernooi");
             }
             else {
                 addInschrijving();
+                countSpelers();
                 JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
                 emptyTextField();
             }
