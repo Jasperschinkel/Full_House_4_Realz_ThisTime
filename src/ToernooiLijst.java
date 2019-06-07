@@ -10,11 +10,12 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ToernooiLijst extends JFrame implements ActionListener {
-
+public int albertus = 0;
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
@@ -232,7 +233,7 @@ public class ToernooiLijst extends JFrame implements ActionListener {
     public void pushIsGeweest() {
         try {
             ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
-            for (int i = 0; i < alleToernooiCodes.size(); i++) {
+            for (int i = 0; i < alleToernooiCodes.size(); i++)
                 try {
                     Connection con = Main.getConnection();
                     Statement st = con.createStatement();
@@ -240,29 +241,37 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                     ResultSet rs = st.executeQuery(sql);
                     if (rs.next()) {
                         String datum = rs.getString("datum");
-                        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
-                        java.util.Date date = sdf1.parse(datum);
-                        java.sql.Date sqlDatum = new java.sql.Date(date.getTime());
-                        LocalDate today = LocalDate.now();
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                        String currentDate = today.format(formatter);
-                        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-mm-yyyy");
-                        java.util.Date dateNow = sdf2.parse(currentDate);
-                        java.sql.Date sqlDateNow = new java.sql.Date(date.getTime());
-                        if (sqlDatum.before(sqlDateNow)) {
+                        System.out.println(!datum.substring(0,3).equals("201"));
+                        if(!datum.substring(0,3).equals("201")){
+                           datum = "2019-06-14";
                             try {
-                                Connection con2 = Main.getConnection();
-                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'J';");
+                                datum = "2019-06-14";
+                                Connection con3 = Main.getConnection();
+                                PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET datum = '"+datum+ "'WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
                             }
 
                         }
-                        else{
+                        Date datumSQL = Date.valueOf(datum);
+                        LocalDate dateNow = LocalDate.now();
+                        Date dateNowSQL = Date.valueOf(dateNow);
+
+
+                        if (datumSQL.before(dateNowSQL)) {
                             try {
                                 Connection con2 = Main.getConnection();
-                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'N';");
+                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'J'WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                                add.executeUpdate();
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+
+                        } else {
+                            try {
+                                Connection con2 = Main.getConnection();
+                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'N' WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
@@ -275,7 +284,6 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                     System.out.println("ERROR: er is een probleem met de database");
 
                 }
-            }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("caught with ToernooiLijst");
         }
