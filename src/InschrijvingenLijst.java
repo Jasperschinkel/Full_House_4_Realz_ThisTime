@@ -141,34 +141,35 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
 
 
     public void countSpelers(){
-        int nummercodeKolom = 4;
-        int toernooiKolom = 0;
-        int typeKolom = 3;
-        int row = jtbl.getSelectedRow();
-        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, nummercodeKolom).toString());
-        int toernooiNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, toernooiKolom).toString());
-        String typeNummer = (jtbl.getModel().getValueAt(row, typeKolom).toString());
-        System.out.println(typeNummer);
-        try {
-            Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer + " and nummercode = " + toernooiNummer + " and type_inschrijving = '" + typeNummer + "'");
-            ResultSet rs = st.executeQuery(sql);
-            if(rs.next()){
-                try {
-                    Connection con2 = Main.getConnection();
-                    PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = aantal_spelers - 1 where TC = " + toernooiNummer);
-                    add.executeUpdate();
-                }catch (Exception e){
-                    System.out.println(e);
-                    System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+            int nummercodeKolom = 0;
+            int toernooiKolom = 4;
+            int typeKolom = 3;
+            int row = jtbl.getSelectedRow();
+            int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, nummercodeKolom).toString());
+            int toernooiNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, toernooiKolom).toString());
+            String typeNummer = (jtbl.getModel().getValueAt(row, typeKolom).toString());
+            System.out.println(typeNummer);
+            try {
+                Connection con = Main.getConnection();
+                Statement st = con.createStatement();
+                String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer + " and nummercode = " + toernooiNummer + " and type_inschrijving = '" + typeNummer + "'");
+                ResultSet rs = st.executeQuery(sql);
+                if(rs.next()){
+                    try {
+                        Connection con2 = Main.getConnection();
+                        PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = (aantal_spelers - 1) where TC = " + toernooiNummer);
+                        System.out.println(toernooiNummer);
+                        add.executeUpdate();
+                    }catch (Exception e){
+                        System.out.println(e);
+                        System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database (countSpelers)");
             }
-        } catch (Exception e) {
-            System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database (countSpelers)");
         }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
