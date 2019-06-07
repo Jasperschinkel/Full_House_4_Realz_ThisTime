@@ -57,9 +57,23 @@ public class WinnaarFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {}
 
-    public int getAantalRondes;
+    public int getAantalRondes(){
+        String aantalRondesString = aantalRondesField.getText();
+        int aantalRondes = Integer.valueOf(aantalRondesString);
 
-    public int getToernooiCode;
+        this.aantalRondes = aantalRondes;
+
+        return this.aantalRondes;
+    }
+
+    public int getToernooiCode(){
+        String toernooiCodeString = toernooiCodeField.getText();
+        int toernooiCode = Integer.valueOf(toernooiCodeString);
+
+        this.toernooiCode = toernooiCode;
+
+        return this.toernooiCode;
+    }
 
 
 }
