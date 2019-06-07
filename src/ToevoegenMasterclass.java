@@ -18,9 +18,9 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     //All the labels represent!:
 
     private JLabel datumLabel = new JLabel("Datum: ");
-    private JLabel beginTijdLabel = new JLabel("Begint: ");
-    private JLabel eindTijdLabel = new JLabel("Eindigt: ");
-    private JLabel maxLabel = new JLabel("Max ranking");
+    private JLabel beginTijdLabel = new JLabel("Begintijd: ");
+    private JLabel eindTijdLabel = new JLabel("Eindtijd: ");
+    private JLabel maxLabel = new JLabel("Max Ranking");
     private JLabel kostenLabel = new JLabel("Kosten: ");
     private JLabel bekendeSpelerLabel = new JLabel("Bekende Speler: ");
     private JLabel maxAantalLabel = new JLabel ("Max. aantal spelers: ");

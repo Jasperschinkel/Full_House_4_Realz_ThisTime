@@ -190,6 +190,57 @@ public class Inschrijven extends JFrame implements ActionListener {
         return ranking;
     }
 
+    public int getMaxAantalInschrijvingen(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT maximaal_aantal_spelers as max from Toernooi where TC like " + codeField.getText());
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                int totaal = rs.getInt("aantal");
+                return totaal;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is een probleem met de database");
+        }
+        return 0;
+    }
+
+    public int getMaxAantal(){
+        try {
+            Connection con = Main.getConnection();
+            Statement st = con.createStatement();
+            String sql = ("SELECT type_inschrijving from Inschrijvingen;");
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                String result = rs.getString("type_inschrijving");
+                if (result == "Toernooi"){
+                    Statement stT = con.createStatement();
+                    String sqlT = ("SELECT maximaal_aantal_spelers as max FROM Toernooi WHERE TC LIKE " + codeField.getText());
+                    ResultSet rsT = stT.executeQuery(sqlT);
+                    if(rsT.next()){
+                        int max = rsT.getInt("max");
+                        return max;
+                    }
+                }
+                if (result == "Masterclass"){
+                    Statement stM = con.createStatement();
+                    String sqlM = ("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode LIKE" + codeField.getText());
+                    ResultSet rsM = stM.executeQuery(sqlM);
+                    if(rsM.next()){
+                        int max = rsM.getInt("max");
+                        return max;
+                    }
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e);
+            System.out.println("ERROR: er is iets mis met de database");
+        }
+        return 0;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -203,6 +254,9 @@ public class Inschrijven extends JFrame implements ActionListener {
             }
             else if(!validateGeslacht()){
                 JOptionPane.showMessageDialog(this, "Een man mag zich niet inschrijven voor een Pink Ribbon toernooi");
+            }
+            else if(getMaxAantalInschrijvingen() > getMaxAantal()){
+                JOptionPane.showMessageDialog(this, "Het maximum aantal spelers is al ingeschreven voor dit toernooi");
             }
             else {
                 addInschrijving();

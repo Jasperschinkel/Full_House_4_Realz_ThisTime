@@ -18,8 +18,8 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
     //All the labels represent!:
    private JLabel beschrijvingLabel = new JLabel("Beschrijving: ");
    private JLabel datumLabel = new JLabel("Datum: ");
-   private JLabel beginTijdLabel = new JLabel("Begint: ");
-   private JLabel eindTijdLabel = new JLabel("Eindigt: ");
+   private JLabel beginTijdLabel = new JLabel("Begintijd: ");
+   private JLabel eindTijdLabel = new JLabel("Eindtijd: ");
    private JLabel soortLabel = new JLabel("Soort toernooi: ");
    private JLabel maxLabel = new JLabel("Max inschrijvingen");
    private JLabel inlegGeldLabel = new JLabel("Inleggeld: ");

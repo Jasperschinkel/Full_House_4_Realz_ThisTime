@@ -105,9 +105,9 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     }
 
     public void verwijderRegistratie() {
-        int registratieNummer = 0;
+        int inschrijvingKolom = 0;
         int row = jtbl.getSelectedRow();
-        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, registratieNummer).toString());
+        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, inschrijvingKolom).toString());
         try {
             Connection con = Main.getConnection();
             PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = '" + inschrijvingNummer + "'");
