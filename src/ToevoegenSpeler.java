@@ -35,7 +35,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
 
 
-   private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+   private DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
    private JFormattedTextField geboorteDatumField = new JFormattedTextField(format);
 
    private JButton bevestigen = new JButton("Klaar");
@@ -131,7 +131,15 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        } else {
            try {
                Connection con = Main.getConnection();
-               PreparedStatement add = con.prepareStatement("INSERT INTO Spelers (naam, adres, postcode, woonplaats, telefoonnr, email, geboortedatum, geslacht, ranking) VALUES ('" + naamField.getText() + "', '" + adresField.getText() + "', '" + postcodeField.getText() + "', '" + woonplaatsField.getText() + "', '" + telefoonNummerField.getText() + "', '" + emailField.getText() + "', '" + geboorteDatumField.getText() + "', '" + geslachtField.getText() + "', '" + 0 + "');");
+               PreparedStatement add = con.prepareStatement("INSERT INTO Spelers (naam, adres, postcode, woonplaats, telefoonnr, email, geboortedatum, geslacht) VALUES (?,?,?,?,?,?,?,?)");
+               add.setString(1,naamField.getText());
+               add.setString(2,adresField.getText());
+               add.setString(3,postcodeField.getText());
+               add.setString(4,woonplaatsField.getText());
+               add.setString(5,telefoonNummerField.getText());
+               add.setString(6,emailField.getText());
+               add.setDate(7,java.sql.Date.valueOf(geboorteDatumField.getText()));
+               add.setString(8,geslachtField.getText());
                add.executeUpdate();
                return true;
            } catch (Exception e) {

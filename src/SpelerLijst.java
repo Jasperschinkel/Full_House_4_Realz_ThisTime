@@ -133,14 +133,12 @@ public class SpelerLijst extends JFrame implements ActionListener {
             update.setString(4,jtbl.getValueAt(row,4).toString());
             update.setString(5,jtbl.getValueAt(row,5).toString());
             update.setString(6,jtbl.getValueAt(row,6).toString());
-            update.setString(7,jtbl.getValueAt(row,7).toString());
+            update.setDate(7,java.sql.Date.valueOf(jtbl.getValueAt(row,7).toString()));
             update.setString(8,jtbl.getValueAt(row,8).toString());
             update.setInt(9,Integer.parseInt(jtbl.getValueAt(row,9).toString()));
-            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,10).toString()));
-            update.setInt(11,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
+            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             update.executeUpdate();
             update.close();
-
         }catch(Exception e) {
             System.out.println(e);
         }
