@@ -116,9 +116,9 @@ import java.sql.ResultSet;
             try{
                 Connection con= Main.getConnection();
                 PreparedStatement update = con.prepareStatement("UPDATE Masterclass SET datum = ?, begintijd = ?, eindtijd = ?, kosten = ?, max_ranking = ?, bekende_speler = ?, max_aantal_spelers = ?, aantal_spelers = ? WHERE MasterclassCode = ?");
-                update.setString(1,jtbl.getValueAt(row,1).toString());
-                update.setString(2,jtbl.getValueAt(row,2).toString());
-                update.setString(3,jtbl.getValueAt(row,3).toString());
+                update.setDate(1,java.sql.Date.valueOf(jtbl.getValueAt(row,1).toString()));
+                update.setTime(2,java.sql.Time.valueOf(jtbl.getValueAt(row,2).toString()));
+                update.setTime(3,java.sql.Time.valueOf(jtbl.getValueAt(row,3).toString()));
                 update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,4).toString()));
                 update.setInt(5,Integer.parseInt(jtbl.getValueAt(row,5).toString()));
                 update.setString(6,jtbl.getValueAt(row,6).toString());
