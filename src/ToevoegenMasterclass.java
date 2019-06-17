@@ -33,7 +33,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     private JTextField kostenField = new JTextField();
     private JTextField bekendeSpelerField = new JTextField();
 
-    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     private JFormattedTextField datumField = new JFormattedTextField(format);
 
 
@@ -138,14 +138,23 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     public void addActionListeners(){
         terug.addActionListener(this);
         bevestigen.addActionListener(this);
-        maxAantalSlider2.addChangeListener(this);
+
         maxAantalSlider.addChangeListener(this);
 
     }
 
     public void addMasterclass() {
         try {
-
+            Connection con = Main.getConnection();
+            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers,) VALUES (?,?,?,?,?,?,?,?,?,?");
+            add.setDate(1,java.sql.Date.valueOf(datumField.getText()));
+            add.setTime(2,java.sql.Time.valueOf(beginTijdField.getText()));
+            add.setTime(3,java.sql.Time.valueOf(eindTijdField.getText()));
+            add.setDouble(4,Double.parseDouble(kostenField.getText()));
+            add.setInt(5,maxAantalSlider.getValue());
+            add.setString(6,bekendeSpelerField.getText());
+            add.setInt(7,maxAantalSlider2.getValue());
+            add.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
