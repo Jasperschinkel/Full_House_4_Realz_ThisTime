@@ -139,7 +139,6 @@ public class SpelerLijst extends JFrame implements ActionListener {
             update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             update.executeUpdate();
             update.close();
-
         }catch(Exception e) {
             System.out.println(e);
         }

@@ -47,7 +47,7 @@ public int albertus = 0;
         searchPanel.add(buttonPanel, BorderLayout.LINE_END);
         cnt.setLayout(new BorderLayout());
         cnt.add(searchPanel, BorderLayout.SOUTH);
-
+        showLijst();
         setTitle("Toernooi Lijst");
         setPreferredSize(new Dimension(1700, 500));
         setVisible(true);
@@ -88,7 +88,7 @@ public int albertus = 0;
         });
 
 
-        showLijst();
+
         addActionlisteners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
@@ -109,11 +109,11 @@ public int albertus = 0;
         model.addColumn("Inleggeld");
         model.addColumn("Uiterste inschrijfdatum");
         model.addColumn("aantal_spelers");
-        model.addColumn("aantal_tafels");
         model.addColumn("totale_inleggeld");
         model.addColumn("is_gespeeld");
         model.addColumn("winnaar");
         model.addColumn("tweede_plaats");
+        model.addColumn("locatie");
 
 
         try {
@@ -241,7 +241,7 @@ public int albertus = 0;
                     ResultSet rs = st.executeQuery(sql);
                     if (rs.next()) {
                         String datum = rs.getString("datum");
-                        System.out.println(!datum.substring(0,3).equals("201"));
+                        //System.out.println(!datum.substring(0,3).equals("201"));
                         if(!datum.substring(0,3).equals("201")){
                            datum = "2019-06-14";
                             try {
