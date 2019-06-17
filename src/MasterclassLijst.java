@@ -139,7 +139,7 @@ import java.sql.ResultSet;
             int mc = Integer.parseInt(jtbl.getModel().getValueAt(row, MCcolumn).toString());
             try{
                 Connection con = Main.getConnection();
-                PreparedStatement verwijder = con.prepareStatement("DELETE FROM Masterclass WHERE MasterclassCOde = "+mc+";");
+                PreparedStatement verwijder = con.prepareStatement("DELETE FROM Masterclass WHERE MasterclassCode = "+mc+";");
                 verwijder.executeUpdate();
             }catch(Exception e){
                 System.out.println(e);

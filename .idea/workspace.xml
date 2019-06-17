@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a91da5ae-66b4-43b1-97cf-7255b792fdf1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MasterclassLijst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MasterclassLijst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToernooiLijst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToernooiLijst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ToevoegenMasterclass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ToevoegenMasterclass.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,10 +55,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ToevoegenMasterclass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="68">
               <caret line="148" column="190" selection-start-line="148" selection-start-column="190" selection-end-line="148" selection-end-column="190" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1596">
-              <caret line="125" column="85" selection-start-line="125" selection-start-column="85" selection-end-line="125" selection-end-column="85" />
+            <state relative-caret-position="151">
+              <caret line="120" column="90" selection-start-line="120" selection-start-column="90" selection-end-line="120" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -154,8 +151,8 @@
         <option value="$PROJECT_DIR$/src/SpelerLijst.java" />
         <option value="$PROJECT_DIR$/src/ToevoegenSpeler.java" />
         <option value="$PROJECT_DIR$/src/ToernooiLijst.java" />
-        <option value="$PROJECT_DIR$/src/MasterclassLijst.java" />
         <option value="$PROJECT_DIR$/src/ToevoegenMasterclass.java" />
+        <option value="$PROJECT_DIR$/src/MasterclassLijst.java" />
       </list>
     </option>
   </component>
@@ -543,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1560771159489</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Pls help">
+      <created>1560772795725</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1560772795725</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TodoView">
@@ -805,13 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="125" column="85" selection-start-line="125" selection-start-column="85" selection-end-line="125" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ToernooiLijst.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -821,11 +818,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ToevoegenMasterclass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="68">
           <caret line="148" column="190" selection-start-line="148" selection-start-column="190" selection-end-line="148" selection-end-column="190" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MasterclassLijst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="120" column="90" selection-start-line="120" selection-start-column="90" selection-end-line="120" selection-end-column="90" />
         </state>
       </provider>
     </entry>
