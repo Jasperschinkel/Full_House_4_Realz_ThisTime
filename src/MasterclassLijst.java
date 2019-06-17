@@ -119,7 +119,7 @@ import java.sql.ResultSet;
                 update.setString(1,jtbl.getValueAt(row,1).toString());
                 update.setString(2,jtbl.getValueAt(row,2).toString());
                 update.setString(3,jtbl.getValueAt(row,3).toString());
-                update.setString(4,jtbl.getValueAt(row,4).toString());
+                update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,4).toString()));
                 update.setInt(5,Integer.parseInt(jtbl.getValueAt(row,5).toString()));
                 update.setString(6,jtbl.getValueAt(row,6).toString());
                 update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));
