@@ -113,7 +113,7 @@ public int albertus = 0;
         model.addColumn("totale_inleggeld");
         model.addColumn("is_gespeeld");
         model.addColumn("winnaar");
-        model.addColumn("twwede_plaats");
+        model.addColumn("tweede_plaats");
 
 
         try {
