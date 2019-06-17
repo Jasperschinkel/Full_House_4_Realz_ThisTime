@@ -77,6 +77,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
+
         });
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
@@ -94,7 +95,6 @@ public class SpelerLijst extends JFrame implements ActionListener {
         model.addColumn("E-Mail");
         model.addColumn("Geboortedatum");
         model.addColumn("Geslacht");
-        model.addColumn("Leeftijd");
         model.addColumn("Ranking");
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -102,7 +102,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
             PreparedStatement pstm = con.prepareStatement("SELECT * FROM Spelers");
             ResultSet Rs = pstm.executeQuery();
             while(Rs.next()){
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10), Rs.getString(11)});
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6),Rs.getString(7),Rs.getString(8),Rs.getString(9), Rs.getString(10)});
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -126,21 +126,19 @@ public class SpelerLijst extends JFrame implements ActionListener {
     public void wijzigSpeler(JTable table, int row){
         try{
             Connection con= Main.getConnection();
-            PreparedStatement update = con.prepareStatement("UPDATE Spelers SET naam = ?, adres = ?, postcode = ?, woonplaats = ?, telefoonnr = ?, email = ?, geboortedatum = ?, geslacht = ?, leeftijd = ?, ranking = ? WHERE idcode = ?");
+            PreparedStatement update = con.prepareStatement("UPDATE Spelers SET naam = ?, adres = ?, postcode = ?, woonplaats = ?, telefoonnr = ?, email = ?, geboortedatum = ?, geslacht = ?, ranking = ? WHERE idcode = ?");
             update.setString(1,jtbl.getValueAt(row,1).toString());
             update.setString(2,jtbl.getValueAt(row,2).toString());
             update.setString(3,jtbl.getValueAt(row,3).toString());
             update.setString(4,jtbl.getValueAt(row,4).toString());
             update.setString(5,jtbl.getValueAt(row,5).toString());
             update.setString(6,jtbl.getValueAt(row,6).toString());
-            update.setString(7,jtbl.getValueAt(row,7).toString());
+            update.setDate(7,java.sql.Date.valueOf(jtbl.getValueAt(row,7).toString()));
             update.setString(8,jtbl.getValueAt(row,8).toString());
             update.setInt(9,Integer.parseInt(jtbl.getValueAt(row,9).toString()));
-            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,10).toString()));
-            update.setInt(11,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
+            update.setInt(10,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             update.executeUpdate();
             update.close();
-
         }catch(Exception e) {
             System.out.println(e);
         }
