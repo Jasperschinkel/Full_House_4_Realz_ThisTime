@@ -15,7 +15,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
     // All the labels represent! :
    private JLabel naamLabel = new JLabel("Naam: ");
    private JLabel postcodeLabel = new JLabel("Postcode: ");
-   private JLabel leeftijdLabel = new JLabel("Leeftijd: ");
+   //private JLabel leeftijdLabel = new JLabel("Leeftijd: ");
    private JLabel adresLabel = new JLabel("Adres: ");
    private JLabel woonplaatsLabel = new JLabel("Woonplaats: ");
    private JLabel telefoonNummerLabel = new JLabel("Telefoon nr: ");
@@ -27,7 +27,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
     private JTextField naamField = new JTextField();
     private JTextField postcodeField = new JTextField();
     private JTextField adresField = new JTextField();
-    private JTextField leeftijdField = new JTextField();
+    //private JTextField leeftijdField = new JTextField();
     private JTextField woonplaatsField = new JTextField();
     private JTextField telefoonNummerField = new JTextField();
     private JTextField emailField = new JTextField();
@@ -57,7 +57,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
    public void emptyTextFields() {
        naamField.setText("");
-       leeftijdField.setText("");
+       //leeftijdField.setText("");
        postcodeField.setText("");
        adresField.setText("");
        woonplaatsField.setText("");
@@ -70,24 +70,23 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
    public void setComponentBounds(){
        naamLabel.setBounds(30,10,100,40);
-       leeftijdLabel.setBounds(30,60,100,40);
-       postcodeLabel.setBounds(30,110,100,40);
-       woonplaatsLabel.setBounds(30,160,100,40);
-       adresLabel.setBounds(30,210,100,40);
-       telefoonNummerLabel.setBounds(30,260,100,40);
-       emailLabel.setBounds(30,310,100,40);
-       geboorteDatumLabel.setBounds(30,410,100,40);
+       postcodeLabel.setBounds(30,60,100,40);
+       woonplaatsLabel.setBounds(30,110,100,40);
+       adresLabel.setBounds(30,160,100,40);
+       telefoonNummerLabel.setBounds(30,210,100,40);
+       emailLabel.setBounds(30,260,100,40);
+       geboorteDatumLabel.setBounds(30,310,100,40);
        geslachtLabel.setBounds(30,360,100,40);
 
        naamField.setBounds(170,10,100,40);
-       leeftijdField.setBounds(170,60,100,40);
-       postcodeField.setBounds(170,110,100,40);
-       woonplaatsField.setBounds(170,160,100,40);
-       adresField.setBounds(170,210,100,40);
-       telefoonNummerField.setBounds(170,260,100,40);
-       emailField.setBounds(170,310,100,40);
-       geboorteDatumField.setBounds(170,410,100,40);
+       postcodeField.setBounds(170,60,100,40);
+       woonplaatsField.setBounds(170,110,100,40);
+       adresField.setBounds(170,160,100,40);
+       telefoonNummerField.setBounds(170,210,100,40);
+       emailField.setBounds(170,260,100,40);
+       geboorteDatumField.setBounds(170,310,100,40);
        geslachtField.setBounds(170,360,100,40);
+
 
        bevestigen.setBounds(270,459,100,40);
        terug.setBounds(371,459,75,40);
@@ -97,7 +96,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
    public void addComponents(){
        add(naamLabel);
-       add(leeftijdLabel);
+       //add(leeftijdLabel);
        add(postcodeLabel);
        add(woonplaatsLabel);
        add(adresLabel);
@@ -108,7 +107,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
        add(naamField);
        add(postcodeField);
-       add(leeftijdField);
+       //add(leeftijdField);
 
        add(woonplaatsField);
        add(adresField);
@@ -126,13 +125,19 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
 
 
-   public void addSpeler(){
-       try{
-           Connection con = Main.getConnection();
-           PreparedStatement add = con.prepareStatement("INSERT INTO Spelers (naam,adres, postcode, woonplaats, telefoonnr, email, geboortedatum, geslacht, leeftijd, ranking) VALUES ('"+naamField.getText()+ "', '"+adresField.getText()+ "', '"+postcodeField.getText()+ "', '"+woonplaatsField.getText()+"', '"+telefoonNummerField.getText()+ "', '"+emailField.getText()+"', '"+ geboorteDatumField.getText()+"', '"+geslachtField.getText()+"', '"+12+"', '"+0+"');");
-           add.executeUpdate();
-       }catch(Exception e) {
-           System.out.println(e);
+   public boolean addSpeler() {
+       if (naamField.getText().equals("") || adresField.getText().equals("") || postcodeField.getText().equals("") || woonplaatsField.getText().equals("") || telefoonNummerField.getText().equals("") || emailField.getText().equals("") || geboorteDatumField.getText().equals("") || geslachtField.getText().equals("")) {
+           return false;
+       } else {
+           try {
+               Connection con = Main.getConnection();
+               PreparedStatement add = con.prepareStatement("INSERT INTO Spelers (naam, adres, postcode, woonplaats, telefoonnr, email, geboortedatum, geslacht, ranking) VALUES ('" + naamField.getText() + "', '" + adresField.getText() + "', '" + postcodeField.getText() + "', '" + woonplaatsField.getText() + "', '" + telefoonNummerField.getText() + "', '" + emailField.getText() + "', '" + geboorteDatumField.getText() + "', '" + geslachtField.getText() + "', '" + 0 + "');");
+               add.executeUpdate();
+               return true;
+           } catch (Exception e) {
+               System.out.println(e);
+           }
+           return false;
        }
    }
 
@@ -148,9 +153,15 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
            dispose();
        }
        if(e.getSource() == bevestigen) {
-           addSpeler();
-           JOptionPane.showMessageDialog(this, "Speler toegevoegd");
-           emptyTextFields();
+           if (addSpeler()){
+               JOptionPane.showMessageDialog(this, "Speler toegevoegd");
+               emptyTextFields();
+               dispose();
+               SpelerMenu menu = new SpelerMenu();
+           } else {
+               JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
+           }
+
        }
     }
 }
