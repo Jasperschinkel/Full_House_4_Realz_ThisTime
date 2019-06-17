@@ -130,23 +130,27 @@ public class Inschrijven extends JFrame implements ActionListener {
     }
 
 
-    public void addInschrijving(){
-        try{
-            Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES ('"+naamField.getText()+ "', '"+rankingField.getText()+ "', '"+typeField.getText()+ "', '"+codeField.getText()+"', '"+heeftBetaaldField.getText()+"');");
-            add.executeUpdate();
-        }catch(Exception e) {
-            System.out.println(e);
+    public boolean addInschrijving(){
+        if(naamField.getText().equals("") || rankingField.getText().equals("") || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
+            return false;
+        } else {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES ('" + naamField.getText() + "', '" + rankingField.getText() + "', '" + typeField.getText() + "', '" + codeField.getText() + "', '" + heeftBetaaldField.getText() + "');");
+                add.executeUpdate();
+                return true;
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
-
+        return false;
     }
 
     public boolean inschrijfControle(){
         try {
             Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            String sql = ("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + naamField.getText() + "' AND nummercode LIKE " + codeField.getText());
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + naamField.getText() + "' AND nummercode LIKE " + codeField.getText());
+            ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 int id = rs.getInt("aantal");
                 if (id < 1) {
@@ -296,11 +300,12 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if(getMaxAantalInschrijvingen() > getMaxAantal()){
                 JOptionPane.showMessageDialog(this, "Het maximum aantal spelers is al ingeschreven voor dit toernooi");
             }
-            else {
-                addInschrijving();
+            else if (addInschrijving()){
                 countSpelers();
                 JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
                 emptyTextField();
+            } else {
+                JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
             }
         }
         if(e.getSource() == rankingButton){
