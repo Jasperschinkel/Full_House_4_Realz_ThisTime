@@ -82,10 +82,10 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
 
     public void showLijst() {
         model.addColumn("Inschrijving");
-        model.addColumn("Naam");
+        model.addColumn("SpelerID");
         model.addColumn("Ranking");
-        model.addColumn("Type inschrijving");
-        model.addColumn("Nummercode");
+        model.addColumn("Toernooi");
+        model.addColumn("Masterclass");
         model.addColumn("Heeft betaald");
 
         try {
