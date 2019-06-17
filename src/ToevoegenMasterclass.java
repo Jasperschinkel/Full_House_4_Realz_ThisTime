@@ -33,7 +33,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     private JTextField kostenField = new JTextField();
     private JTextField bekendeSpelerField = new JTextField();
 
-    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
     private JFormattedTextField datumField = new JFormattedTextField(format);
 
 
@@ -143,21 +143,27 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
 
     }
 
-    public void addMasterclass() {
-        try {
-            Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers) VALUES (?,?,?,?,?,?,?)");
-            add.setDate(1,java.sql.Date.valueOf(datumField.getText()));
-            add.setTime(2,java.sql.Time.valueOf(beginTijdField.getText()));
-            add.setTime(3,java.sql.Time.valueOf(eindTijdField.getText()));
-            add.setDouble(4,Double.parseDouble(kostenField.getText()));
-            add.setInt(5,maxAantalSlider.getValue());
-            add.setString(6,bekendeSpelerField.getText());
-            add.setInt(7,maxAantalSlider2.getValue());
-            add.executeUpdate();
-        } catch (Exception e) {
-            System.out.println(e);
+    public boolean addMasterclass() {
+        if (datumField.getText().equals("") || beginTijdField.getText().equals("") || eindTijdField.getText().equals("") || kostenField.getText().equals("") || bekendeSpelerField.getText().equals("")){
+            return false;
+        } else {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers) VALUES (?,?,?,?,?,?,?)");
+                add.setDate(1, java.sql.Date.valueOf(datumField.getText()));
+                add.setTime(2, java.sql.Time.valueOf(beginTijdField.getText()));
+                add.setTime(3, java.sql.Time.valueOf(eindTijdField.getText()));
+                add.setDouble(4, Double.parseDouble(kostenField.getText()));
+                add.setInt(5, maxAantalSlider.getValue());
+                add.setString(6, bekendeSpelerField.getText());
+                add.setInt(7, maxAantalSlider2.getValue());
+                add.executeUpdate();
+                return true;
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
+        return false;
     }
 
     @Override
@@ -167,9 +173,15 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
             MasterclassMenu menu = new MasterclassMenu();
         }
         if(e.getSource() == bevestigen){
-            addMasterclass();
-            JOptionPane.showMessageDialog(this, "Masterclass toegevoegd");
-            emptyTextFields();
+            if(addMasterclass()){
+                JOptionPane.showMessageDialog(this, "Masterclass toegevoegd");
+                emptyTextFields();
+                dispose();
+                MasterclassMenu menu = new MasterclassMenu();
+            } else {
+                JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
+            }
+
         }
 
     }

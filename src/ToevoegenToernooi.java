@@ -143,7 +143,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         beschrijvingField.setText("");
     }
 
-    public void addToernooi(){
+    public boolean addToernooi(){
         String radio;
         if(normaal.isSelected()){
             radio= "Normaal";
@@ -151,23 +151,29 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         else {
           radio= "Pink Ribbon";
         }
-        try{
-            Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Toernooi (datum, begintijd, eindtijd, beschrijving, condities, soort_toernooi, maximaal_aantal_spelers, inleggeld, uiterste_inschrijf_datum, locatie) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
-            add.setDate(1,java.sql.Date.valueOf(datumField.getText()));
-            add.setTime(2,java.sql.Time.valueOf(beginTijdField.getText()));
-            add.setTime(3, java.sql.Time.valueOf(eindTijdField.getText()));
-            add.setString(4, beschrijvingField.getText());
-            add.setString(5, conditieField.getText());
-            add.setString(6, radio);
-            add.setInt(7, maxAantalSlider.getValue());
-            add.setDouble(8, Double.parseDouble(inlegGeldField.getText()));
-            add.setDate(9, java.sql.Date.valueOf(uitersteField.getText()));
-            add.setString(10,locatieField.getText());
-            add.executeUpdate();
-        }catch(Exception e) {
-            System.out.println(e);
+        if (datumField.getText().equals("") || beginTijdField.getText().equals("") || eindTijdField.getText().equals("") || beschrijvingField.getText().equals("") || conditieField.getText().equals("") || inlegGeldField.getText().equals("") || uitersteField.getText().equals("")) {
+            return false;
+        } else {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement add = con.prepareStatement("INSERT INTO Toernooi (datum, begintijd, eindtijd, beschrijving, condities, soort_toernooi, maximaal_aantal_spelers, inleggeld, uiterste_inschrijf_datum, locatie) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                add.setDate(1, java.sql.Date.valueOf(datumField.getText()));
+                add.setTime(2, java.sql.Time.valueOf(beginTijdField.getText()));
+                add.setTime(3, java.sql.Time.valueOf(eindTijdField.getText()));
+                add.setString(4, beschrijvingField.getText());
+                add.setString(5, conditieField.getText());
+                add.setString(6, radio);
+                add.setInt(7, maxAantalSlider.getValue());
+                add.setDouble(8, Double.parseDouble(inlegGeldField.getText()));
+                add.setDate(9, java.sql.Date.valueOf(uitersteField.getText()));
+                add.setString(10, locatieField.getText());
+                add.executeUpdate();
+                return true;
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
+        return false;
     }
 
     public void addActionListeners(){
@@ -188,9 +194,13 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
             ToernooiMenu menu =  new ToernooiMenu();
         }
         if(e.getSource() == bevestigen) {
-            addToernooi();
-            JOptionPane.showMessageDialog(this, "Toernooi toegevoegd");
-            emptyTextFields();
+            if(addToernooi()){
+                JOptionPane.showMessageDialog(this, "Toernooi toegevoegd");
+                emptyTextFields();
+            } else {
+                JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
+            }
+
         }
 
     }
