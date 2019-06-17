@@ -90,13 +90,14 @@ import java.sql.ResultSet;
 
         public void showLijst(){
             model.addColumn("MasterclassCode");
-            model.addColumn("datum");
-            model.addColumn("begintijd");
-            model.addColumn("eindtijd");
-            model.addColumn("kosten");
-            model.addColumn("max_ranking");
-            model.addColumn("bekende_speler");
-            model.addColumn("max_aantal_spelers");
+            model.addColumn("Datum");
+            model.addColumn("Begintijd");
+            model.addColumn("Eindtijd");
+            model.addColumn("Kosten");
+            model.addColumn("Max ranking");
+            model.addColumn("Bekende speler");
+            model.addColumn("Max aantal spelers");
+            model.addColumn("Aantal spelers");
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
@@ -104,7 +105,7 @@ import java.sql.ResultSet;
                 PreparedStatement pstm = con.prepareStatement("SELECT * FROM Masterclass");
                 ResultSet Rs = pstm.executeQuery();
                 while(Rs.next()){
-                    model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6), Rs.getString(7), Rs.getString(8)});
+                    model.addRow(new Object[]{Rs.getString(1), Rs.getString(2),Rs.getString(3),Rs.getString(4),Rs.getString(5),Rs.getString(6), Rs.getString(7), Rs.getString(8), Rs.getString(9)});
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -114,7 +115,7 @@ import java.sql.ResultSet;
         public void wijzigMasterclass(JTable table, int row){
             try{
                 Connection con= Main.getConnection();
-                PreparedStatement update = con.prepareStatement("UPDATE Masterclass SET datum = ?, begintijd = ?, eindtijd = ?, kosten = ?, max_ranking = ?, bekende_speler = ?, max_aantal_spelers = ? WHERE MasterclassCode = ?");
+                PreparedStatement update = con.prepareStatement("UPDATE Masterclass SET datum = ?, begintijd = ?, eindtijd = ?, kosten = ?, max_ranking = ?, bekende_speler = ?, max_aantal_spelers = ?, aantal_spelers = ? WHERE MasterclassCode = ?");
                 update.setString(1,jtbl.getValueAt(row,1).toString());
                 update.setString(2,jtbl.getValueAt(row,2).toString());
                 update.setString(3,jtbl.getValueAt(row,3).toString());

@@ -25,13 +25,16 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
    private JLabel inlegGeldLabel = new JLabel("Inleggeld: ");
    private JLabel uitersteLabel = new JLabel("Uiterlijk inschrijven tot: ");
    private JLabel conditieLabel = new JLabel("Condities: ");
+   private JLabel locatieLabel = new JLabel("Locatie: ");
+
 
     // All the textfields represent!:
     private JTextField beschrijvingField = new JTextField();
     private JTextField conditieField = new JTextField();
     private JTextField beginTijdField = new JTextField();
     private JTextField eindTijdField = new JTextField();
-    private JTextField inlegGeldField = new JTextField();
+    private JTextField inlegGeldField = new JTextField("€");
+    private JTextField locatieField = new JTextField();
 
     private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     private JFormattedTextField datumField = new JFormattedTextField(format);
@@ -51,7 +54,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         setTitle("Toevoegen van toernooi");
         setLayout(null);
         setVisible(true);
-        setSize(700, 700);
+        setSize(700, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setComponentBounds();
@@ -71,6 +74,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         uitersteLabel.setBounds(40,310,200,40);
         beschrijvingLabel.setBounds(40,370,100,40);
         conditieLabel.setBounds(40,485,100,40);
+        locatieLabel.setBounds(40,650, 100, 40);
 
         datumField.setBounds(300,10,100,40);
         beginTijdField.setBounds(300,60,100,40);
@@ -82,11 +86,10 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         uitersteField.setBounds(300,310,100,40);
         beschrijvingField.setBounds(200,370,400,110);
         conditieField.setBounds(200,500,400,110);
+        locatieField.setBounds(300,650,100,40);
 
-        terug.setBounds(600,620,75,40);
-        bevestigen.setBounds(490,620,100,40);
-
-
+        terug.setBounds(600,720,75,40);
+        bevestigen.setBounds(490,720,100,40);
 
     }
 
@@ -107,6 +110,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         add(uitersteLabel);
         add(beschrijvingLabel);
         add(conditieLabel);
+        add(locatieLabel);
 
         add(conditieField);
         add(datumField);
@@ -118,6 +122,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         add(inlegGeldField);
         add(uitersteField);
         add(beschrijvingField);
+        add(locatieField);
 
         add(terug);
         add(bevestigen);

@@ -9,10 +9,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ToernooiLijst extends JFrame implements ActionListener {
-
+public int albertus = 0;
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
@@ -27,6 +30,8 @@ public class ToernooiLijst extends JFrame implements ActionListener {
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanelLineStart = new JPanel(new BorderLayout());
+    private int aantalSpelers;
+    private ArrayList<String> totaleGeldVoorMij = new ArrayList<String>();
 
 
     public ToernooiLijst() {
@@ -48,6 +53,8 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        pushTotaleInlegGeld();
 
 
         jtfFilter.getDocument().addDocumentListener(new DocumentListener() {
@@ -87,6 +94,8 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         cnt.add(pg);
         this.pack();
     }
+
+
 
     public void showLijst() {
         model.addColumn("TC");
@@ -163,12 +172,45 @@ public class ToernooiLijst extends JFrame implements ActionListener {
         int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT FROM Toernooi WHERE TC = " + tc + ";");
-            SelectInschrijvingen.executeUpdate();
+            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT aantal_spelers FROM Toernooi WHERE TC = " + tc + ";");
+            ResultSet resultSet = SelectInschrijvingen.executeQuery();
+            PreparedStatement aantal_tafels = con.prepareStatement("SELECT aantal_tafels FROM Toernooi WHERE TC = "+tc+";");
+            while (resultSet.next()){
+                int aantal_spelers = resultSet.getInt("aantal_spelers");
+            for (int i = 0; i < 5; i++) {
+                if (aantal_spelers % 5 == i && aantal_spelers > 5) {
+                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = " + aantal_spelers/5 + " WHERE TC = "+tc+";");
+                    tafelindeling.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Het toernooi begint met " + aantal_spelers/5 + " tafels en de "
+                    + i + " overige worden willekeurig ingedeeld over de tafels.");
+                } else if(aantal_spelers<=5) {
+                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = 1 WHERE TC = "+tc+";");
+                    tafelindeling.executeUpdate();
+                    JOptionPane.showMessageDialog(this, "Het toernooi begint met 1 tafel");
+                }
+            }
+            }
+
         } catch (Exception e) {
             System.out.println(e);
         }
 
+    }
+
+    public int getAantalSpelers(){
+        return this.aantalSpelers;
+    }
+
+    public void setAantalSpelers(int aantalSpelers){
+        this.aantalSpelers = aantalSpelers;
+    }
+
+    public ArrayList<String> getTotaleGeldVoorMij(){
+        return this.totaleGeldVoorMij;
+    }
+
+    public void addTotaleGeldVoorMij(String totaleGeldVoorMij){
+        this.totaleGeldVoorMij.add(totaleGeldVoorMij);
     }
 
     public static ArrayList<ToernooiCode> getAllToernooiCodes() throws ClassNotFoundException, SQLException {
@@ -191,7 +233,7 @@ public class ToernooiLijst extends JFrame implements ActionListener {
     public void pushIsGeweest() {
         try {
             ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
-            for (int i = 0; i < alleToernooiCodes.size(); i++) {
+            for (int i = 0; i < alleToernooiCodes.size(); i++)
                 try {
                     Connection con = Main.getConnection();
                     Statement st = con.createStatement();
@@ -199,27 +241,37 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                     ResultSet rs = st.executeQuery(sql);
                     if (rs.next()) {
                         String datum = rs.getString("datum");
-                        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
-                        java.util.Date date = sdf1.parse(datum);
-                        java.sql.Date sqlDatum = new java.sql.Date(date.getTime());
-                        String currentDate = "14-06-2019";
-                        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-mm-yyyy");
-                        java.util.Date dateNow = sdf2.parse(currentDate);
-                        java.sql.Date sqlDateNow = new java.sql.Date(date.getTime());
-                        if (sqlDatum.before(sqlDateNow)) {
+                        System.out.println(!datum.substring(0,3).equals("201"));
+                        if(!datum.substring(0,3).equals("201")){
+                           datum = "2019-06-14";
                             try {
-                                Connection con2 = Main.getConnection();
-                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'J';");
+                                datum = "2019-06-14";
+                                Connection con3 = Main.getConnection();
+                                PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET datum = '"+datum+ "'WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
                             }
 
                         }
-                        else{
+                        Date datumSQL = Date.valueOf(datum);
+                        LocalDate dateNow = LocalDate.now();
+                        Date dateNowSQL = Date.valueOf(dateNow);
+
+
+                        if (datumSQL.before(dateNowSQL)) {
                             try {
                                 Connection con2 = Main.getConnection();
-                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'N';");
+                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'J'WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                                add.executeUpdate();
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+
+                        } else {
+                            try {
+                                Connection con2 = Main.getConnection();
+                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'N' WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
@@ -232,8 +284,73 @@ public class ToernooiLijst extends JFrame implements ActionListener {
                     System.out.println("ERROR: er is een probleem met de database");
 
                 }
-            }
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("caught with ToernooiLijst");
+        }
+    }
+
+
+    public void pushTotaleInlegGeld(){
+        try {
+            ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
+            for(int i = 0; i < alleToernooiCodes.size(); i++){
+                try {
+                    Connection con = Main.getConnection();
+                    Statement st = con.createStatement();
+                    String sql = ("SELECT inleggeld FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                    ResultSet rs = st.executeQuery(sql);
+                    if (rs.next()) {
+                    String inleggeld = rs.getString("inleggeld");
+
+                        try {
+                            Connection con2 = Main.getConnection();
+                            Statement st2 = con2.createStatement();
+                            String sql2 = ("SELECT aantal_spelers FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                            ResultSet rs2 = st2.executeQuery(sql2);
+                            if (rs2.next()) {
+                                int aantalSpelers = rs2.getInt("aantal_spelers");
+                                setAantalSpelers(aantalSpelers);
+
+
+                            }
+                        }catch (Exception e) {
+                            System.out.println(e);
+                            System.out.println("ERROR: er is een probleem met de database");
+
+                        }
+
+                    if(inleggeld.substring(0,1).equals("€")){
+                        inleggeld = inleggeld.substring(1,inleggeld.length());
+                    }
+                   inleggeld = inleggeld.replace(",", ".");
+                    double inleggeldDouble = Double.valueOf(inleggeld);
+
+                    double totaleInleggeld = inleggeldDouble * getAantalSpelers();
+
+                    String totaleInleggGeldString = Double.toString(totaleInleggeld);
+                    totaleInleggGeldString = "€" + totaleInleggGeldString;
+                    totaleInleggGeldString = totaleInleggGeldString.replace(".",",");
+                    addTotaleGeldVoorMij(totaleInleggGeldString);
+                        
+
+                        try {
+                           String totaleInleggeldString = getTotaleGeldVoorMij().get(i);
+                            Connection con3 = Main.getConnection();
+                            PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET totale_inleggeld = '" +totaleInleggeldString+"' WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                            add.executeUpdate();
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+
+                    }
+                }catch (Exception e) {
+                    System.out.println(e);
+                    System.out.println("ERROR: er is een probleem met de database");
+
+                }
+
+            }
+        }catch (ClassNotFoundException | SQLException e) {
             System.out.println("caught with ToernooiLijst");
         }
     }
@@ -258,12 +375,18 @@ public class ToernooiLijst extends JFrame implements ActionListener {
             dispose();
             ToernooiLijst refresh = new ToernooiLijst();
         }
+        if (e.getSource() == tafelIndeling){
+            makeTafelIndeling();
+            dispose();
+            ToernooiLijst refresh = new ToernooiLijst();
+        }
     }
 
     public void addActionlisteners(){
         verwijderButten.addActionListener(this);
         terugButton.addActionListener(this);
         wijzigButton.addActionListener(this);
+        tafelIndeling.addActionListener(this);
     }
 
 
