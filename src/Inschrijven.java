@@ -216,7 +216,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         int ranking=0;
         try {
             Connection con = Main.getConnection();
-            PreparedStatement state = con.prepareStatement("SELECT ranking FROM Spelers WHERE naam = '"+naam+"'");
+            PreparedStatement state = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = '"+naam+"'");
             ResultSet rs= state.executeQuery();
             if(rs.next()) {
                 return rs.getInt("ranking");
