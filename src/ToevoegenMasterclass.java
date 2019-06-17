@@ -33,7 +33,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     private JTextField kostenField = new JTextField();
     private JTextField bekendeSpelerField = new JTextField();
 
-    private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     private JFormattedTextField datumField = new JFormattedTextField(format);
 
 
@@ -146,7 +146,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
     public void addMasterclass() {
         try {
             Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers,) VALUES (?,?,?,?,?,?,?,?,?,?");
+            PreparedStatement add = con.prepareStatement("INSERT INTO Masterclass (datum, begintijd, eindtijd, kosten, max_ranking, bekende_speler, max_aantal_spelers) VALUES (?,?,?,?,?,?,?)");
             add.setDate(1,java.sql.Date.valueOf(datumField.getText()));
             add.setTime(2,java.sql.Time.valueOf(beginTijdField.getText()));
             add.setTime(3,java.sql.Time.valueOf(eindTijdField.getText()));
