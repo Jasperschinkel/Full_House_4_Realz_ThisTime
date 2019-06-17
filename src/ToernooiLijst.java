@@ -109,11 +109,11 @@ public int albertus = 0;
         model.addColumn("Inleggeld");
         model.addColumn("Uiterste inschrijfdatum");
         model.addColumn("aantal_spelers");
-        model.addColumn("aantal_tafels");
         model.addColumn("totale_inleggeld");
         model.addColumn("is_gespeeld");
         model.addColumn("winnaar");
         model.addColumn("tweede_plaats");
+        model.addColumn("Locatie");
 
 
         try {
@@ -133,7 +133,7 @@ public int albertus = 0;
     public void wijzigToernooi(JTable table, int row) {
         try {
             Connection con = Main.getConnection();
-            PreparedStatement update = con.prepareStatement("UPDATE Toernooi SET datum = ?, begintijd = ?, eindtijd = ?, beschrijving = ?, condities = ?, soort_toernooi = ?, maximaal_aantal_spelers = ?, inleggeld = ?, uiterste_inschrijf_datum = ? WHERE TC = ?");
+            PreparedStatement update = con.prepareStatement("UPDATE Toernooi SET datum = ?, begintijd = ?, eindtijd = ?, beschrijving = ?, condities = ?, soort_toernooi = ?, maximaal_aantal_spelers = ?, inleggeld = ?, uiterste_inschrijf_datum = ?, locatie = ? WHERE TC = ?");
             update.setString(1, jtbl.getValueAt(row, 1).toString());
             update.setString(2, jtbl.getValueAt(row, 2).toString());
             update.setString(3, jtbl.getValueAt(row, 3).toString());
@@ -143,7 +143,8 @@ public int albertus = 0;
             update.setInt(7, Integer.parseInt(jtbl.getValueAt(row, 7).toString()));
             update.setString(8, jtbl.getValueAt(row, 8).toString());
             update.setString(9, jtbl.getValueAt(row, 9).toString());
-            update.setInt(10, Integer.parseInt(jtbl.getValueAt(row, 0).toString()));
+            update.setString(10, jtbl.getValueAt(row, 10).toString());
+            update.setInt(11, Integer.parseInt(jtbl.getValueAt(row, 0).toString()));
             update.executeUpdate();
             update.close();
 
@@ -241,7 +242,7 @@ public int albertus = 0;
                     ResultSet rs = st.executeQuery(sql);
                     if (rs.next()) {
                         String datum = rs.getString("datum");
-                        System.out.println(!datum.substring(0,3).equals("201"));
+                        //System.out.println(!datum.substring(0,3).equals("201"));
                         if(!datum.substring(0,3).equals("201")){
                            datum = "2019-06-14";
                             try {

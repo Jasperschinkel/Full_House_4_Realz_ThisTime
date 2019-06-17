@@ -33,10 +33,10 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
     private JTextField conditieField = new JTextField();
     private JTextField beginTijdField = new JTextField();
     private JTextField eindTijdField = new JTextField();
-    private JTextField inlegGeldField = new JTextField("€");
+    private JTextField inlegGeldField = new JTextField("");
     private JTextField locatieField = new JTextField();
 
-    private DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    private DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
     private JFormattedTextField datumField = new JFormattedTextField(format);
     private JFormattedTextField uitersteField = new JFormattedTextField(format);
 
@@ -153,7 +153,17 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         }
         try{
             Connection con = Main.getConnection();
-            PreparedStatement add = con.prepareStatement("INSERT INTO Toernooi (datum, begintijd, eindtijd, beschrijving, condities, soort_toernooi, maximaal_aantal_spelers, inleggeld, uiterste_inschrijf_datum) VALUES ('"+datumField.getText()+"', '"+beginTijdField.getText()+"', '"+eindTijdField.getText()+"', '"+beschrijvingField.getText()+"', '"+conditieField.getText()+"', '"+radio+"', '"+maxAantalSlider.getValue()+"', '"+inlegGeldField.getText()+"', '"+uitersteField.getText()+"');");
+            PreparedStatement add = con.prepareStatement("INSERT INTO Toernooi (datum, begintijd, eindtijd, beschrijving, condities, soort_toernooi, maximaal_aantal_spelers, inleggeld, uiterste_inschrijf_datum, locatie) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            add.setDate(1,java.sql.Date.valueOf(datumField.getText()));
+            add.setTime(2,java.sql.Time.valueOf(beginTijdField.getText()));
+            add.setTime(3, java.sql.Time.valueOf(eindTijdField.getText()));
+            add.setString(4, beschrijvingField.getText());
+            add.setString(5, conditieField.getText());
+            add.setString(6, radio);
+            add.setInt(7, maxAantalSlider.getValue());
+            add.setDouble(8, Double.parseDouble(inlegGeldField.getText()));
+            add.setDate(9, java.sql.Date.valueOf(uitersteField.getText()));
+            add.setString(10,locatieField.getText());
             add.executeUpdate();
         }catch(Exception e) {
             System.out.println(e);
