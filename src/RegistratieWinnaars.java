@@ -42,16 +42,12 @@ public class RegistratieWinnaars extends JFrame {
     public int getAantalTafelsFromDB(){
         try{
             int toernooiCode = getToernooiCode();
-            Connection conn =
-                    DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240",
-                            "Ene3shaise");
-            Statement stm;
-            stm = conn.createStatement();
-            String sql = "Select aantal_tafels From Toernooi WHERE TC =" +toernooiCode+";";
-            ResultSet rst;
-            rst = stm.executeQuery(sql);
-            if(rst.next()) {
-                int aantalTafels = rst.getInt("aantal_tafels");
+            Connection conn = Main.getConnection();
+            PreparedStatement st = conn.prepareStatement("Select aantal_tafels From Toernooi WHERE TC = ?");
+            st.setInt(1, toernooiCode);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()) {
+                int aantalTafels = rs.getInt("aantal_tafels");
                 setAantelTafels(aantalTafels);
                 System.out.println(aantalTafels);
             }
@@ -85,8 +81,10 @@ public class RegistratieWinnaars extends JFrame {
             ArrayList<String> winnaars = getWinnaars();
             String winnaar = winnaars.get(winnaars.size() - 1);
             Connection con3 = Main.getConnection();
-            PreparedStatement add = con3.prepareStatement("UPDATE Toernooi SET winnaar = '" +winnaar+"' WHERE TC LIKE '" + getToernooiCode()+ "'; ");
-            add.executeUpdate();
+            PreparedStatement st = con3.prepareStatement("UPDATE Toernooi SET winnaar = ? WHERE TC = ?");
+            st.setString(1, winnaar);
+            st.setInt(2, getToernooiCode());
+            st.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -94,8 +92,10 @@ public class RegistratieWinnaars extends JFrame {
             ArrayList<String> winnaars = getWinnaars();
             String tweedePlaats = winnaars.get(winnaars.size() - 2);
             Connection con4 = Main.getConnection();
-            PreparedStatement add2 = con4.prepareStatement("UPDATE Toernooi SET tweede_plaats = '" +tweedePlaats+"' WHERE TC LIKE '" + getToernooiCode()+ "'; ");
-            add2.executeUpdate();
+            PreparedStatement st = con4.prepareStatement("UPDATE Toernooi SET tweede_plaats = ?" +tweedePlaats+"' WHERE TC = ?" + getToernooiCode());
+            st.setString(1, tweedePlaats);
+            st.setInt(2, getToernooiCode());
+            st.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
