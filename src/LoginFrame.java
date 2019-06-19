@@ -81,6 +81,14 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     }
 
+    public void setPassword(String password){
+        passField.setText(password);
+    }
+
+    public void setUsername(String username){
+        userField.setText(username);
+    }
+
     public boolean validateUser(){
         try
         {

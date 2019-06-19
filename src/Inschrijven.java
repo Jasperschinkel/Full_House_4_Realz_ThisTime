@@ -24,6 +24,7 @@ public class Inschrijven extends JFrame implements ActionListener {
     private JButton terugButton = new JButton("Terug");
     private JButton klaarButton = new JButton("Klaar");
 
+    // constructor
 
     public Inschrijven(){
         setTitle("Inschrijven");
@@ -38,6 +39,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
     }
 
+    // this empties all the textfields active on this frame
     public void emptyTextField(){
         spelerIDField.setText("");
         typeField.setText("");
@@ -45,6 +47,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         heeftBetaaldField.setText("");
     }
 
+    // this places the components on the frame and sets their size
     public void setComponentBounds(){
         spelerIDLabel.setBounds(40,10,100,40);
         typeLabel.setBounds(40,110,100,40);
@@ -63,7 +66,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 
     }
-
+// this adds the components to this JFrame
     public void addComponents(){
         add(spelerIDLabel);
         add(typeLabel);
@@ -79,13 +82,13 @@ public class Inschrijven extends JFrame implements ActionListener {
         add(terugButton);
 
     }
-
+// this adds the action listeners to the buttons
     public void addActionListeners(){
         terugButton.addActionListener(this);
         klaarButton.addActionListener(this);
 
     }
-
+// this counts the number of players in a particular toernooi
     public void countSpelers() {
         if (typeField.getText().equals("Toernooi")) {
             try {
@@ -136,7 +139,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         }
     }
 
-
+// this adds an inschrijving to a toernooi
     public void addInschrijving(){
             if(typeField.getText().equalsIgnoreCase("Toernooi")){
             try {
@@ -162,7 +165,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             }
         }
 
-
+// this checks if the masterclass or toernooi exists.
     public boolean inschrijfControle(){
         if(typeField.getText().equals("Toernooi")) {
             try {
@@ -202,6 +205,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         return true;
     }
 
+// this gets the sex of the person you are registering to a toernooi or masterclass
     public String getGeslacht(){
         try {
             Connection con = Main.getConnection();
@@ -221,6 +225,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
    return "poepieScheetje";}
 
+   //this gets the type of toernooi
     public String getToernooiSoort(){
         if(typeField.getText().equals("Toernooi")){
         try {
@@ -241,6 +246,8 @@ public class Inschrijven extends JFrame implements ActionListener {
         }
 
         return "poepieScheetje";}
+
+        // this checks if the sex of the player is consistent with the sex constraints of the type of toernooi
 
         public boolean validateGeslacht(){
         String geslacht = getGeslacht();
@@ -282,7 +289,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             System.out.println("SpelerRanking: "+spelerRanking);
        return spelerRanking; }
 
-
+// checks if a player can register for a masterclass based on ranking
     public boolean checkMaxRanking(){
         if(typeField.getText().equalsIgnoreCase("Masterclass")){
         try {
