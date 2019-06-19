@@ -270,6 +270,7 @@ public class Inschrijven extends JFrame implements ActionListener {
                 e.printStackTrace();
 
             }
+            System.out.println(spelerRanking);
        return spelerRanking; }
 
 
@@ -286,9 +287,10 @@ public class Inschrijven extends JFrame implements ActionListener {
                     check.setInt(1, Integer.parseInt(codeField.getText()));
                     ResultSet resultaat = check.executeQuery();
                     if (resultaat.next()){
+                        if(typeField.getText().equalsIgnoreCase("Masterclass")){
                         if (resultaat.getInt("max_ranking") >= getRanking()) {
                             return false;
-                        }
+                        }}
                     }
                 }
             }
@@ -329,7 +331,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 
     public int getMaxAantalInschrijvingen(){
-        if(typeField.getText().equals("Toernooi")) {
+        if(typeField.getText().equalsIgnoreCase("Toernooi")) {
             try {
                 Connection con = Main.getConnection();
                 PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where toernooi = ?" + codeField.getText());
@@ -344,7 +346,7 @@ public class Inschrijven extends JFrame implements ActionListener {
                 System.out.println("ERROR: er is een probleem met de database (getMaxAantalInschrijvingenToernooi)");
             }
         }
-        else if(typeField.getText().equals("Masterclass")){
+        else if(typeField.getText().equalsIgnoreCase("Masterclass")){
             try {
                 Connection con = Main.getConnection();
                 PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where masterclass = ?" + codeField.getText());
