@@ -47,7 +47,7 @@ public int albertus = 0;
         searchPanel.add(buttonPanel, BorderLayout.LINE_END);
         cnt.setLayout(new BorderLayout());
         cnt.add(searchPanel, BorderLayout.SOUTH);
-
+        showLijst();
         setTitle("Toernooi Lijst");
         setPreferredSize(new Dimension(1700, 500));
         setVisible(true);
@@ -88,7 +88,6 @@ public int albertus = 0;
         });
 
 
-        showLijst();
         addActionlisteners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
