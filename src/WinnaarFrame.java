@@ -4,10 +4,13 @@ import java.awt.event.ActionListener;
 
 public class WinnaarFrame extends JFrame implements ActionListener {
 
+    // setting global variables for the class scope
+
     private int aantalRondes;
 
     private int toernooiCode;
 
+// initializing all components
     JLabel aantalRondesLabel = new JLabel("Aantal rondes");
     JTextField aantalRondesField = new JTextField();
 
@@ -17,6 +20,7 @@ public class WinnaarFrame extends JFrame implements ActionListener {
     JButton bevestigen = new JButton("Klaar");
     JButton terug = new JButton("terug");
 
+   // the constructor
     public WinnaarFrame(){
 
         setLayout(null);
@@ -31,6 +35,7 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         addActionListeners();
     }
 
+    // laying out all the components on the JFrame, and setting their sizes
     public void setComponentBounds(){
         aantalRondesLabel.setBounds(50,50,100,50);
         toernooiCodeLabel.setBounds(50,110,100,50);
@@ -40,6 +45,7 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         terug.setBounds(300,310,75,50);
     }
 
+    // adding the components to the JFrame
     public void addComponents(){
         add(aantalRondesLabel);
         add(aantalRondesField);
@@ -49,6 +55,7 @@ public class WinnaarFrame extends JFrame implements ActionListener {
         add(terug);
     }
 
+    // adding action listeners to the buttons
     public void addActionListeners(){
         bevestigen.addActionListener(this);
         terug.addActionListener(this);
@@ -57,7 +64,7 @@ public class WinnaarFrame extends JFrame implements ActionListener {
 
 
 
-
+// getters and setters
     public int getAantalRondes(){
         String aantalRondesString = aantalRondesField.getText();
         int aantalRondes = Integer.valueOf(aantalRondesString);
