@@ -262,32 +262,32 @@ public class Inschrijven extends JFrame implements ActionListener {
         else{return true;}
         }
 
-        public int getRanking() {
-            int spelerRanking = -1;
-
-            try {
-                Connection conn = Main.getConnection();
-                PreparedStatement ps = conn.prepareStatement("SELECT idcode, ranking FROM Spelers WHERE idcode = ?");
-                ps.setInt(1, Integer.parseInt(codeField.getText()));
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    int result = rs.getInt("idcode");
-                    if (result == Integer.parseInt(codeField.getText())) {
-                        PreparedStatement check = conn.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = ?");
-                        check.setInt(1, Integer.parseInt(codeField.getText()));
-                        ResultSet resultaat = check.executeQuery();
-                        if (resultaat.next()) {
-                             spelerRanking = resultaat.getInt("ranking");
-                        }
-                    }
-                }
-
-            }catch (Exception e) {
-                e.printStackTrace();
-
-            }
-            System.out.println("SpelerRanking: "+spelerRanking);
-       return spelerRanking; }
+//        public int getRanking() {
+//            int spelerRanking = -1;
+//
+//            try {
+//                Connection conn = Main.getConnection();
+//                PreparedStatement ps = conn.prepareStatement("SELECT idcode, ranking FROM Spelers WHERE idcode = ?");
+//                ps.setInt(1, Integer.parseInt(codeField.getText()));
+//                ResultSet rs = ps.executeQuery();
+//                if (rs.next()) {
+//                    int result = rs.getInt("idcode");
+//                    if (result == Integer.parseInt(codeField.getText())) {
+//                        PreparedStatement check = conn.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = ?");
+//                        check.setInt(1, Integer.parseInt(codeField.getText()));
+//                        ResultSet resultaat = check.executeQuery();
+//                        if (resultaat.next()) {
+//                             spelerRanking = resultaat.getInt("ranking");
+//                        }
+//                    }
+//                }
+//
+//            }catch (Exception e) {
+//                e.printStackTrace();
+//
+//            }
+//            System.out.println("SpelerRanking: "+spelerRanking);
+//       return spelerRanking; }
 
 // checks if a player can register for a masterclass based on ranking
     public boolean checkMaxRanking(){
@@ -305,7 +305,7 @@ public class Inschrijven extends JFrame implements ActionListener {
                     ResultSet resultaat = check.executeQuery();
                     if (resultaat.next()){
                         if (resultaat.getInt("max_ranking") >= getRanking()) {
-                            return true;
+                            return false;
                         }
                     }
                 }
@@ -314,7 +314,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             e.printStackTrace();
 
         }}
-        return false;
+        return true;
     }
 
     // this checks if  all the textfields are being written on
@@ -327,22 +327,22 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 // this is an old method that may come in handy some day, as such it is not yet deleted.
 
-//    public int getRanking(){
-//        String naam = naamField.getText();
-//        int ranking=0;
-//        try {
-//            Connection con = Main.getConnection();
-//            PreparedStatement st = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = ?");
-//            st.setInt(1, Integer.parseInt(naam));
-//            ResultSet rs= st.executeQuery();
-//            if(rs.next()) {
-//                return rs.getInt("ranking");
-//            }
-//        }catch(Exception e) {
-//            System.out.println(e);
-//        }
-//        return ranking;
-//    }
+    public int getRanking(){
+        int spelerID = Integer.valueOf(spelerIDField.getText());
+        int ranking=0;
+        try {
+            Connection con = Main.getConnection();
+            PreparedStatement st = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = ?");
+            st.setInt(1, spelerID);
+            ResultSet rs= st.executeQuery();
+            if(rs.next()) {
+                return rs.getInt("ranking");
+            }
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+        return ranking;
+    }
 
 
 
