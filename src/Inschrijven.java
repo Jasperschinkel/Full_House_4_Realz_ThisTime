@@ -352,7 +352,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         if(typeField.getText().equalsIgnoreCase("Toernooi")) {
             try {
                 Connection con = Main.getConnection();
-                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where toernooi = ?" + codeField.getText());
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where toernooi = ?");
                 st.setInt(1, Integer.parseInt(codeField.getText()));
                 ResultSet rs = st.executeQuery();
                 if (rs.next()) {
@@ -367,7 +367,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         else if(typeField.getText().equalsIgnoreCase("Masterclass")){
             try {
                 Connection con = Main.getConnection();
-                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where masterclass = ?" + codeField.getText());
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where masterclass = ?");
                 st.setInt(1, Integer.parseInt(codeField.getText()));
                 ResultSet rs = st.executeQuery();
                 if (rs.next()) {
@@ -386,7 +386,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         if(typeField.getText().equals("Toernooi")) {
             try {
                 Connection con = Main.getConnection();
-                PreparedStatement st = con.prepareStatement("SELECT maximaal_aantal_spelers as max FROM Toernooi WHERE TC = ?" + codeField.getText());
+                PreparedStatement st = con.prepareStatement("SELECT maximaal_aantal_spelers as max FROM Toernooi WHERE TC = ?");
                 st.setInt(1, Integer.parseInt(codeField.getText()));
                 ResultSet rs = st.executeQuery();
                 if (rs.next()) {
@@ -402,7 +402,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         else if(typeField.getText().equals("Masterclass")){
              try {
                  Connection con = Main.getConnection();
-                 PreparedStatement st = con.prepareStatement("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode = ?" + codeField.getText());
+                 PreparedStatement st = con.prepareStatement("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode = ?");
                  st.setInt(1, Integer.parseInt(codeField.getText()));
                  ResultSet rs = st.executeQuery();
                  if (rs.next()) {
