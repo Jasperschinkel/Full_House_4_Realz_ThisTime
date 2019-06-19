@@ -158,14 +158,17 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             System.out.println(typeNummer);
             try {
                 Connection con = Main.getConnection();
-                Statement st = con.createStatement();
-                String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = " + inschrijvingNummer + " and nummercode = " + toernooiNummer + " and type_inschrijving = '" + typeNummer + "'");
-                ResultSet rs = st.executeQuery(sql);
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as geteld FROM Inschrijvingen where Inschrijving = ? AND nummercode = ? and type_inschrijving = ?");
+                st.setInt(1,inschrijvingNummer);
+                st.setInt(2,toernooiNummer);
+                st.setString(3,typeNummer);
+                ResultSet rs = st.executeQuery();
                 if(rs.next()){
                     if (typeNummer.equals ("Toernooi")) {
                         try {
                             Connection con2 = Main.getConnection();
-                            PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = (aantal_spelers - 1) where TC = " + toernooiNummer);
+                            PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = (aantal_spelers - 1) where TC = ?");
+                            add.setInt(1,toernooiNummer);
                             System.out.println(toernooiNummer);
                             add.executeUpdate();
                         } catch (Exception e) {
@@ -176,7 +179,8 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
                     else if (typeNummer.equals("Masterclass")){
                         try {
                             Connection con2 = Main.getConnection();
-                            PreparedStatement add = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = (aantal_spelers - 1) where MasterclassCode = " + toernooiNummer);
+                            PreparedStatement add = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = (aantal_spelers - 1) where MasterclassCode = ?");
+                            add.setInt(1,toernooiNummer);
                             System.out.println(toernooiNummer);
                             add.executeUpdate();
                         } catch (Exception e) {
