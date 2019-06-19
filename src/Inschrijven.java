@@ -235,8 +235,8 @@ public class Inschrijven extends JFrame implements ActionListener {
         try {
             Connection con = Main.getConnection();
             Statement st = con.createStatement();
-            String sql = ("SELECT COUNT (*) as aantal from Inschrijvingen where type_inschrijving like '" + typeField.getText() + "' and nummercode like "+ codeField.getText());
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement state = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where type_inschrijving like '" + typeField.getText() + "' and nummercode like "+ codeField.getText());
+            ResultSet rs = state.executeQuery();
             if (rs.next()) {
                 int aantal = rs.getInt("aantal");
                 return aantal;
