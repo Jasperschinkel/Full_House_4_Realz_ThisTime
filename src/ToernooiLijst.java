@@ -47,7 +47,7 @@ public int albertus = 0;
         searchPanel.add(buttonPanel, BorderLayout.LINE_END);
         cnt.setLayout(new BorderLayout());
         cnt.add(searchPanel, BorderLayout.SOUTH);
-
+        showLijst();
         setTitle("Toernooi Lijst");
         setPreferredSize(new Dimension(1700, 500));
         setVisible(true);
@@ -88,7 +88,6 @@ public int albertus = 0;
         });
 
 
-        showLijst();
         addActionlisteners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
@@ -134,16 +133,16 @@ public int albertus = 0;
         try {
             Connection con = Main.getConnection();
             PreparedStatement update = con.prepareStatement("UPDATE Toernooi SET datum = ?, begintijd = ?, eindtijd = ?, beschrijving = ?, condities = ?, soort_toernooi = ?, maximaal_aantal_spelers = ?, inleggeld = ?, uiterste_inschrijf_datum = ?, locatie = ? WHERE TC = ?");
-            update.setString(1, jtbl.getValueAt(row, 1).toString());
-            update.setString(2, jtbl.getValueAt(row, 2).toString());
-            update.setString(3, jtbl.getValueAt(row, 3).toString());
+            update.setDate(1, java.sql.Date.valueOf(jtbl.getValueAt(row, 1).toString()));
+            update.setTime(2, java.sql.Time.valueOf(jtbl.getValueAt(row, 2).toString()));
+            update.setTime(3, java.sql.Time.valueOf(jtbl.getValueAt(row, 3).toString()));
             update.setString(4, jtbl.getValueAt(row, 4).toString());
             update.setString(5, jtbl.getValueAt(row, 5).toString());
             update.setString(6, jtbl.getValueAt(row, 6).toString());
             update.setInt(7, Integer.parseInt(jtbl.getValueAt(row, 7).toString()));
-            update.setString(8, jtbl.getValueAt(row, 8).toString());
-            update.setString(9, jtbl.getValueAt(row, 9).toString());
-            update.setString(10, jtbl.getValueAt(row, 10).toString());
+            update.setDouble(8, Double.parseDouble(jtbl.getValueAt(row, 8).toString()));
+            update.setDate(9, java.sql.Date.valueOf(jtbl.getValueAt(row, 9).toString()));
+            update.setString(10, jtbl.getValueAt(row, 15).toString());
             update.setInt(11, Integer.parseInt(jtbl.getValueAt(row, 0).toString()));
             update.executeUpdate();
             update.close();

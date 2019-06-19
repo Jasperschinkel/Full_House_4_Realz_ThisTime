@@ -116,16 +116,25 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     public void wijzigRegistratie(JTable table, int row){
         try{
             Connection con= Main.getConnection();
-            PreparedStatement update = con.prepareStatement("UPDATE Inschrijvingen SET naam = ?, ranking = ?, type_inschrijving = ?, nummercode = ?, heeft_betaald = ? WHERE Inschrijving = ?");
-            update.setString(1,jtbl.getValueAt(row,1).toString());
-            update.setInt(2,Integer.parseInt(jtbl.getValueAt(row,2).toString()));
-            update.setString(3,jtbl.getValueAt(row,3).toString());
-            update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,4).toString()));
-            update.setString(5,jtbl.getValueAt(row,5).toString());
-            update.setInt(6,Integer.parseInt((jtbl.getValueAt(row,0).toString())));
-            update.executeUpdate();
-            update.close();
+            if(jtbl.getValueAt(row,2) == null ){
+                PreparedStatement update = con.prepareStatement("UPDATE Inschrijvingen SET speler = ?, masterclass = ?, heeft_betaald = ? WHERE Inschrijving = ?");
+                update.setInt(1, Integer.parseInt(jtbl.getValueAt(row, 1).toString()));
+                update.setInt(2, Integer.parseInt(jtbl.getValueAt(row, 3).toString()));
+                update.setString(3, jtbl.getValueAt(row, 4).toString());
+                update.setInt(4, Integer.parseInt((jtbl.getValueAt(row, 0).toString())));
+                update.executeUpdate();
+                update.close();
+            }
+            else {
 
+                PreparedStatement update = con.prepareStatement("UPDATE Inschrijvingen SET speler = ?, toernooi = ?, heeft_betaald = ? WHERE Inschrijving = ?");
+                update.setInt(1, Integer.parseInt(jtbl.getValueAt(row,1).toString()));
+                update.setInt(2,Integer.parseInt(jtbl.getValueAt(row,2).toString()));
+                update.setString(3,jtbl.getValueAt(row,4).toString());
+                update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
+                update.executeUpdate();
+                update.close();
+                            }
         }catch(Exception e) {
             System.out.println(e);
         }

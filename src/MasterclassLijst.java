@@ -119,7 +119,7 @@ import java.sql.ResultSet;
                 update.setDate(1,java.sql.Date.valueOf(jtbl.getValueAt(row,1).toString()));
                 update.setTime(2,java.sql.Time.valueOf(jtbl.getValueAt(row,2).toString()));
                 update.setTime(3,java.sql.Time.valueOf(jtbl.getValueAt(row,3).toString()));
-                update.setInt(4,Integer.parseInt(jtbl.getValueAt(row,4).toString()));
+                update.setDouble(4,Double.parseDouble(jtbl.getValueAt(row,4).toString()));
                 update.setInt(5,Integer.parseInt(jtbl.getValueAt(row,5).toString()));
                 update.setString(6,jtbl.getValueAt(row,6).toString());
                 update.setInt(7,Integer.parseInt(jtbl.getValueAt(row,7).toString()));

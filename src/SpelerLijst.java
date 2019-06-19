@@ -46,7 +46,6 @@ public class SpelerLijst extends JFrame implements ActionListener {
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        addActionListeners();
 
         jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
 
@@ -79,6 +78,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
 
 
         });
+        addActionListeners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();
