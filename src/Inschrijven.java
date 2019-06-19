@@ -99,7 +99,7 @@ public class Inschrijven extends JFrame implements ActionListener {
                         Connection con2 = Main.getConnection();
                         PreparedStatement update = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = ? where TC = ?");
                         update.setInt(1, geteld);
-                        update.setInt(1, Integer.parseInt(codeField.getText()));
+                        update.setInt(1, Integer.valueOf(codeField.getText()));
                         update.executeUpdate();
                     } catch (Exception e) {
                         System.out.println(e);
