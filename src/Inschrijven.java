@@ -144,21 +144,22 @@ public class Inschrijven extends JFrame implements ActionListener {
     }
 
 
-    public boolean addInschrijving(){
-        if(naamField.getText().equals("") || rankingField.getText().equals("") || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
-            return false;
-        } else {
+    public void addInschrijving(){
+
             try {
                 Connection con = Main.getConnection();
-                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES ('" + naamField.getText() + "', '" + rankingField.getText() + "', '" + typeField.getText() + "', '" + codeField.getText() + "', '" + heeftBetaaldField.getText() + "');");
+                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES (?,?,?,?,?);");
+                add.setString(1, naamField.getText());
+                add.setInt(2, Integer.parseInt(rankingField.getText()));
+                add.setString(3, typeField.getText());
+                add.setInt(4, Integer.parseInt(codeField.getText()));
+                add.setString(5, heeftBetaaldField.getText());
                 add.executeUpdate();
-                return true;
             } catch (Exception e) {
                 System.out.println(e);
             }
         }
-        return false;
-    }
+
 
     public boolean inschrijfControle(){
         if(typeField.getText().equals("Toernooi")) {
@@ -250,6 +251,37 @@ public class Inschrijven extends JFrame implements ActionListener {
             return true;
         }
         else{return true;}
+        }
+
+
+    public boolean checkMaxRanking(){
+        try {
+            Connection conn = Main.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT MasterclassCode, max_ranking FROM Masterclass WHERE MasterclassCode = ?");
+            ps.setInt(1, Integer.parseInt(codeField.getText()));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                int result = rs.getInt("MasterclassCode");
+                if (result == Integer.parseInt(codeField.getText())){
+                    PreparedStatement check = conn.prepareStatement("SELECT max_ranking FROM Masterclass WHERE MasterclassCode = ?");
+                    check.setInt(1, Integer.parseInt(codeField.getText()));
+                    ResultSet resultaat = check.executeQuery();
+                    if (resultaat.next()){
+                        if (resultaat.getInt("max_ranking") >= Integer.parseInt(rankingField.getText()))
+                            return false;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return true;
+    }
+    public boolean checkInput(){
+        if(naamField.getText().equals("") || rankingField.getText().equals("") || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
+            return true;
+        } else { return false; }
         }
 
     public int getRanking(){
@@ -355,12 +387,16 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if(getMaxAantalInschrijvingen() > getMaxAantal()){
                 JOptionPane.showMessageDialog(this, "Het maximum aantal spelers is al ingeschreven voor dit toernooi");
             }
-            else if (addInschrijving()){
+            else if (checkInput()) {
+                JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
+            }
+            else if (checkMaxRanking()){
+                JOptionPane.showMessageDialog(this, "Ranking is hoger dan toegestaan in deze Masterclass");
+            } else {
+                addInschrijving();
                 countSpelers();
                 JOptionPane.showMessageDialog(this, "Inschrijving toegevoegd");
                 emptyTextField();
-            } else {
-                JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
             }
         }
         if(e.getSource() == rankingButton){
