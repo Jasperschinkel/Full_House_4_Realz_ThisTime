@@ -83,7 +83,6 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     public void showLijst() {
         model.addColumn("Inschrijving");
         model.addColumn("SpelerID");
-        model.addColumn("Ranking");
         model.addColumn("Toernooi");
         model.addColumn("Masterclass");
         model.addColumn("Heeft betaald");
@@ -94,7 +93,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             PreparedStatement pstm = con.prepareStatement("SELECT DISTINCT * FROM Inschrijvingen");
             ResultSet Rs = pstm.executeQuery();
             while (Rs.next()) {
-                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2), Rs.getString(3), Rs.getString(4), Rs.getString(5), Rs.getString(6)});
+                model.addRow(new Object[]{Rs.getString(1), Rs.getString(2), Rs.getString(3), Rs.getString(4), Rs.getString(5)});
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -102,12 +101,11 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     }
 
     public void verwijderRegistratie() {
-        int inschrijvingKolom = 0;
         int row = jtbl.getSelectedRow();
-        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, inschrijvingKolom).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = '" + inschrijvingNummer + "'");
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = ?");
+            verwijder.setInt(1,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             verwijder.executeUpdate();
             countSpelers();
         } catch (Exception e) {

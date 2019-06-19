@@ -83,11 +83,15 @@ public class WinnaarFrame extends JFrame implements ActionListener {
             dispose();
         }
         if(e.getSource() == bevestigen){
-            String TCString = toernooiCodeField.getText();
-            String rondesString = aantalRondesField.getText();
-            int TC = Integer.valueOf(TCString);
-            int rondes = Integer.valueOf(rondesString);
-            RegistratieWinnaars registratieWinnaars = new RegistratieWinnaars(rondes,TC);
+            if (toernooiCodeField.getText().equals("") || aantalRondesField.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
+            } else {
+                String TCString = toernooiCodeField.getText();
+                String rondesString = aantalRondesField.getText();
+                int TC = Integer.valueOf(TCString);
+                int rondes = Integer.valueOf(rondesString);
+                RegistratieWinnaars registratieWinnaars = new RegistratieWinnaars(rondes, TC);
+            }
         }
     }
 
