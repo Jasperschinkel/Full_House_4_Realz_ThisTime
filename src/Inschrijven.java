@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class Inschrijven extends JFrame implements ActionListener {
     //Labels
-    private JLabel naamLabel = new JLabel("Naam: ");
+    private JLabel naamLabel = new JLabel("Spelercode: ");
     private JLabel rankingLabel = new JLabel("Ranking: ");
     private JLabel typeLabel = new JLabel("Type inschrijving: ");
     private JLabel codeLabel = new JLabel ("Code: ");
@@ -93,39 +93,53 @@ public class Inschrijven extends JFrame implements ActionListener {
         rankingButton.addActionListener(this);
     }
 
-    public void countSpelers(){
-        try {
-            Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            String sql = ("SELECT COUNT (*) as geteld FROM Inschrijvingen where nummercode like " + codeField.getText() + " and type_inschrijving like '" + typeField.getText() + "';" );
-            ResultSet rs = st.executeQuery(sql);
-            if(rs.next()){
-                int geteld = rs.getInt("geteld");
-                if (typeField.getText().equals ("Toernooi")) {
+    public void countSpelers() {
+        if (typeField.getText().equals("Toernooi")) {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as geteld FROM Inschrijvingen where toernooi = ?");
+                st.setInt(1, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int geteld = rs.getInt("geteld");
                     try {
                         Connection con2 = Main.getConnection();
-                        PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = " + geteld + " where TC = " + codeField.getText());
-                        add.executeUpdate();
+                        PreparedStatement update = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = ? where TC = ?");
+                        update.setInt(1, geteld);
+                        update.setInt(1, Integer.parseInt(codeField.getText()));
+                        update.executeUpdate();
                     } catch (Exception e) {
                         System.out.println(e);
                         System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
                     }
                 }
-                else if(typeField.getText().equals("Masterclass")){
-                    try {
-                        Connection con2 = Main.getConnection();
-                        PreparedStatement add = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = " + geteld + " where MasterclassCode = " + codeField.getText());
-                        add.executeUpdate();
-                    } catch (Exception e) {
-                        System.out.println(e);
-                        System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
-                    }
-                }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
             }
-
-        } catch (Exception e) {
-            System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database (countSpelers)");
+        } else if (typeField.getText().equals("Masterclass")) {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as geteld FROM Inschrijvingen where toernooi = ?");
+                st.setInt(1, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int geteld = rs.getInt("geteld");
+                    try {
+                        Connection con2 = Main.getConnection();
+                        PreparedStatement update = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = ? where MasterclassCode = ?");
+                        update.setInt(1, geteld);
+                        update.setInt(2, Integer.parseInt(codeField.getText()));
+                        update.executeUpdate();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database (countSpelers)");
+            }
         }
     }
 
@@ -147,19 +161,40 @@ public class Inschrijven extends JFrame implements ActionListener {
     }
 
     public boolean inschrijfControle(){
-        try {
-            Connection con = Main.getConnection();
-            PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + naamField.getText() + "' AND nummercode LIKE " + codeField.getText());
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                int id = rs.getInt("aantal");
-                if (id < 1) {
-                    return false;
+        if(typeField.getText().equals("Toernooi")) {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE speler = ? AND toernooi = ?");
+                st.setInt(1, Integer.parseInt(naamField.getText()));
+                st.setInt(2, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("aantal");
+                    if (id < 1) {
+                        return false;
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database(inschrijfControleToernooi)");
             }
-        }catch(Exception e){
-            System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database(inschrijfControle)");
+        }else if(typeField.getText().equals("Masterclass")){
+            try{
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE speler = ? AND masterclass = ?");
+                st.setInt(1, Integer.parseInt(naamField.getText()));
+                st.setInt(2, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("aantal");
+                    if (id < 1) {
+                        return false;
+                    }
+                }
+            }catch(Exception e){
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database(inschrijfControleMasterclass)");
+            }
         }
         return true;
     }
@@ -167,9 +202,9 @@ public class Inschrijven extends JFrame implements ActionListener {
     public String getGeslacht(){
         try {
             Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            String sql = ("SELECT geslacht FROM Spelers WHERE naam LIKE '" + naamField.getText() + "'; ");
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement st = con.prepareStatement("SELECT geslacht FROM Spelers WHERE idcode = ?");
+            st.setInt(1, Integer.parseInt(naamField.getText()));
+            ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 String geslacht = rs.getString("geslacht");
                 System.out.println(geslacht);
@@ -184,11 +219,12 @@ public class Inschrijven extends JFrame implements ActionListener {
    return "poepieScheetje";}
 
     public String getToernooiSoort(){
+        if(typeField.getText().equals("Toernooi")){
         try {
             Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            String sql = ("SELECT soort_toernooi FROM Toernooi WHERE TC LIKE '" + Integer.valueOf(codeField.getText()) + "'; ");
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement st = con.prepareStatement("SELECT soort_toernooi FROM Toernooi WHERE TC = ?");
+            st.setInt(1, Integer.parseInt(codeField.getText()));
+            ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 String toernooiSoort = rs.getString("soort_toernooi");
                 System.out.println(toernooiSoort);
@@ -197,7 +233,8 @@ public class Inschrijven extends JFrame implements ActionListener {
 
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database");
+            System.out.println("ERROR: er is een probleem met de database(getToernooiSoort)");
+        }
         }
 
         return "poepieScheetje";}
@@ -220,8 +257,9 @@ public class Inschrijven extends JFrame implements ActionListener {
         int ranking=0;
         try {
             Connection con = Main.getConnection();
-            PreparedStatement state = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = '"+naam+"'");
-            ResultSet rs= state.executeQuery();
+            PreparedStatement st = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = ?");
+            st.setInt(1, Integer.parseInt(naam));
+            ResultSet rs= st.executeQuery();
             if(rs.next()) {
                 return rs.getInt("ranking");
             }
@@ -232,53 +270,70 @@ public class Inschrijven extends JFrame implements ActionListener {
     }
 
     public int getMaxAantalInschrijvingen(){
-        try {
-            Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            PreparedStatement state = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where type_inschrijving like '" + typeField.getText() + "' and nummercode like "+ codeField.getText());
-            ResultSet rs = state.executeQuery();
-            if (rs.next()) {
-                int aantal = rs.getInt("aantal");
-                return aantal;
+        if(typeField.getText().equals("Toernooi")) {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where toernooi = ?" + codeField.getText());
+                st.setInt(1, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int aantal = rs.getInt("aantal");
+                    return aantal;
                 }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database (getMaxAantalInschrijvingenToernooi)");
             }
-        catch(Exception e){
-            System.out.println(e);
-            System.out.println("ERROR: er is een probleem met de database (maxAantalInschrijvingen)");
+        }
+        else if(typeField.getText().equals("Masterclass")){
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal from Inschrijvingen where masterclass = ?" + codeField.getText());
+                st.setInt(1, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int aantal = rs.getInt("aantal");
+                    return aantal;
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er is een probleem met de database (getMaxAantalInschrijvingenMasterclass)");
+            }
         }
         return 0;
     }
 
     public int getMaxAantal(){
-        try {
-            Connection con = Main.getConnection();
-            Statement st = con.createStatement();
-            String sql = ("SELECT type_inschrijving from Inschrijvingen;");
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                String result = rs.getString("type_inschrijving");
-                if (result.equals("Toernooi")){
-                    Statement stT = con.createStatement();
-                    String sqlT = ("SELECT maximaal_aantal_spelers as max FROM Toernooi WHERE TC LIKE " + codeField.getText());
-                    ResultSet rsT = stT.executeQuery(sqlT);
-                    if(rsT.next()){
-                        int max = rsT.getInt("max");
-                        return max;
-                    }
+        if(typeField.getText().equals("Toernooi")) {
+            try {
+                Connection con = Main.getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT maximaal_aantal_spelers as max FROM Toernooi WHERE TC = ?" + codeField.getText());
+                st.setInt(1, Integer.parseInt(codeField.getText()));
+                ResultSet rs = st.executeQuery();
+                if (rs.next()) {
+                    int max = rs.getInt("max");
+                    return max;
                 }
-                if (result.equals("Masterclass")){
-                    Statement stM = con.createStatement();
-                    String sqlM = ("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode LIKE" + codeField.getText());
-                    ResultSet rsM = stM.executeQuery(sqlM);
-                    if(rsM.next()){
-                        int max = rsM.getInt("max");
-                        return max;
-                    }
-                }
+            } catch (Exception e) {
+                System.out.println(e);
+                System.out.println("ERROR: er is iets mis met de database(getMaxAantalToernooi)");
             }
-        }catch (Exception e){
-            System.out.println(e);
-            System.out.println("ERROR: er is iets mis met de database (maxAantal)");
+        }
+
+        else if(typeField.getText().equals("Masterclass")){
+             try {
+                 Connection con = Main.getConnection();
+                 PreparedStatement st = con.prepareStatement("SELECT max_aantal_spelers AS max FROM Masterclass WHERE MasterclassCode = ?" + codeField.getText());
+                 st.setInt(1, Integer.parseInt(codeField.getText()));
+                 ResultSet rs = st.executeQuery();
+                 if (rs.next()) {
+                     int max = rs.getInt("max");
+                     return max;
+                 }
+             }catch (Exception e){
+                System.out.println(e);
+                System.out.println("ERROR: er is iets mis met de database (getMaxAantalMasterclass)");
+            }
         }
         return 0;
     }
