@@ -50,17 +50,17 @@ public class Inschrijven extends JFrame implements ActionListener {
     // this places the components on the frame and sets their size
     public void setComponentBounds(){
         spelerIDLabel.setBounds(40,10,100,40);
-        typeLabel.setBounds(40,110,100,40);
-        codeLabel.setBounds(40,160,200,40);
-        heeftBetaaldLabel.setBounds(40, 210, 200, 40);
+        typeLabel.setBounds(40,60,100,40);
+        codeLabel.setBounds(40,110,200,40);
+        heeftBetaaldLabel.setBounds(40, 160, 200, 40);
 
         spelerIDField.setBounds(250, 10, 100, 40);
-        typeField.setBounds(250, 110, 100, 40);
-        codeField.setBounds(250, 160, 100, 40);
-        heeftBetaaldField.setBounds(250, 210, 100, 40);
+        typeField.setBounds(250, 60, 100, 40);
+        codeField.setBounds(250, 110, 100, 40);
+        heeftBetaaldField.setBounds(250, 160, 100, 40);
 
-        terugButton.setBounds(275,260,75,40);
-        klaarButton.setBounds(175,260,100,40);
+        terugButton.setBounds(300,260,75,40);
+        klaarButton.setBounds(200,260,100,40);
 
 
 
