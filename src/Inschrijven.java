@@ -70,7 +70,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         add(codeLabel);
         add(heeftBetaaldLabel);
 
-        add(spelerIDLabel);
+        add(spelerIDField);
         add(typeField);
         add(codeField);
         add(heeftBetaaldField);
