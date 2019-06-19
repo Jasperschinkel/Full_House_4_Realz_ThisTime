@@ -134,12 +134,12 @@ import java.sql.ResultSet;
         }
 
         public void verwijderMasterclass(){
-            int MCcolumn = 0;
+
             int row = jtbl.getSelectedRow();
-            int mc = Integer.parseInt(jtbl.getModel().getValueAt(row, MCcolumn).toString());
             try{
                 Connection con = Main.getConnection();
-                PreparedStatement verwijder = con.prepareStatement("DELETE FROM Masterclass WHERE MasterclassCode = "+mc+";");
+                PreparedStatement verwijder = con.prepareStatement("DELETE FROM Masterclass WHERE MasterclassCode = ?");
+                verwijder.setInt(1,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
                 verwijder.executeUpdate();
             }catch(Exception e){
                 System.out.println(e);
