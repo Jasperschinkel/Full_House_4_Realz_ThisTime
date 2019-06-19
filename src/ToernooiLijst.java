@@ -171,19 +171,24 @@ public int albertus = 0;
         int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT aantal_spelers FROM Toernooi WHERE TC = " + tc + ";");
+            PreparedStatement SelectInschrijvingen = con.prepareStatement("SELECT aantal_spelers FROM Toernooi WHERE TC = ?;");
+            SelectInschrijvingen.setInt(1,tc);
             ResultSet resultSet = SelectInschrijvingen.executeQuery();
-            PreparedStatement aantal_tafels = con.prepareStatement("SELECT aantal_tafels FROM Toernooi WHERE TC = "+tc+";");
+            PreparedStatement aantal_tafels = con.prepareStatement("SELECT aantal_tafels FROM Toernooi WHERE TC = ?;");
+            aantal_tafels.setInt(1,tc);
             while (resultSet.next()){
                 int aantal_spelers = resultSet.getInt("aantal_spelers");
             for (int i = 0; i < 5; i++) {
                 if (aantal_spelers % 5 == i && aantal_spelers > 5) {
-                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = " + aantal_spelers/5 + " WHERE TC = "+tc+";");
+                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = ? WHERE TC = ?;");
+                    tafelindeling.setInt(1,aantal_spelers/5);
+                    tafelindeling.setInt(2, tc);
                     tafelindeling.executeUpdate();
                     JOptionPane.showMessageDialog(this, "Het toernooi begint met " + aantal_spelers/5 + " tafels en de "
                     + i + " overige worden willekeurig ingedeeld over de tafels.");
                 } else if(aantal_spelers<=5) {
-                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = 1 WHERE TC = "+tc+";");
+                    PreparedStatement tafelindeling = con.prepareStatement("UPDATE Toernooi SET aantal_tafels = 1 WHERE TC = ?;");
+                    tafelindeling.setInt(1,tc);
                     tafelindeling.executeUpdate();
                     JOptionPane.showMessageDialog(this, "Het toernooi begint met 1 tafel");
                 }

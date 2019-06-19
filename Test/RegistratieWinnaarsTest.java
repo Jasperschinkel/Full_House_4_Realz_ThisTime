@@ -1,9 +1,6 @@
 import org.testng.annotations.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,11 +16,10 @@ public class RegistratieWinnaarsTest {
             Connection conn =
                     DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240",
                             "Ene3shaise");
-            Statement stm;
-            stm = conn.createStatement();
-            String sql = "Select aantal_tafels From Toernooi WHERE TC =" +toernooiCode+";";
+            PreparedStatement ps = conn.prepareStatement("Select aantal_tafels From Toernooi WHERE TC = ?;");
+            ps.setInt(1, toernooiCode);
             ResultSet rst;
-            rst = stm.executeQuery(sql);
+            rst = ps.executeQuery();
             if(rst.next()) {
                 int aantalTafels = rst.getInt("aantal_tafels");
                 registratieWinnaars.setAantelTafels(aantalTafels);
