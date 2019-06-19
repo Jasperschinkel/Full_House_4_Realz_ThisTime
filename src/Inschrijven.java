@@ -9,16 +9,13 @@ import java.sql.*;
 
 public class Inschrijven extends JFrame implements ActionListener {
     //Labels
-    private JLabel idLabel = new JLabel("Naam: ");
-    private JLabel rankingLabel = new JLabel("Ranking: ");
-    private JLabel typeLabel = new JLabel("Type inschrijving: ");
-    private JLabel codeLabel = new JLabel ("Code: ");
+    private JLabel spelerIDLabel = new JLabel("spelerID: ");
+    private JLabel toernooiCodeLabel = new JLabel ("Toernooi code: ");
+
     private JLabel heeftBetaaldLabel = new JLabel("Heeft betaald: ");
 
     //Textfields
-    private JTextField idField = new JTextField();
-    private JTextField rankingField = new JTextField();
-    private JTextField typeField = new JTextField();
+    private JTextField spelerIDField = new JTextField();
     private JTextField codeField = new JTextField();
     private JTextField heeftBetaaldField = new JTextField();
 
@@ -41,23 +38,17 @@ public class Inschrijven extends JFrame implements ActionListener {
     }
 
     public void emptyTextField(){
-        idField.setText("");
-        rankingField.setText("");
-        typeField.setText("");
+        spelerIDField.setText("");
         codeField.setText("");
         heeftBetaaldField.setText("");
     }
 
     public void setComponentBounds(){
-        idLabel.setBounds(40,10,100,40);
-        rankingLabel.setBounds(40,60,100,40);
-        typeLabel.setBounds(40,110,100,40);
+        spelerIDLabel.setBounds(40,10,100,40);
         codeLabel.setBounds(40,160,200,40);
         heeftBetaaldLabel.setBounds(40, 210, 200, 40);
 
-        idField.setBounds(250, 10, 100, 40);
-        rankingField.setBounds(250, 60, 100, 40);
-        typeField.setBounds(250, 110, 100, 40);
+        spelerIDField.setBounds(250, 10, 100, 40);
         codeField.setBounds(250, 160, 100, 40);
         heeftBetaaldField.setBounds(250, 210, 100, 40);
 
@@ -70,15 +61,11 @@ public class Inschrijven extends JFrame implements ActionListener {
     }
 
     public void addComponents(){
-        add(idLabel);
-        add(rankingLabel);
-        add(typeLabel);
+        add(spelerIDLabel);
         add(codeLabel);
         add(heeftBetaaldLabel);
 
-        add(idField);
-        add(rankingField);
-        add(typeField);
+        add(spelerIDLabel);
         add(codeField);
         add(heeftBetaaldField);
 
@@ -101,7 +88,8 @@ public class Inschrijven extends JFrame implements ActionListener {
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
                 int geteld = rs.getInt("geteld");
-                if (typeField.getText().equals ("Toernooi")) {
+                if (//typeField.getText().equals ("Toernooi"))
+                        true){
                     try {
                         Connection con2 = Main.getConnection();
                         PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET aantal_spelers = " + geteld + " where TC = " + codeField.getText());
@@ -111,7 +99,8 @@ public class Inschrijven extends JFrame implements ActionListener {
                         System.out.println("ERROR: er ging iets mis met de database(updateAantalSpelers)");
                     }
                 }
-                else if(typeField.getText().equals("Masterclass")){
+                else if(//typeField.getText().equals("Masterclass")){
+                        {
                     try {
                         Connection con2 = Main.getConnection();
                         PreparedStatement add = con2.prepareStatement("UPDATE Masterclass SET aantal_spelers = " + geteld + " where MasterclassCode = " + codeField.getText());
@@ -131,12 +120,12 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 
     public boolean addInschrijving(){
-        if(idField.getText().equals("") || rankingField.getText().equals("") || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
+        if(naamField.getText().equals("")  || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
             return false;
         } else {
             try {
                 Connection con = Main.getConnection();
-                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES ('" + idField.getText() + "', '" + rankingField.getText() + "', '" + typeField.getText() + "', '" + codeField.getText() + "', '" + heeftBetaaldField.getText() + "');");
+                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES ('" + naamField.getText() + "', '"  + "', '" + typeField.getText() + "', '" + codeField.getText() + "', '" + heeftBetaaldField.getText() + "');");
                 add.executeUpdate();
                 return true;
             } catch (Exception e) {
@@ -149,7 +138,7 @@ public class Inschrijven extends JFrame implements ActionListener {
     public boolean inschrijfControle(){
         try {
             Connection con = Main.getConnection();
-            PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + idField.getText() + "' AND nummercode LIKE " + codeField.getText());
+            PreparedStatement st = con.prepareStatement("SELECT COUNT (*) as aantal FROM Inschrijvingen WHERE naam LIKE '" + naamField.getText() + "' AND nummercode LIKE " + codeField.getText());
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 int id = rs.getInt("aantal");
@@ -168,7 +157,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         try {
             Connection con = Main.getConnection();
             Statement st = con.createStatement();
-            String sql = ("SELECT geslacht FROM Spelers WHERE naam LIKE '" + idField.getText() + "'; ");
+            String sql = ("SELECT geslacht FROM Spelers WHERE naam LIKE '" + naamField.getText() + "'; ");
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 String geslacht = rs.getString("geslacht");
@@ -216,11 +205,11 @@ public class Inschrijven extends JFrame implements ActionListener {
         }
 
     public int getRanking(){
-        String id = idField.getText();
+        String naam = naamField.getText();
         int ranking=0;
         try {
             Connection con = Main.getConnection();
-            PreparedStatement state = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = '"+id+"'");
+            PreparedStatement state = con.prepareStatement("SELECT ranking FROM Spelers WHERE idcode = '"+naam+"'");
             ResultSet rs= state.executeQuery();
             if(rs.next()) {
                 return rs.getInt("ranking");
@@ -308,9 +297,7 @@ public class Inschrijven extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
             }
         }
-        if(e.getSource() == rankingButton){
-            rankingField.setText(Integer.toString(getRanking()));
-        }
+
 
     }
 }
