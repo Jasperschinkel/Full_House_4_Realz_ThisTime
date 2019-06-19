@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 
 public class HoofdMenu extends JFrame implements ActionListener {
 
-
+// all the buttons are here
     JButton spelerButton = new JButton("Spelers");
     JButton toernooiButton = new JButton("Toernooien");
     JButton masterclassButton = new JButton("Masterclasses");
     JButton registratieButton = new JButton("Registraties");
     JButton logoutButton = new JButton("Log out");
 
+    // constructor
     public HoofdMenu(){
 
         setLayout(null);
@@ -31,6 +32,7 @@ public class HoofdMenu extends JFrame implements ActionListener {
         addActionListeners();
     }
 
+    // this places the components on the JFrame and sets their size
     public void setComponentBounds(){
         spelerButton.setBounds(20, 75, 150, 30);
         toernooiButton.setBounds(225,75,150,30);
@@ -40,6 +42,7 @@ public class HoofdMenu extends JFrame implements ActionListener {
 
     }
 
+    // this adds components to the JFrame
     public void addComponents(){
         add(spelerButton);
         add(toernooiButton);
@@ -48,6 +51,7 @@ public class HoofdMenu extends JFrame implements ActionListener {
         add(logoutButton);
     }
 
+    // this adds the action listeners to the buttons
     public void addActionListeners(){
         spelerButton.addActionListener(this);
         toernooiButton.addActionListener(this);

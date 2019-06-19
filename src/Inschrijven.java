@@ -316,6 +316,8 @@ public class Inschrijven extends JFrame implements ActionListener {
         }}
         return false;
     }
+
+    // this checks if  all the textfields are being written on
     public boolean checkInput(){
         if(spelerIDField.getText().equals("") || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
             return true;
@@ -323,7 +325,7 @@ public class Inschrijven extends JFrame implements ActionListener {
         }
 
 
-
+// this is an old method that may come in handy some day, as such it is not yet deleted.
 
 //    public int getRanking(){
 //        String naam = naamField.getText();
@@ -344,7 +346,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 
 
-
+// this gets the maximum amount of players that can register for a particular toernooi
 
     public int getMaxAantalInschrijvingen(){
         if(typeField.getText().equalsIgnoreCase("Toernooi")) {
