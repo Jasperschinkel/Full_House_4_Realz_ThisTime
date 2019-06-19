@@ -154,12 +154,11 @@ public int albertus = 0;
     }
 
     public void verwijderToernooi() {
-        int TCcolumn = 0;
         int row = jtbl.getSelectedRow();
-        int tc = Integer.parseInt(jtbl.getModel().getValueAt(row, TCcolumn).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Toernooi WHERE TC = " + tc + ";");
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Toernooi WHERE TC = ?");
+            verwijder.setInt(1,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             verwijder.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);

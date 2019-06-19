@@ -110,14 +110,13 @@ public class SpelerLijst extends JFrame implements ActionListener {
     }
 
     public void verwijderSpeler(){
-
         int row = jtbl.getSelectedRow();
-
-        int code = Integer.parseInt(jtbl.getModel().getValueAt(row,0).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Spelers WHERE idcode = "+code);
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Spelers WHERE idcode = ?");
+            verwijder.setInt(1,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             verwijder.executeUpdate();
+            verwijder.close();
         }catch(Exception e){
             System.out.println(e);
         }

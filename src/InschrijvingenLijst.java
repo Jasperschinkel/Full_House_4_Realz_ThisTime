@@ -102,12 +102,11 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     }
 
     public void verwijderRegistratie() {
-        int inschrijvingKolom = 0;
         int row = jtbl.getSelectedRow();
-        int inschrijvingNummer = Integer.parseInt(jtbl.getModel().getValueAt(row, inschrijvingKolom).toString());
         try {
             Connection con = Main.getConnection();
-            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = '" + inschrijvingNummer + "'");
+            PreparedStatement verwijder = con.prepareStatement("DELETE FROM Inschrijvingen WHERE Inschrijving = ?");
+            verwijder.setInt(1,Integer.parseInt(jtbl.getValueAt(row,0).toString()));
             verwijder.executeUpdate();
             countSpelers();
         } catch (Exception e) {
