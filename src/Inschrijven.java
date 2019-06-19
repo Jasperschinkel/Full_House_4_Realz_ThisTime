@@ -138,18 +138,27 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 
     public void addInschrijving(){
-
+            if(typeField.getText().equalsIgnoreCase("Toernooi")){
             try {
                 Connection con = Main.getConnection();
-                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (naam, ranking, type_inschrijving, nummercode, heeft_betaald) VALUES (?,?,?,?,?);");
-                add.setString(1, spelerIDField.getText());
-                add.setInt(2, Integer.parseInt(spelerIDField.getText()));
-                add.setString(3, typeField.getText());
-                add.setInt(4, Integer.parseInt(codeField.getText()));
-                add.setString(5, heeftBetaaldField.getText());
+                PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (speler,  toernooi, heeft_betaald) VALUES (?,?,?);");
+                add.setInt(1, Integer.valueOf(spelerIDField.getText()));
+                add.setInt(2, Integer.valueOf(codeField.getText()));
+                add.setString(3, heeftBetaaldField.getText());
                 add.executeUpdate();
             } catch (Exception e) {
                 System.out.println(e);
+            }}
+            else if(typeField.getText().equalsIgnoreCase("Masterclass")){
+                try {
+                    Connection con = Main.getConnection();
+                    PreparedStatement add = con.prepareStatement("INSERT INTO Inschrijvingen (speler,  masterclass, heeft_betaald) VALUES (?,?,?);");
+                    add.setInt(1, Integer.valueOf(spelerIDField.getText()));
+                    add.setInt(2, Integer.valueOf(codeField.getText()));
+                    add.setString(3, heeftBetaaldField.getText());
+                    add.executeUpdate();
+                } catch (Exception e) {
+                    System.out.println(e);}
             }
         }
 
@@ -270,11 +279,12 @@ public class Inschrijven extends JFrame implements ActionListener {
                 e.printStackTrace();
 
             }
-            System.out.println(spelerRanking);
+            System.out.println("SpelerRanking: "+spelerRanking);
        return spelerRanking; }
 
 
     public boolean checkMaxRanking(){
+        if(typeField.getText().equalsIgnoreCase("Masterclass")){
         try {
             Connection conn = Main.getConnection();
             PreparedStatement ps = conn.prepareStatement("SELECT MasterclassCode, max_ranking FROM Masterclass WHERE MasterclassCode = ?");
@@ -287,18 +297,17 @@ public class Inschrijven extends JFrame implements ActionListener {
                     check.setInt(1, Integer.parseInt(codeField.getText()));
                     ResultSet resultaat = check.executeQuery();
                     if (resultaat.next()){
-                        if(typeField.getText().equalsIgnoreCase("Masterclass")){
                         if (resultaat.getInt("max_ranking") >= getRanking()) {
-                            return false;
-                        }}
+                            return true;
+                        }
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
 
-        }
-        return true;
+        }}
+        return false;
     }
     public boolean checkInput(){
         if(spelerIDField.getText().equals("") || typeField.getText().equals("") || codeField.getText().equals("") || heeftBetaaldField.getText().equals("")){
