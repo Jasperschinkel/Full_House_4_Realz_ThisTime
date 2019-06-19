@@ -214,11 +214,8 @@ public int albertus = 0;
 
     public static ArrayList<ToernooiCode> getAllToernooiCodes() throws ClassNotFoundException, SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
-        Statement stm;
-        stm = conn.createStatement();
-        String sql = "Select * From Toernooi";
-        ResultSet rst;
-        rst = stm.executeQuery(sql);
+        PreparedStatement ps = conn.prepareStatement("Select * From Toernooi");
+        ResultSet rst = ps.executeQuery();
         ArrayList<ToernooiCode> toernooiCodes = new ArrayList<ToernooiCode>();
         while (rst.next()) {
             ToernooiCode toernooiCode = new ToernooiCode(rst.getString("TC"));
@@ -235,9 +232,9 @@ public int albertus = 0;
             for (int i = 0; i < alleToernooiCodes.size(); i++)
                 try {
                     Connection con = Main.getConnection();
-                    Statement st = con.createStatement();
-                    String sql = ("SELECT datum FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
-                    ResultSet rs = st.executeQuery(sql);
+                    PreparedStatement ps = con.prepareStatement("SELECT datum FROM Toernooi WHERE TC LIKE '?'; ");
+                    ps.setString(1, alleToernooiCodes.get(i).getToernooiCode());
+                    ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
                         String datum = rs.getString("datum");
                         //System.out.println(!datum.substring(0,3).equals("201"));
@@ -246,7 +243,9 @@ public int albertus = 0;
                             try {
                                 datum = "2019-06-14";
                                 Connection con3 = Main.getConnection();
-                                PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET datum = '"+datum+ "'WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                                PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET datum = '?' WHERE TC LIKE '?'; ");
+                                ps.setString(1, datum);
+                                ps.setString(2, alleToernooiCodes.get(i).getToernooiCode());
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
@@ -261,7 +260,8 @@ public int albertus = 0;
                         if (datumSQL.before(dateNowSQL)) {
                             try {
                                 Connection con2 = Main.getConnection();
-                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'J'WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                                PreparedStatement add = con2.prepareStatement("UPDATE Toernooi SET is_gespeeld = 'J' WHERE TC LIKE '?'; ");
+                                ps.setString(1, alleToernooiCodes.get(i).getToernooiCode());
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
@@ -270,7 +270,8 @@ public int albertus = 0;
                         } else {
                             try {
                                 Connection con2 = Main.getConnection();
-                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'N' WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                                PreparedStatement add = con2.prepareStatement("UPDATE  Toernooi SET is_gespeeld = 'N' WHERE TC LIKE '?'; ");
+                                ps.setString(1, alleToernooiCodes.get(i).getToernooiCode());
                                 add.executeUpdate();
                             } catch (Exception e) {
                                 System.out.println(e);
@@ -295,17 +296,17 @@ public int albertus = 0;
             for(int i = 0; i < alleToernooiCodes.size(); i++){
                 try {
                     Connection con = Main.getConnection();
-                    Statement st = con.createStatement();
-                    String sql = ("SELECT inleggeld FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
-                    ResultSet rs = st.executeQuery(sql);
+                    PreparedStatement ps = con.prepareStatement("SELECT inleggeld FROM Toernooi WHERE TC LIKE '?'; ");
+                    ps.setString(1, alleToernooiCodes.get(i).getToernooiCode());
+                    ResultSet rs = ps.executeQuery();
                     if (rs.next()) {
                     String inleggeld = rs.getString("inleggeld");
 
                         try {
                             Connection con2 = Main.getConnection();
-                            Statement st2 = con2.createStatement();
-                            String sql2 = ("SELECT aantal_spelers FROM Toernooi WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
-                            ResultSet rs2 = st2.executeQuery(sql2);
+                            PreparedStatement ps2 = con2.prepareStatement("SELECT aantal_spelers FROM Toernooi WHERE TC LIKE '?'; ");
+                            ps2.setString(1, alleToernooiCodes.get(i).getToernooiCode());
+                            ResultSet rs2 = ps2.executeQuery();
                             if (rs2.next()) {
                                 int aantalSpelers = rs2.getInt("aantal_spelers");
                                 setAantalSpelers(aantalSpelers);
@@ -335,7 +336,9 @@ public int albertus = 0;
                         try {
                            String totaleInleggeldString = getTotaleGeldVoorMij().get(i);
                             Connection con3 = Main.getConnection();
-                            PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET totale_inleggeld = '" +totaleInleggeldString+"' WHERE TC LIKE '" + alleToernooiCodes.get(i).getToernooiCode() + "'; ");
+                            PreparedStatement add = con3.prepareStatement("UPDATE  Toernooi SET totale_inleggeld = '?' WHERE TC LIKE '?'; ");
+                            add.setString(1, totaleInleggeldString);
+                            add.setString(2, alleToernooiCodes.get(i).getToernooiCode());
                             add.executeUpdate();
                         } catch (Exception e) {
                             System.out.println(e);
