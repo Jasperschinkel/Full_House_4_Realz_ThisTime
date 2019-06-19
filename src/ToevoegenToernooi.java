@@ -40,15 +40,18 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
     private JFormattedTextField datumField = new JFormattedTextField(format);
     private JFormattedTextField uitersteField = new JFormattedTextField(format);
 
+    // all the buttons represent!
     private JButton terug = new JButton("Terug");
     private JButton bevestigen = new JButton("Klaar");
 
     private JRadioButton normaal = new JRadioButton("Normaal");
     private JRadioButton pinkRibbon = new JRadioButton("Pink Ribbon");
 
+    // sliders are cool too
     private JSlider maxAantalSlider = new JSlider(JSlider.HORIZONTAL,
             FPS_MIN, FPS_MAX, FPS_INIT);
 
+    // the constructor
 
     public ToevoegenToernooi(){
         setTitle("Toevoegen van toernooi");
@@ -64,6 +67,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         setSliderLabels();
     }
 
+// laying out all the components on the JFrame (that the user views) and  setting their sizes. So, so many.
     public void setComponentBounds(){
         datumLabel.setBounds(40,10,100,40);
         beginTijdLabel.setBounds(40,60,100,40);
@@ -92,7 +96,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         bevestigen.setBounds(490,720,100,40);
 
     }
-
+// setting the labels for the slider. Otherwise the user wouldn't know what they're doing
     public void setSliderLabels(){
         maxAantalSlider.setMajorTickSpacing(25);
         maxAantalSlider.setMinorTickSpacing(5);
@@ -100,6 +104,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         maxAantalSlider.setPaintLabels(true);
     }
 
+    // adding all the components to the JFrame
     public void addComponents(){
         add(datumLabel);
         add(beginTijdLabel);
@@ -127,12 +132,14 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         add(terug);
         add(bevestigen);
     }
-
+// adding a buttongroup
     public void addGroup(){
         ButtonGroup grp= new ButtonGroup();
         grp.add(normaal);
         grp.add(pinkRibbon);
     }
+
+    // empty all the textfields
 
     public void emptyTextFields(){
         datumField.setText("");
@@ -142,7 +149,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         uitersteField.setText("");
         beschrijvingField.setText("");
     }
-
+// adding a toernooi to the DB
     public boolean addToernooi(){
         String radio;
         if(normaal.isSelected()){
@@ -176,6 +183,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
         return false;
     }
 
+    // adding action listeners to all the buttons (and slider)
     public void addActionListeners(){
         normaal.addActionListener(this);
         pinkRibbon.addActionListener(this);
@@ -205,6 +213,7 @@ public class ToevoegenToernooi extends JFrame implements ActionListener, ChangeL
 
     }
 
+    // if the state changes, so must the view!
     @Override
     public void stateChanged(ChangeEvent e) {
 

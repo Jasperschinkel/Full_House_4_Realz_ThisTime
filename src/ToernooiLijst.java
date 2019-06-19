@@ -15,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ToernooiLijst extends JFrame implements ActionListener {
+
+    //initializing all the components and global variables with scope of this class
 public int albertus = 0;
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
@@ -33,8 +35,10 @@ public int albertus = 0;
     private int aantalSpelers;
     private ArrayList<String> totaleGeldVoorMij = new ArrayList<String>();
 
-
+// the constructor
     public ToernooiLijst() {
+
+        //lots of adding stuff to make the view comfortable
         jtbl.setRowSorter(rowSorter);
         buttonPanelLineStart.add(terugButton, BorderLayout.LINE_START);
         buttonPanelLineStart.add(tafelIndeling, BorderLayout.CENTER);
@@ -56,7 +60,7 @@ public int albertus = 0;
 
         pushTotaleInlegGeld();
 
-
+//method for the search functionality of the view
         jtfFilter.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -95,7 +99,7 @@ public int albertus = 0;
     }
 
 
-
+// showing the table for the user to view.
     public void showLijst() {
         model.addColumn("TC");
         model.addColumn("Datum");
@@ -128,7 +132,7 @@ public int albertus = 0;
         }
     }
 
-
+// alter a toernooi in the DB
     public void wijzigToernooi(JTable table, int row) {
         try {
             Connection con = Main.getConnection();
@@ -152,6 +156,7 @@ public int albertus = 0;
         }
     }
 
+    // deleting a toernooi from the DB
     public void verwijderToernooi() {
         int row = jtbl.getSelectedRow();
         try {
@@ -165,6 +170,7 @@ public int albertus = 0;
 
     }
 
+    // its all about the tables. Specifically, the setup of the tables for a toernooi
     public void makeTafelIndeling() {
         int TCcolumn = 0;
         int row = jtbl.getSelectedRow();
@@ -201,6 +207,8 @@ public int albertus = 0;
 
     }
 
+    // getters and setters
+
     public int getAantalSpelers(){
         return this.aantalSpelers;
     }
@@ -231,6 +239,7 @@ public int albertus = 0;
 
     }
 
+    // this  method calculates whether a toernooi has already took place or not and then pushes it to the DB
     public void pushIsGeweest() {
         try {
             ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
@@ -295,6 +304,7 @@ public int albertus = 0;
     }
 
 
+    // this calculates the gross income a toernooi has gathered from paying players and then pushes it to the DB
     public void pushTotaleInlegGeld(){
         try {
             ArrayList<ToernooiCode> alleToernooiCodes = getAllToernooiCodes();
@@ -389,6 +399,7 @@ public int albertus = 0;
         }
     }
 
+    // adding action listeners to the buttons
     public void addActionlisteners(){
         verwijderButten.addActionListener(this);
         terugButton.addActionListener(this);

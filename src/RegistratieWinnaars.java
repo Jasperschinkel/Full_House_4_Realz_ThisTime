@@ -5,11 +5,13 @@ import static javax.swing.UIManager.getString;
 
 
 public class RegistratieWinnaars extends JFrame {
+    // global variables in the class scope
     private int aantalRondes;
     private int toernooiCode;
     private int aantalTafels;
     private ArrayList<String> winnaars = new ArrayList<String >();
 
+    // the constructor
     public RegistratieWinnaars(int aantalRondes, int toernooiCode){
 
         this.aantalRondes = aantalRondes;
@@ -19,6 +21,7 @@ public class RegistratieWinnaars extends JFrame {
         getAantalTafelsFromDB();
         showDialogs();
     }
+    // getters and setters
     public int getAantalRondes(){
         return this.aantalRondes;
     }
@@ -39,6 +42,7 @@ public class RegistratieWinnaars extends JFrame {
     }
 
 
+// method to get the amount of tables from the DB
     public int getAantalTafelsFromDB(){
         try{
             int toernooiCode = getToernooiCode();
@@ -55,7 +59,7 @@ public class RegistratieWinnaars extends JFrame {
             System.out.println(e);}
         return getAantaltafels(); }
 
-
+// this is a method for  the dialogs that are to be shown that allow the user to register a winner for every round, for every table
     public void showDialogs() {
         int aantalTafels = getAantaltafels();
         System.out.println(aantalTafels);
@@ -75,7 +79,7 @@ public class RegistratieWinnaars extends JFrame {
             }}
         pushWinnaars(); }
 
-
+// push the changes to the DB
     public void pushWinnaars(){
         try {
             ArrayList<String> winnaars = getWinnaars();

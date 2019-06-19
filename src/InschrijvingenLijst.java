@@ -14,6 +14,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
 
+// all the components are initialized
     private TableRowSorter<TableModel> rowSorter = new TableRowSorter(jtbl.getModel());
     private JTextField jtfFilter = new JTextField();
     private JButton verwijderButton = new JButton("Verwijderen");
@@ -23,6 +24,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
 
+  // constructor
     public InschrijvingenLijst() {
         jtbl.setRowSorter(rowSorter);
 
@@ -42,6 +44,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // the search function
         jtfFilter.getDocument().addDocumentListener(new DocumentListener() {
 
             @Override
@@ -79,7 +82,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         this.pack();
     }
 
-
+// showing the table
     public void showLijst() {
         model.addColumn("Inschrijving");
         model.addColumn("SpelerID");
@@ -99,7 +102,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             System.out.println(e.getMessage());
         }
     }
-
+// deleting a registration from the table
     public void verwijderRegistratie() {
         int row = jtbl.getSelectedRow();
         try {
@@ -112,6 +115,7 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
             System.out.println(e);
         }
     }
+    // alter the registrations
 
     public void wijzigRegistratie(JTable table, int row){
         try{
@@ -140,13 +144,14 @@ public class InschrijvingenLijst extends JFrame implements ActionListener {
         }
     }
 
+    // adding action listeners to the buttons
     public void addActionlisteners() {
         verwijderButton.addActionListener(this);
         terugButton.addActionListener(this);
         wijzigButton.addActionListener(this);
     }
 
-
+//counting the number of registered players in the toernooien
     public void countSpelers(){
             int nummercodeKolom = 0;
             int toernooiKolom = 4;

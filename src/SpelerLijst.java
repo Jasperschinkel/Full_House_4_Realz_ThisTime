@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class SpelerLijst extends JFrame implements ActionListener {
+
+    // initialize all the components
     DefaultTableModel model = new DefaultTableModel();
     Container cnt = this.getContentPane();
     JTable jtbl = new JTable(model);
@@ -27,7 +29,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
     private JPanel searchPanel = new JPanel(new BorderLayout());
     private JPanel buttonPanel = new JPanel(new BorderLayout());
 
-
+// the constructor
     public SpelerLijst(){
         jtbl.setRowSorter(rowSorter);
 
@@ -47,6 +49,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // the method for the search functionality
         jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
 
             @Override
@@ -78,13 +81,14 @@ public class SpelerLijst extends JFrame implements ActionListener {
 
 
         });
+
         addActionListeners();
         JScrollPane pg = new JScrollPane(jtbl);
         cnt.add(pg);
         this.pack();
     }
 
-
+// method that shows the table with all the data for the user to view.
     public void showLijst(){
         model.addColumn("idcode");
         model.addColumn("naam");
@@ -108,6 +112,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
             System.out.println(e.getMessage());
         }
     }
+    // delete a player from the database
 
     public void verwijderSpeler(){
         int row = jtbl.getSelectedRow();
@@ -122,6 +127,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
         }
     }
 
+    // alter a player in the database
     public void wijzigSpeler(JTable table, int row){
         try{
             Connection con= Main.getConnection();
@@ -163,6 +169,7 @@ public class SpelerLijst extends JFrame implements ActionListener {
         }
     }
 
+    // adding the action listeners to the buttons
     public void addActionListeners(){
         verwijderButton.addActionListener(this);
         terugButton.addActionListener(this);

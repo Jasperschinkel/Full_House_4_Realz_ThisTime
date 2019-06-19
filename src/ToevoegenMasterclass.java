@@ -47,6 +47,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
             FPS_MIN, FPS_MAX, FPS_INIT);
 
 
+    // the constructor
     public ToevoegenMasterclass(){
         setTitle("Toevoegen van Masterclass");
         setLayout(null);
@@ -60,7 +61,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         setSliderLabels();
     }
 
-
+// this empties all the textfields on the frame that the user views.
     public void emptyTextFields(){
         datumField.setText("");
         beginTijdField.setText("");
@@ -69,7 +70,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         bekendeSpelerField.setText("");
     }
 
-
+// this lays out all the components on the JFrame (that the user views) and sets their sizes. There are a heck of a lot of them!
     public void setComponentBounds(){
         datumLabel.setBounds(40,10,100,40);
         beginTijdLabel.setBounds(40,110,100,40);
@@ -98,6 +99,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
 
     }
 
+// setting the labels for the sliders. Sliders are so slick and neat.
     public void setSliderLabels(){
         maxAantalSlider.setMajorTickSpacing(50);
         maxAantalSlider.setMinorTickSpacing(10);
@@ -110,6 +112,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
 
     }
 
+    // adding all the components to the JFrame, you get it by now.
     public void addComponents(){
         add(datumLabel);
         add(beginTijdLabel);
@@ -135,6 +138,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
         add(bevestigen);
     }
 
+    // adding action listeners to the buttons (and slider)
     public void addActionListeners(){
         terug.addActionListener(this);
         bevestigen.addActionListener(this);
@@ -143,6 +147,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
 
     }
 
+    // the method that adds a masterclass to the DB.
     public boolean addMasterclass() {
         if (datumField.getText().equals("") || beginTijdField.getText().equals("") || eindTijdField.getText().equals("") || kostenField.getText().equals("") || bekendeSpelerField.getText().equals("")){
             return false;
@@ -186,6 +191,7 @@ public class ToevoegenMasterclass extends JFrame implements ActionListener, Chan
 
     }
 
+    // if the state changes, then so must the view.
     @Override
     public void stateChanged(ChangeEvent e) {
 

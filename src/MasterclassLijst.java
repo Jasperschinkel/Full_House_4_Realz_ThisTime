@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 
     public class MasterclassLijst extends JFrame implements ActionListener {
 
+// initializing all the components
 
         DefaultTableModel model = new DefaultTableModel();
         Container cnt = this.getContentPane();
@@ -30,6 +31,7 @@ import java.sql.ResultSet;
         private JPanel searchPanel = new JPanel(new BorderLayout());
         private JPanel buttonPanel = new JPanel(new BorderLayout());
 
+       // constructor
         public MasterclassLijst(){
             jtbl.setRowSorter(rowSorter);
 
@@ -51,6 +53,7 @@ import java.sql.ResultSet;
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+            // methods for the search functionality
             jtfFilter.getDocument().addDocumentListener(new DocumentListener(){
 
                 @Override
@@ -88,6 +91,7 @@ import java.sql.ResultSet;
             this.pack();
         }
 
+        // method to show the table that holds the data for the user to view
         public void showLijst(){
             model.addColumn("MasterclassCode");
             model.addColumn("Datum");
@@ -112,6 +116,7 @@ import java.sql.ResultSet;
             }
         }
 
+        // method to alter data in the masterclass table
         public void wijzigMasterclass(JTable table, int row){
             try{
                 Connection con= Main.getConnection();
@@ -133,6 +138,7 @@ import java.sql.ResultSet;
             }
         }
 
+        //method to delete data from the masterclass table
         public void verwijderMasterclass(){
 
             int row = jtbl.getSelectedRow();
@@ -164,6 +170,7 @@ import java.sql.ResultSet;
             }
         }
 
+        // adding action listeners to the buttons
         public void addActionlisteners(){
             verwijderButten.addActionListener(this);
             terugButton.addActionListener(this);

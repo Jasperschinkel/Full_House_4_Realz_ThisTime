@@ -4,12 +4,14 @@ import java.awt.event.ActionListener;
 
 public class ToernooiMenu extends JFrame implements ActionListener {
 
+// initializing all components
     JButton lijstButton = new JButton("Toernooienlijst");
     JButton toevoegButton = new JButton("Toernooi Toevoegen");
     JButton terugButton = new JButton("Terug");
     JButton logoutButton = new JButton("Log out");
     JButton winnaarButton = new JButton("Winnaar registratie");
 
+    // the constructor
     public ToernooiMenu(){
 
         setLayout(null);
@@ -23,6 +25,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         addComponents();
         addActionListeners();
     }
+    // laying out all the components on the JFrame and setting their sizes
     public void setComponentBounds() {
         lijstButton.setBounds(20, 75, 150, 30);
        toevoegButton.setBounds(225, 75, 150, 30);
@@ -31,6 +34,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         winnaarButton.setBounds(420,75,150,30);
     }
 
+    // adding all the components to the JFrame
     public void addComponents(){
         add(lijstButton);
         add(toevoegButton);
@@ -39,6 +43,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         add(winnaarButton);
     }
 
+    // adding action listeners to the buttons
     public void addActionListeners(){
         lijstButton.addActionListener(this);
         toevoegButton.addActionListener(this);
@@ -46,6 +51,7 @@ public class ToernooiMenu extends JFrame implements ActionListener {
         terugButton.addActionListener(this);
         winnaarButton.addActionListener(this);
     }
+
 
 
     @Override

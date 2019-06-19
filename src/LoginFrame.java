@@ -9,6 +9,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     private String loggedInUser;
 
+    // all the components are initialized here
+
     JLabel passwordLabel = new JLabel("Password: ");
     JLabel usernameLabel = new JLabel("Username: ");
     JTextField userField = new JTextField();
@@ -18,7 +20,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     JCheckBox showPassword=new JCheckBox("Show Password");
 
 
-
+// constructor
     public LoginFrame(){
 
         setLayout(null);
@@ -36,7 +38,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
 
     }
-
+// laying out all the components on the JFrame and setting their sizes.
     public void setComponentBounds(){
         usernameLabel.setBounds(50,75,100,30);
         passwordLabel.setBounds(50,150,100,30);
@@ -47,6 +49,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         resetButton.setBounds(250,300,100,30);
     }
 
+    // adding all the components to the JFrame
     public void addComponents(){
 
         add(usernameLabel);
@@ -58,12 +61,15 @@ public class LoginFrame extends JFrame implements ActionListener {
         add(resetButton);
     }
 
+    // adding action listeners to the buttons
     public void addActionListeners(){
         loginButton.addActionListener(this);
         resetButton.addActionListener(this);
         showPassword.addActionListener(this);
 
     }
+
+    // getting all the user information from the DB
     public static ArrayList<Gebruiker> getAllGebruikers() throws ClassNotFoundException, SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://meru.hhs.nl/18095240", "18095240", "Ene3shaise");
         Statement stm;
@@ -81,6 +87,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     }
 
+// methods for testing purposes
     public void setPassword(String password){
         passField.setText(password);
     }
@@ -89,6 +96,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         userField.setText(username);
     }
 
+   // validate a user and see if they have the right to log in.
     public boolean validateUser(){
         try
         {

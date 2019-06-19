@@ -4,11 +4,13 @@ import java.awt.event.ActionListener;
 
 public class MasterclassMenu extends JFrame implements ActionListener {
 
+    //initializing all the components
     JButton lijstButton = new JButton("Masterclasslijst");
     JButton toevoegButton = new JButton("Masterclass Toevoegen");
     JButton terugButton = new JButton("Terug");
     JButton logoutButton = new JButton("Log out");
 
+    // the constructor
     public MasterclassMenu() {
 
         setLayout(null);
@@ -24,6 +26,7 @@ public class MasterclassMenu extends JFrame implements ActionListener {
 
     }
 
+    // method to lay out the components on the JFrame and to set their sizes
     public void setComponentBounds() {
         lijstButton.setBounds(20, 75, 150, 30);
         toevoegButton.setBounds(225, 75, 150, 30);
@@ -31,6 +34,7 @@ public class MasterclassMenu extends JFrame implements ActionListener {
         terugButton.setBounds(440,75,150,30);
     }
 
+    // method to add components to the JFrame
     public void addComponents(){
         add(lijstButton);
         add(toevoegButton);
@@ -38,6 +42,7 @@ public class MasterclassMenu extends JFrame implements ActionListener {
         add(terugButton);
     }
 
+    // method to add action listeners to the buttons.
     public void addActionListeners(){
         lijstButton.addActionListener(this);
         toevoegButton.addActionListener(this);

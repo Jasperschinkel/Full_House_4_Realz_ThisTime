@@ -3,11 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class RegistratieMenu extends JFrame implements ActionListener {
 
-    //buttons
+    //initializing all the components
     private JButton inschrijvingenLijst = new JButton("Inschrijvingenlijst");
     private JButton inschrijven = new JButton("Nieuwe inschrijving");
     private JButton terug = new JButton("Terug");
 
+    // the constructor
     public RegistratieMenu() {
 
         setLayout(null);
@@ -22,18 +23,21 @@ public class RegistratieMenu extends JFrame implements ActionListener {
         addActionListeners();
     }
 
+    // method for laying out  all the components on the JFrame and set their sizes
     public void setComponentBounds() {
         inschrijvingenLijst.setBounds(20, 75, 150, 30);
         inschrijven.setBounds(225, 75, 150, 30);
         terug.setBounds(430, 75, 150, 30);
     }
 
+    // method to add the components to the JFrame
     public void addComponents() {
         add(inschrijvingenLijst);
         add(inschrijven);
         add(terug);
     }
 
+    // method to add action listeners to the buttons
     public void addActionListeners() {
         inschrijvingenLijst.addActionListener(this);
         inschrijven.addActionListener(this);

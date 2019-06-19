@@ -41,6 +41,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
    private JButton bevestigen = new JButton("Klaar");
    private JButton terug = new JButton("Terug");
 
+   // the constructor
    public ToevoegenSpeler(){
        setTitle("Toevoegen van speler");
        setLayout(null);
@@ -54,7 +55,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 }
 
 
-
+// this method empties all the textfields that the user views.
    public void emptyTextFields() {
        naamField.setText("");
        //leeftijdField.setText("");
@@ -67,7 +68,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        geboorteDatumField.setText("");
    }
 
-
+// laying out all the components on the JFrame and then setting their sizes. There are so many of them!
    public void setComponentBounds(){
        naamLabel.setBounds(30,10,100,40);
        postcodeLabel.setBounds(30,60,100,40);
@@ -94,6 +95,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
    }
 
+   // adding all the components to the JFrame
    public void addComponents(){
        add(naamLabel);
        //add(leeftijdLabel);
@@ -124,7 +126,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
 
 
 
-
+// adding a player to the DB
    public boolean addSpeler() {
        if (naamField.getText().equals("") || adresField.getText().equals("") || postcodeField.getText().equals("") || woonplaatsField.getText().equals("") || telefoonNummerField.getText().equals("") || emailField.getText().equals("") || geboorteDatumField.getText().equals("") || geslachtField.getText().equals("")) {
            return false;
@@ -149,6 +151,7 @@ public class ToevoegenSpeler extends JFrame implements ActionListener {
        }
    }
 
+   // adding action listeners to the buttons
    public void addActionListeners(){
        terug.addActionListener(this);
        bevestigen.addActionListener(this);
