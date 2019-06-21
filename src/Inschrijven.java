@@ -306,8 +306,8 @@ public class Inschrijven extends JFrame implements ActionListener {
                     ResultSet resultaat = check.executeQuery();
                     if (resultaat.next()){
                         maxRanking = resultaat.getInt("max_ranking");
-                        System.out.println("Max ranking is: "+ maxRanking);
                         if (maxRanking <= getRanking() ){
+                            System.out.println("Max ranking is: "+ maxRanking +" De ranking van deze speler is: " + getRanking());
                             return false;
                         }
                     }
