@@ -291,6 +291,7 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 // checks if a player can register for a masterclass based on ranking
     public boolean checkMaxRanking(){
+        int maxRanking = -1;
         if(typeField.getText().equalsIgnoreCase("Masterclass")){
         try {
             Connection conn = Main.getConnection();
@@ -304,7 +305,9 @@ public class Inschrijven extends JFrame implements ActionListener {
                     check.setInt(1, Integer.parseInt(codeField.getText()));
                     ResultSet resultaat = check.executeQuery();
                     if (resultaat.next()){
-                        if (resultaat.getInt("max_ranking") >= getRanking()) {
+                        maxRanking = resultaat.getInt("max_ranking");
+                        System.out.println("Max ranking is: "+ maxRanking);
+                        if (maxRanking <= getRanking() ){
                             return false;
                         }
                     }
@@ -437,7 +440,7 @@ public class Inschrijven extends JFrame implements ActionListener {
             else if (checkInput()) {
                 JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
             }
-            else if (checkMaxRanking()){
+            else if (!checkMaxRanking()){
                 JOptionPane.showMessageDialog(this, "Ranking is hoger dan toegestaan in deze Masterclass");
             } else {
                 addInschrijving();
