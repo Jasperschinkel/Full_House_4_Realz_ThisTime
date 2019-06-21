@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a91da5ae-66b4-43b1-97cf-7255b792fdf1" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/LoginFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/MasterclassMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/MasterclassMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SpelerMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/SpelerMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Full_House_Swing_GUI/ToernooiMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Inschrijven.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inschrijven.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -85,8 +81,8 @@
       <file leaf-file-name="Inschrijven.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Inschrijven.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="309" column="128" selection-start-line="309" selection-start-column="128" selection-end-line="309" selection-end-column="128" />
+            <state relative-caret-position="268">
+              <caret line="446" column="130" selection-start-line="446" selection-start-column="130" selection-end-line="446" selection-end-column="130" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -361,13 +357,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1558088920726</updated>
-    </task>
-    <task id="LOCAL-00006" summary="De nieuwe shit 3.1 XD">
-      <created>1559765093300</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1559765093300</updated>
     </task>
     <task id="LOCAL-00007" summary="De nieuwe shit 3.1 XD">
       <created>1559826376649</created>
@@ -705,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561115396235</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Default Changelist">
+      <created>1561115564694</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1561115564694</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1172,8 +1168,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Inschrijven.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="309" column="128" selection-start-line="309" selection-start-column="128" selection-end-line="309" selection-end-column="128" />
+        <state relative-caret-position="268">
+          <caret line="446" column="130" selection-start-line="446" selection-start-column="130" selection-end-line="446" selection-end-column="130" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

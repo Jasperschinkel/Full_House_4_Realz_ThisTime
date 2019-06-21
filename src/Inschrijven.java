@@ -8,6 +8,8 @@ import java.sql.DriverManager;
 import java.sql.*;
 
 public class Inschrijven extends JFrame implements ActionListener {
+
+    private int currentMaxRanking = -1;
     //Labels
     private JLabel spelerIDLabel = new JLabel("Spelercode: ");
     private JLabel typeLabel = new JLabel("Type inschrijving: ");
@@ -291,7 +293,6 @@ public class Inschrijven extends JFrame implements ActionListener {
 
 // checks if a player can register for a masterclass based on ranking
     public boolean checkMaxRanking(){
-        int maxRanking = -1;
         if(typeField.getText().equalsIgnoreCase("Masterclass")){
         try {
             Connection conn = Main.getConnection();
@@ -305,9 +306,11 @@ public class Inschrijven extends JFrame implements ActionListener {
                     check.setInt(1, Integer.parseInt(codeField.getText()));
                     ResultSet resultaat = check.executeQuery();
                     if (resultaat.next()){
-                        maxRanking = resultaat.getInt("max_ranking");
-                        if (maxRanking <= getRanking() ){
-                            System.out.println("Max ranking is: "+ maxRanking +" De ranking van deze speler is: " + getRanking());
+                        this.currentMaxRanking = resultaat.getInt("max_ranking");
+                        System.out.println("De max ranking is: " + currentMaxRanking);
+                        System.out.println("De ranking van de speler is: " + getRanking());
+                        if (currentMaxRanking <= getRanking() ){
+                            System.out.println("Max ranking is: "+ currentMaxRanking +" De ranking van deze speler is: " + getRanking());
                             return false;
                         }
                     }
@@ -441,7 +444,8 @@ public class Inschrijven extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Niet alles is ingevuld!");
             }
             else if (!checkMaxRanking()){
-                JOptionPane.showMessageDialog(this, "Ranking is hoger dan toegestaan in deze Masterclass");
+                JOptionPane.showMessageDialog(this, "Ranking is hoger dan toegestaan in deze Masterclass, de maximale ranking is: " + currentMaxRanking
+                + " De speler heeft een ranking van: "+ getRanking());
             } else {
                 addInschrijving();
                 countSpelers();
